@@ -6,13 +6,13 @@
 /*   By: sashin <sashin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 16:58:02 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/22 17:50:49 by sashin           ###   ########.fr       */
+/*   Updated: 2020/12/23 10:31:42 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-size_t	 ft_strlcat(char *dest, const char *src, size_t destsize)
+size_t		ft_strlcat(char *dest, const char *src, size_t destsize)
 {
 	size_t	destlen;
 	size_t	srclen;

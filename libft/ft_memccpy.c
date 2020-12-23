@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sashin <sashin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/21 12:57:38 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/23 10:24:17 by sashin           ###   ########.fr       */
+/*   Created: 2020/12/23 16:08:42 by sashin            #+#    #+#             */
+/*   Updated: 2020/12/23 16:42:14 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-size_t		ft_strlcpy(char *dest, const char *src, size_t size)
+void			*ft_memccpy(void *dest, const void *src, int c, size_t n)
 {
-	size_t	count;
-	size_t	idx;
+	size_t		idx;
 
-	if (!dest || !src)
-		return (0);
-	count = 0;
 	idx = 0;
-	while (src[count])
-		++count;
-	if (size > 0)
+	while (idx < n)
 	{
-		while ((size - 1 > idx) && src[idx])
-		{
-			dest[idx] = src[idx];
-			++idx;
-		}
-		dest[idx] = 0;
+		((unsigned char*)dest)[idx] = ((unsigned char*)src)[idx];
+		if (((unsigned char*)src)[idx] == c)
+			break ;
+		++idx;
 	}
-	return (count);
+	return (dest + ((1 + idx) * sizeof(char)));
 }
