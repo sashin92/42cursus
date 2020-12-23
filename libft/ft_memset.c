@@ -6,13 +6,13 @@
 /*   By: sashin <sashin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 14:41:12 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/23 15:52:00 by sashin           ###   ########.fr       */
+/*   Updated: 2020/12/23 17:34:12 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-void		ft_memset(void *b, int c, size_t len)
+void		*ft_memset(void *b, int c, size_t len)
 {
 	size_t	idx;
 
@@ -22,4 +22,5 @@ void		ft_memset(void *b, int c, size_t len)
 		((unsigned char*)b)[idx] = c;
 		++idx;
 	}
+	return (b);
 }
