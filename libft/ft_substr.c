@@ -1,18 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/22 16:43:00 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/25 22:03:15 by sashin           ###   ########.fr       */
+/*   Created: 2020/12/25 18:11:07 by sashin            #+#    #+#             */
+/*   Updated: 2020/12/25 22:03:13 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_tolower(int c)
+#include <stdlib.h>
+
+char		*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	if (c >= 'A' && c <= 'Z')
-		return (c + 32);
-	return (c);
+	char	*val;
+	size_t	s_len;
+	size_t	i;
+	size_t	j;
+
+	s_len = 0;
+	i = 0;
+	j = 0;
+	while (s[s_len])
+		++s_len;
+	while (s[i])
+	{
+		if (s[i] == (char)start)
+		{
+			val = malloc((len + 1) * sizeof(char));
+			while (j < len)
+			{
+				val[j] = s[i + j];
+				++j;
+			}
+			return (val);
+		}
+		++i;
+	}
+	return (0);
 }
