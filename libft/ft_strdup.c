@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sashin <sashin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/23 15:53:09 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/23 22:28:35 by sashin           ###   ########.fr       */
+/*   Created: 2020/12/25 17:35:29 by sashin            #+#    #+#             */
+/*   Updated: 2020/12/25 17:41:31 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-void				*ft_memcpy(void *dest, const void *src, size_t n)
+char	*ft_strdup(const char *s1)
 {
-	size_t			idx;
+	char		*s2;
+	size_t		length;
+	size_t		idx;
 
+	length = 0;
+	while (s1[length])
+		++length;
+	s2 = malloc((length + 1) * sizeof(char*));
 	idx = 0;
-	while (idx < n)
-	{
-		((unsigned char*)dest)[idx] = ((unsigned char*)src)[idx];
+	while (s1[idx])
+	{	s2[idx] = s1[idx];
 		++idx;
 	}
-	return (dest);
+	s2[idx] = 0;
+	return (s2);
 }

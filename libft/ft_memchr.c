@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sashin <sashin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/23 15:53:09 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/23 22:28:35 by sashin           ###   ########.fr       */
+/*   Created: 2020/12/25 17:13:34 by sashin            #+#    #+#             */
+/*   Updated: 2020/12/25 17:22:32 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-void				*ft_memcpy(void *dest, const void *src, size_t n)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t			idx;
+	size_t		idx;
 
 	idx = 0;
 	while (idx < n)
 	{
-		((unsigned char*)dest)[idx] = ((unsigned char*)src)[idx];
+		if (((char*)s)[idx] == c)
+			return ((char*)s + idx);
 		++idx;
 	}
-	return (dest);
+	return (0);
 }

@@ -1,26 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sashin <sashin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/23 15:53:09 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/23 22:28:35 by sashin           ###   ########.fr       */
+/*   Created: 2020/12/25 16:04:37 by sashin            #+#    #+#             */
+/*   Updated: 2020/12/25 16:30:14 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-void				*ft_memcpy(void *dest, const void *src, size_t n)
+char		*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	size_t			idx;
+	size_t			i;
+	size_t			j;
+	const char		*pt;
 
-	idx = 0;
-	while (idx < n)
+	if (little[0] == 0)
+		return ((char*)big);
+	i = 0;
+	while (big[i] && i < len)
 	{
-		((unsigned char*)dest)[idx] = ((unsigned char*)src)[idx];
-		++idx;
+		j = 0;
+		while (little[j] == big[i + j] && (i + j) < len)
+		{
+			++j;
+			if (little[j] == 0)
+			{
+				pt = &big[i];
+				return ((char*)pt);
+			}
+		}
+		++i;
 	}
-	return (dest);
+	return (0);
 }

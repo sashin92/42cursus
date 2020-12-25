@@ -1,26 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sashin <sashin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/23 15:53:09 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/23 22:28:35 by sashin           ###   ########.fr       */
+/*   Created: 2020/12/25 16:37:24 by sashin            #+#    #+#             */
+/*   Updated: 2020/12/25 17:35:00 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-void				*ft_memcpy(void *dest, const void *src, size_t n)
+int		ft_isspace(const char c)
 {
-	size_t			idx;
+	if ((c >= 9 && c <= 13) || c == 32)
+		return (1);
+	return (0);
+}
+
+int		ft_atoi(const char *str)
+{
+	unsigned int		idx;
+	int					sign;
+	int					val;
 
 	idx = 0;
-	while (idx < n)
+	sign = 1;
+	while (ft_isspace(str[idx]))
+		++idx;
+	if (str[idx] == '-')
 	{
-		((unsigned char*)dest)[idx] = ((unsigned char*)src)[idx];
+		sign *= -1;
 		++idx;
 	}
-	return (dest);
+	else if (str[idx] == '+')
+		++idx;
+	while (str[idx] >= '0' && str[idx] <= '9')
+	{
+		val = (val * 10) + (str[idx] - '0');
+		++idx;
+	}
+	return (sign * val);
 }
