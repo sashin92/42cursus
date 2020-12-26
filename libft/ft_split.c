@@ -1,39 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/25 16:04:37 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/26 15:01:03 by sashin           ###   ########.fr       */
+/*   Created: 2020/12/26 10:19:12 by sashin            #+#    #+#             */
+/*   Updated: 2020/12/26 15:26:20 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-char		*ft_strnstr(const char *big, const char *little, size_t len)
+int			f_str_count(char const *s, char c)
 {
-	size_t			i;
-	size_t			j;
-	const char		*pt;
+	int		idx;
+	int		count;
 
-	if (little[0] == 0)
-		return ((char*)big);
-	i = 0;
-	while (big[i] && i < len)
+	idx = 0;
+	count = 0;
+	while (s[idx])
 	{
-		j = 0;
-		while (little[j] == big[i + j] && (i + j) < len)
+		if (s[idx] != c)
 		{
-			++j;
-			if (little[j] == 0)
-			{
-				pt = &big[i];
-				return ((char*)pt);
-			}
+			++count;
+			while (s[idx] != c && s[idx])
+				++idx;
 		}
-		++i;
+		else
+			++idx;
 	}
-	return (0);
+	return (count);
+}
+
+char		**ft_split(char const *s, char c)
+{
+	int		count;
+	int		idx;
+	char	**s_arr;
+
+	idx = 0;
+	count = f_str_count(s, c);
+	s_arr = (char**)malloc((count + 1) * sizeof(char*));
+
+	while (s[idx])
+	{
+		if (s[idx]);
+	}
 }

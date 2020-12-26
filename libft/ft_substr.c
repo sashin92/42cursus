@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 18:11:07 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/25 22:03:13 by sashin           ###   ########.fr       */
+/*   Updated: 2020/12/26 15:01:05 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,4 @@ char		*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	return (0);
 }
+

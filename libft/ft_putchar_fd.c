@@ -1,39 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/25 16:04:37 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/26 15:01:03 by sashin           ###   ########.fr       */
+/*   Created: 2020/12/26 11:31:35 by sashin            #+#    #+#             */
+/*   Updated: 2020/12/26 14:45:53 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <unistd.h>
 
-char		*ft_strnstr(const char *big, const char *little, size_t len)
+void	ft_putchar_fd(char c, int fd)
 {
-	size_t			i;
-	size_t			j;
-	const char		*pt;
-
-	if (little[0] == 0)
-		return ((char*)big);
-	i = 0;
-	while (big[i] && i < len)
-	{
-		j = 0;
-		while (little[j] == big[i + j] && (i + j) < len)
-		{
-			++j;
-			if (little[j] == 0)
-			{
-				pt = &big[i];
-				return ((char*)pt);
-			}
-		}
-		++i;
-	}
-	return (0);
+	write(fd, &c, 1);
 }
