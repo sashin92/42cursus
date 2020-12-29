@@ -6,11 +6,13 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 16:16:33 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/25 22:02:32 by sashin           ###   ########.fr       */
+/*   Updated: 2020/12/27 14:10:03 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isalpha(int c)
+#include "libft.h"
+
+int				ft_isalpha(int c)
 {
 	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
 		return (1);

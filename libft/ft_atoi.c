@@ -6,26 +6,29 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 16:37:24 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/26 15:52:54 by sashin           ###   ########.fr       */
+/*   Updated: 2020/12/29 17:27:48 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isspace(const char c)
+#include "libft.h"
+
+int				atoi_isspace(const char c)
 {
 	if ((c >= 9 && c <= 13) || c == 32)
 		return (1);
 	return (0);
 }
 
-int		ft_atoi(const char *str)
+int				ft_atoi(const char *str)
 {
-	unsigned int		idx;
-	int					sign;
-	int					val;
+	int			idx;
+	int			sign;
+	int			val;
 
 	idx = 0;
 	sign = 1;
-	while (ft_isspace(str[idx]))
+	val = 0;
+	while (atoi_isspace(str[idx]))
 		++idx;
 	if (str[idx] == '-')
 	{

@@ -6,20 +6,27 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 16:48:33 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/25 22:02:52 by sashin           ###   ########.fr       */
+/*   Updated: 2020/12/29 17:04:03 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t len)
+void			*ft_memmove(void *dest, const void *src, size_t len)
 {
 	size_t			idx;
+	unsigned char	temp[len];
 
 	idx = 0;
 	while (idx < len)
 	{
-		((unsigned char*)dest)[idx] = ((unsigned char*)src)[idx];
+		temp[idx] = ((unsigned char *)src)[idx];
+		++idx;
+	}
+	idx = 0;
+	while (idx < len)
+	{
+		((unsigned char *)dest)[idx] = temp[idx];
 		++idx;
 	}
 	return (dest);

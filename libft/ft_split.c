@@ -6,16 +6,16 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 10:19:12 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/26 15:26:20 by sashin           ###   ########.fr       */
+/*   Updated: 2020/12/29 12:34:48 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-int			f_str_count(char const *s, char c)
+int				f_str_count(char const *s, char c)
 {
-	int		idx;
-	int		count;
+	int			idx;
+	int			count;
 
 	idx = 0;
 	count = 0;
@@ -33,18 +33,63 @@ int			f_str_count(char const *s, char c)
 	return (count);
 }
 
-char		**ft_split(char const *s, char c)
+int				f_split_length(char const *s, char c)
 {
-	int		count;
-	int		idx;
-	char	**s_arr;
+	int			idx;
+	int			length;
 
 	idx = 0;
-	count = f_str_count(s, c);
-	s_arr = (char**)malloc((count + 1) * sizeof(char*));
+	length = 0;
+	while (!(s[idx] == c) && s[idx])
+	{
+		++length;
+		++idx;
+	}
+	return (length);
+}
 
+char			*f_allocate(char const *s, int length)
+{
+	int			idx;
+	char		*str;
+
+	idx = 0;
+	str = (char *)malloc((length + 1) * sizeof(char));
+	while (idx < length)
+	{
+		str[idx] = s[idx];
+		++idx;
+	}
+	str[idx] = 0;
+	return (str);
+}
+
+char			**ft_split(char const *s, char c)
+{
+	int			count;
+	int			idx;
+	int			arr_idx;
+	int			length;
+	char		**s_arr;
+
+	idx = 0;
+	arr_idx = 0;
+	count = f_str_count(s, c);
+	if (!(s_arr = (char **)malloc((count + 1) * sizeof(char *))))
+		return (0);
 	while (s[idx])
 	{
-		if (s[idx]);
+		if (!(s[idx] == c))
+		{
+			length = f_split_length(&s[idx], c);
+			s_arr[arr_idx] = f_allocate(&s[idx], length);
+			++arr_idx;
+			while (!(s[idx] == c) && s[idx])
+				++idx;
+		}
+		else
+			++idx;
 	}
+	s_arr[arr_idx] = 0;
+	return (s_arr);
 }

@@ -6,13 +6,13 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 16:46:59 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/25 22:03:04 by sashin           ###   ########.fr       */
+/*   Updated: 2020/12/29 12:19:22 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-size_t	ft_strlen(const char *s)
+size_t			ft_strlen(const char *s)
 {
 	size_t		count;
 

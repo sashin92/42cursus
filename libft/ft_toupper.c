@@ -6,11 +6,13 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 16:38:06 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/26 00:00:06 by sashin           ###   ########.fr       */
+/*   Updated: 2020/12/27 14:11:13 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_toupper(int c)
+#include "libft.h"
+
+int				ft_toupper(int c)
 {
 	if (c >= 'a' && c <= 'z')
 		return (c - 32);

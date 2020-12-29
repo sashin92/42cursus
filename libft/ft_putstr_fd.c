@@ -6,13 +6,13 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 11:33:48 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/26 11:36:46 by sashin           ###   ########.fr       */
+/*   Updated: 2020/12/29 20:47:43 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void			ft_putstr_fd(char *s, int fd)
 {
 	int			idx;
 

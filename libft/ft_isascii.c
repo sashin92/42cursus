@@ -6,11 +6,13 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 16:30:09 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/25 22:02:35 by sashin           ###   ########.fr       */
+/*   Updated: 2020/12/27 14:11:34 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isascii(int c)
+#include "libft.h"
+
+int				ft_isascii(int c)
 {
 	if (c >= 0 && c <= 127)
 		return (1);

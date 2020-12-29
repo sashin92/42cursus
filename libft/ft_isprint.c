@@ -6,11 +6,13 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 16:45:40 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/25 22:02:40 by sashin           ###   ########.fr       */
+/*   Updated: 2020/12/27 14:10:39 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isprint(int c)
+#include "libft.h"
+
+int				ft_isprint(int c)
 {
 	if (c >= 32 && c <= 126)
 		return (1);

@@ -6,18 +6,18 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 11:34:46 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/26 12:07:58 by sashin           ###   ########.fr       */
+/*   Updated: 2020/12/29 20:36:57 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
-void	ft_putendl_fd(char *s, int fd)
+void			ft_putendl_fd(char *s, int fd)
 {
 	int			idx;
 
 	idx = 0;
-	write(fd, "\n", 1);
 	while (s[idx])
 		write(fd, &s[idx++], 1);
+	write(fd, "\n", 1);
 }

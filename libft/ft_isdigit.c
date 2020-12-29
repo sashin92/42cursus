@@ -6,11 +6,13 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 16:29:29 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/25 22:02:38 by sashin           ###   ########.fr       */
+/*   Updated: 2020/12/27 14:10:26 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isdigit(int c)
+#include "libft.h"
+
+int				ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);

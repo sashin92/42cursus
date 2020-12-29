@@ -1,36 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/26 11:36:34 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/29 20:47:37 by sashin           ###   ########.fr       */
+/*   Created: 2020/12/29 20:45:01 by sashin            #+#    #+#             */
+/*   Updated: 2020/12/29 22:00:15 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			ft_putnbr_fd(int n, int fd)
+t_list		*ft_lstnew(void *content)
 {
-	char		val;
+	t_list	*new;
 
-	if (n == -2147483648)
-	{
-		write(fd, "-2147483648", 11);
-		return ;
-	}
-	if (n < 0)
-	{
-		n *= -1;
-		write(fd, "-", 1);
-	}
-	val = (n % 10) + '0';
-	if (n >= 10)
-	{
-		n = n / 10;
-		ft_putnbr_fd(n, fd);
-	}
-	write(fd, &val, 1);
+	if (!(new = (t_list *)malloc(sizeof(t_list))))
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
+	return (new);
 }

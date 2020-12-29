@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/26 11:36:34 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/29 20:47:37 by sashin           ###   ########.fr       */
+/*   Created: 2020/12/29 22:07:03 by sashin            #+#    #+#             */
+/*   Updated: 2020/12/29 23:08:17 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			ft_putnbr_fd(int n, int fd)
+int				ft_lstsize(t_list *lst)
 {
-	char		val;
+	int			count;
 
-	if (n == -2147483648)
+	count = 0;
+	while (lst != NULL)
 	{
-		write(fd, "-2147483648", 11);
-		return ;
+		++count;
+		lst = lst->next;
 	}
-	if (n < 0)
-	{
-		n *= -1;
-		write(fd, "-", 1);
-	}
-	val = (n % 10) + '0';
-	if (n >= 10)
-	{
-		n = n / 10;
-		ft_putnbr_fd(n, fd);
-	}
-	write(fd, &val, 1);
+	return (count);
 }

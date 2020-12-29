@@ -1,36 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/26 11:36:34 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/29 20:47:37 by sashin           ###   ########.fr       */
+/*   Created: 2020/12/29 21:58:56 by sashin            #+#    #+#             */
+/*   Updated: 2020/12/29 22:06:09 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			ft_putnbr_fd(int n, int fd)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	char		val;
-
-	if (n == -2147483648)
-	{
-		write(fd, "-2147483648", 11);
-		return ;
-	}
-	if (n < 0)
-	{
-		n *= -1;
-		write(fd, "-", 1);
-	}
-	val = (n % 10) + '0';
-	if (n >= 10)
-	{
-		n = n / 10;
-		ft_putnbr_fd(n, fd);
-	}
-	write(fd, &val, 1);
+	lst[0] = new;
 }

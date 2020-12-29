@@ -6,17 +6,17 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 16:04:37 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/26 15:01:03 by sashin           ###   ########.fr       */
+/*   Updated: 2020/12/29 20:47:52 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-char		*ft_strnstr(const char *big, const char *little, size_t len)
+char			*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	size_t			i;
-	size_t			j;
-	const char		*pt;
+	size_t		i;
+	size_t		j;
+	const char	*pt;
 
 	if (little[0] == 0)
 		return ((char*)big);
