@@ -6,11 +6,21 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 18:11:07 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/29 20:39:50 by sashin           ###   ########.fr       */
+/*   Updated: 2020/12/31 17:34:14 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+char		*check_start_len(void)
+{
+	char	*val;
+
+	if (!(val = (char *)malloc(sizeof(char))))
+		return (0);
+	val[0] = 0;
+	return (val);
+}
 
 char		*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -23,11 +33,7 @@ char		*ft_substr(char const *s, unsigned int start, size_t len)
 	while (s[s_len])
 		++s_len;
 	if (s_len < start)
-	{
-		if (!(val = (char *)malloc(sizeof(char))))
-			return (0);
-		val[0] = 0;
-	}
+		val = check_start_len();
 	else
 	{
 		if (!(val = (char *)malloc(sizeof(char) * (len + 1))))

@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 10:19:12 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/29 12:34:48 by sashin           ###   ########.fr       */
+/*   Updated: 2020/12/31 17:13:20 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ char			**ft_split(char const *s, char c)
 	int			count;
 	int			idx;
 	int			arr_idx;
-	int			length;
 	char		**s_arr;
 
 	idx = 0;
@@ -81,8 +80,7 @@ char			**ft_split(char const *s, char c)
 	{
 		if (!(s[idx] == c))
 		{
-			length = f_split_length(&s[idx], c);
-			s_arr[arr_idx] = f_allocate(&s[idx], length);
+			s_arr[arr_idx] = f_allocate(&s[idx], f_split_length(&s[idx], c));
 			++arr_idx;
 			while (!(s[idx] == c) && s[idx])
 				++idx;
