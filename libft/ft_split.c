@@ -6,13 +6,21 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 10:19:12 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/31 17:13:20 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/01 17:38:50 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int				f_str_count(char const *s, char c)
+/*
+** - ft_split() allocates and returns an array of strings obtained
+** by splitting 's' using the character ’c’ as a delimiter.
+** - The array must be ended by a NULL pointer.
+** - return array of new strings resulting from the split.
+** NULL if the allocation fails.
+*/
+
+static int		split_str_count(char const *s, char c)
 {
 	int			idx;
 	int			count;
@@ -33,7 +41,7 @@ int				f_str_count(char const *s, char c)
 	return (count);
 }
 
-int				f_split_length(char const *s, char c)
+static int		split_length(char const *s, char c)
 {
 	int			idx;
 	int			length;
@@ -48,19 +56,20 @@ int				f_split_length(char const *s, char c)
 	return (length);
 }
 
-char			*f_allocate(char const *s, int length)
+static char		*split_dup(char const *s, int length)
 {
 	int			idx;
 	char		*str;
 
 	idx = 0;
-	str = (char *)malloc((length + 1) * sizeof(char));
+	if (!(str = (char *)malloc((length + 1) * sizeof(char))))
+		return (NULL);
 	while (idx < length)
 	{
 		str[idx] = s[idx];
 		++idx;
 	}
-	str[idx] = 0;
+	str[idx] = '\0';
 	return (str);
 }
 
@@ -73,14 +82,14 @@ char			**ft_split(char const *s, char c)
 
 	idx = 0;
 	arr_idx = 0;
-	count = f_str_count(s, c);
+	count = split_str_count(s, c);
 	if (!(s_arr = (char **)malloc((count + 1) * sizeof(char *))))
-		return (0);
+		return (NULL);
 	while (s[idx])
 	{
 		if (!(s[idx] == c))
 		{
-			s_arr[arr_idx] = f_allocate(&s[idx], f_split_length(&s[idx], c));
+			s_arr[arr_idx] = split_dup(&s[idx], split_length(&s[idx], c));
 			++arr_idx;
 			while (!(s[idx] == c) && s[idx])
 				++idx;
@@ -88,6 +97,6 @@ char			**ft_split(char const *s, char c)
 		else
 			++idx;
 	}
-	s_arr[arr_idx] = 0;
+	s_arr[arr_idx] = NULL;
 	return (s_arr);
 }

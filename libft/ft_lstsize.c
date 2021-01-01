@@ -6,11 +6,15 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 22:07:03 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/29 23:08:17 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/01 14:54:45 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/*
+** ft_lstsize() counts the number of nodes in a list.
+*/
 
 int				ft_lstsize(t_list *lst)
 {

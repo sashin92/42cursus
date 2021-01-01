@@ -6,11 +6,16 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 16:30:26 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/29 17:22:55 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/01 13:36:02 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/*
+** ft_strncmp() compares s1 against s2 during n characters.
+** if find diff, differing s1 & s2 (s1 - s2) at differenced location.
+*/
 
 int				ft_strncmp(const char *s1, const char *s2, size_t n)
 {

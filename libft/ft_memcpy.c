@@ -6,18 +6,24 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 15:53:09 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/28 13:39:30 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/01 14:05:50 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/*
+**  ft_memcpy() copies n bytes from src to dest.
+** dst & src overlap behavior is undefined.
+** resturn dest.
+*/
 
 void			*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	size_t			idx;
 
 	if (!dest && !src)
-		return (0);
+		return (NULL);
 	idx = 0;
 	while (idx < n)
 	{

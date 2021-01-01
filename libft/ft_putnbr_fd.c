@@ -6,11 +6,15 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 11:36:34 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/29 20:47:37 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/01 14:43:09 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/*
+** ft_putnbr_fd() outputs the integer ’n’ to the given file descriptor.
+*/
 
 void			ft_putnbr_fd(int n, int fd)
 {

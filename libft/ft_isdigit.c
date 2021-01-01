@@ -6,11 +6,15 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 16:29:29 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/27 14:10:26 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/01 14:00:37 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/*
+** ft_isdigit() tests that char c is digit or not.
+*/
 
 int				ft_isdigit(int c)
 {

@@ -6,11 +6,15 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 16:45:40 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/27 14:10:39 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/01 14:02:11 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/*
+** ft_isprint() tests that char c is printable ASCII or not.
+*/
 
 int				ft_isprint(int c)
 {

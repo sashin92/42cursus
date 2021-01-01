@@ -6,11 +6,16 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 16:37:24 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/29 17:27:48 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/01 13:57:55 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/*
+** - ft_atoi() converts string_number to int.
+** - out of range of int is undefined.
+*/
 
 int				atoi_isspace(const char c)
 {

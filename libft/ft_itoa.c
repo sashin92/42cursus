@@ -6,30 +6,37 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 14:09:46 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/29 14:57:02 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/01 14:39:32 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char			*itoa_is_zero(void)
+/*
+** - ft_itoa() allocates and returns a string representing the integer
+** received as an argument.
+** - return the string representing the integer.
+** - return NULL if the allocation fails.
+*/
+
+static char		*itoa_is_zero(void)
 {
 	char		*num;
 
 	if (!(num = (char *)malloc(sizeof(char) * (2))))
-		return (0);
+		return (NULL);
 	num[0] = '0';
-	num[1] = 0;
+	num[1] = '\0';
 	return (num);
 }
 
-char			*itoa_is_positive(int n, int digit)
+static char		*itoa_is_positive(int n, int digit)
 {
 	int			idx;
 	char		*num;
 
 	if (!(num = (char *)malloc(sizeof(char) * (digit + 1))))
-		return (0);
+		return (NULL);
 	idx = digit;
 	while (idx > 0)
 	{
@@ -37,17 +44,17 @@ char			*itoa_is_positive(int n, int digit)
 		n = n / 10;
 		idx--;
 	}
-	num[digit] = 0;
+	num[digit] = '\0';
 	return (num);
 }
 
-char			*itoa_is_negative(int n, int digit)
+static char		*itoa_is_negative(int n, int digit)
 {
 	int			idx;
 	char		*num;
 
 	if (!(num = (char *)malloc(sizeof(char) * (digit + 2))))
-		return (0);
+		return (NULL);
 	idx = digit;
 	if (n == -2147483648)
 	{
@@ -62,7 +69,7 @@ char			*itoa_is_negative(int n, int digit)
 		n = n / 10;
 		idx--;
 	}
-	num[digit + 1] = 0;
+	num[digit + 1] = '\0';
 	return (num);
 }
 

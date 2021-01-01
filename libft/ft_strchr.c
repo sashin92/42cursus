@@ -6,11 +6,18 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 21:30:47 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/29 17:13:45 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/01 13:20:42 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/*
+** - ft_strchr() search c(converted to a char) in string s
+** during n bytes.(ascending index)
+** - if find c, return a pointer to the byte located, else return NULL.
+** - if c is '\0', ft_strchr() locate the terminating `\0'.
+*/
 
 char			*ft_strchr(const char *s, int c)
 {
@@ -21,8 +28,6 @@ char			*ft_strchr(const char *s, int c)
 	length = 0;
 	while (s[length])
 		++length;
-	if (s == 0)
-		return (0);
 	if (c == 0)
 		return (&((char *)s)[length]);
 	while (s[idx])
@@ -31,5 +36,5 @@ char			*ft_strchr(const char *s, int c)
 			return (&((char *)s)[idx]);
 		++idx;
 	}
-	return (0);
+	return (NULL);
 }

@@ -6,11 +6,17 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 16:04:37 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/29 20:47:52 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/01 13:34:00 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/*
+** - ft_strnstr() find string little in string big during len. if find little,
+** return pointer big indexing first of little char.
+** - if can't find little in big, return NULL.
+*/
 
 char			*ft_strnstr(const char *big, const char *little, size_t len)
 {
@@ -18,7 +24,7 @@ char			*ft_strnstr(const char *big, const char *little, size_t len)
 	size_t		j;
 	const char	*pt;
 
-	if (little[0] == 0)
+	if (little[0] == '\0')
 		return ((char*)big);
 	i = 0;
 	while (big[i] && i < len)
@@ -27,7 +33,7 @@ char			*ft_strnstr(const char *big, const char *little, size_t len)
 		while (little[j] == big[i + j] && (i + j) < len)
 		{
 			++j;
-			if (little[j] == 0)
+			if (little[j] == '\0')
 			{
 				pt = &big[i];
 				return ((char*)pt);
@@ -35,5 +41,5 @@ char			*ft_strnstr(const char *big, const char *little, size_t len)
 		}
 		++i;
 	}
-	return (0);
+	return (NULL);
 }

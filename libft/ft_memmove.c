@@ -6,28 +6,40 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 16:48:33 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/29 17:04:03 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/01 12:07:24 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+**  ft_memmove() copies len bytes from src to dest.
+** dst & src overlap behavior is defined.(line 36 ~ 43)
+** resturn dest.
+*/
+
 void			*ft_memmove(void *dest, const void *src, size_t len)
 {
 	size_t			idx;
-	unsigned char	temp[len];
 
+	if (!dest && !src)
+		return (NULL);
 	idx = 0;
-	while (idx < len)
+	if (dest < src)
 	{
-		temp[idx] = ((unsigned char *)src)[idx];
-		++idx;
+		while (idx < len)
+		{
+			((unsigned char *)dest)[idx] = ((unsigned char *)src)[idx];
+			++idx;
+		}
 	}
-	idx = 0;
-	while (idx < len)
+	else
 	{
-		((unsigned char *)dest)[idx] = temp[idx];
-		++idx;
+		while (0 < len)
+		{
+			((unsigned char *)dest)[len - 1] = ((unsigned char *)src)[len - 1];
+			--len;
+		}
 	}
 	return (dest);
 }

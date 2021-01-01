@@ -6,11 +6,15 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 16:34:21 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/27 14:10:01 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/01 14:01:24 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/*
+** ft_isalnum() tests that char c is (alphabet or digit) or not.
+*/
 
 int				ft_isalnum(int c)
 {

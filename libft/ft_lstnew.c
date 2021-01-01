@@ -6,11 +6,15 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 20:45:01 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/29 22:00:15 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/01 14:45:32 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/*
+** ft_lstnew() makes new node. 'content' is contained new->content.
+*/
 
 t_list		*ft_lstnew(void *content)
 {

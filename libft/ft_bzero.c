@@ -6,17 +6,22 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 13:47:19 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/28 13:38:53 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/01 10:45:19 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			ft_bzero(void *s, size_t n)
+/*
+**  ft_bzero() writes n zeroed bytes to the string s.
+** If n is zero, ft_bzero() does nothing.
+*/
+
+void		ft_bzero(void *s, size_t n)
 {
 	size_t		idx;
 
 	idx = 0;
 	while (idx < n)
-		((unsigned char *)s)[idx++] = 0;
+		((char *)s)[idx++] = '\0';
 }

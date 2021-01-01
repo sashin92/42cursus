@@ -6,11 +6,15 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 17:35:29 by sashin            #+#    #+#             */
-/*   Updated: 2020/12/29 12:33:38 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/01 14:14:11 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/*
+** ft_strdup() duplicate s1 to new string.
+*/
 
 char	*ft_strdup(const char *s1)
 {
@@ -22,13 +26,13 @@ char	*ft_strdup(const char *s1)
 	while (s1[length])
 		++length;
 	if (!(s2 = (char *)malloc((length + 1) * sizeof(char))))
-		return (0);
+		return (NULL);
 	idx = 0;
 	while (s1[idx])
 	{
 		s2[idx] = s1[idx];
 		++idx;
 	}
-	s2[idx] = 0;
+	s2[idx] = '\0';
 	return (s2);
 }
