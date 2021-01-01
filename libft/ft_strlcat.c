@@ -6,16 +6,15 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 16:58:02 by sashin            #+#    #+#             */
-/*   Updated: 2021/01/01 17:48:25 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/01 23:07:35 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
-** - ft_strlcat() suffixes (destsize - destlen - 1) bytes
+** - ft_strlcat() appends (destsize - destlen - 1) bytes
 ** from string src to string dest, and input '\0' in dest. return src length.
-** - if size is 0, nothing happen.
 ** - dest & src overlap behavior is undefined.
 */
 

@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 16:37:24 by sashin            #+#    #+#             */
-/*   Updated: 2021/01/01 13:57:55 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/02 00:07:50 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,30 @@
 ** - out of range of int is undefined.
 */
 
-int				atoi_isspace(const char c)
+static int					atoi_isspace(const char c)
 {
 	if ((c >= 9 && c <= 13) || c == 32)
 		return (1);
 	return (0);
 }
 
-int				ft_atoi(const char *str)
+static unsigned long long	atoi_check_over(unsigned long long val, int sign)
 {
-	int			idx;
-	int			sign;
-	int			val;
+	if (val > 9223372036854775807)
+	{
+		if (sign == 1)
+			return (-1);
+		else if (sign == -1)
+			return (0);
+	}
+	return (val);
+}
+
+int							ft_atoi(const char *str)
+{
+	int						idx;
+	int						sign;
+	unsigned long long		val;
 
 	idx = 0;
 	sign = 1;
@@ -46,6 +58,9 @@ int				ft_atoi(const char *str)
 	{
 		val = (val * 10) + (str[idx] - '0');
 		++idx;
+		if (val > 9223372036854775807)
+			break ;
 	}
+	val = atoi_check_over(val, sign);
 	return (sign * val);
 }

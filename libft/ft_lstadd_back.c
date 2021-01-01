@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 22:23:00 by sashin            #+#    #+#             */
-/*   Updated: 2021/01/01 17:13:18 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/01 23:17:23 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,15 @@
 
 void		ft_lstadd_back(t_list **lst, t_list *new)
 {
+	t_list *temp;
+
 	if (*lst == NULL)
 		*lst = new;
 	else
 	{
-		while ((*lst)->next != NULL)
-			*lst = (*lst)->next;
-		(*lst)->next = new;
+		temp = *lst;
+		while (temp->next != NULL)
+			temp = temp->next;
+		temp->next = new;
 	}
 }
