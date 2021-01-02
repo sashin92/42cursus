@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/31 15:45:43 by sashin            #+#    #+#             */
-/*   Updated: 2021/01/02 14:23:16 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/02 15:14:38 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,24 @@
 ** - the 'del' function is used to delete the content of the node if needed.
 */
 
-t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+static void		lstmap_clear(t_list *lst, void (*del)(void *))
 {
-	t_list *new;
-	t_list *head;
+	t_list		*temp;
+
+	while (lst)
+	{
+		temp = lst->next;
+		del(lst->content);
+		free(lst);
+		lst = temp;
+	}
+	lst = NULL;
+}
+
+t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+{
+	t_list		*new;
+	t_list		*head;
 
 	if (!lst || !(new = (t_list *)malloc(sizeof(t_list))))
 		return (NULL);
@@ -34,7 +48,7 @@ t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	{
 		if (!(head->next = (t_list *)malloc(sizeof(t_list))))
 		{
-			ft_lstclear(&new, del);
+			lstmap_clear(new, del);
 			return (NULL);
 		}
 		lst = lst->next;
