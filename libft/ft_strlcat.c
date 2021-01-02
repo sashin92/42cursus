@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 16:58:02 by sashin            #+#    #+#             */
-/*   Updated: 2021/01/01 23:07:35 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/02 12:35:55 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ size_t			ft_strlcat(char *dest, const char *src, size_t destsize)
 		dest[idx + destlen] = src[idx];
 		++idx;
 	}
-	dest[idx + destlen] = '\0';
+	if (destsize > destlen)
+		dest[idx + destlen] = '\0';
 	return (destlen >= destsize ? (srclen + destsize) : (destlen + srclen));
 }

@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 10:11:54 by sashin            #+#    #+#             */
-/*   Updated: 2021/01/02 00:19:13 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/02 12:07:50 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ static char		*strtrim_alloc(char const *s1, int begin, int end)
 	int			idx;
 
 	idx = 0;
-	if (end - begin < 0)
+	if (end < begin)
 	{
 		if (!(s2 = (char *)malloc(sizeof(char))))
 			return (NULL);
-		s2[idx] = '\0';
+		*s2 = 0;
 		return (s2);
 	}
 	if (!(s2 = (char *)malloc((end - begin + 2) * sizeof(char))))
@@ -69,7 +69,7 @@ char			*ft_strtrim(char const *s1, char const *set)
 	end = end - 1;
 	while (strtrim_isset(s1[begin], set))
 		++begin;
-	while (strtrim_isset(s1[end], set))
+	while (strtrim_isset(s1[end], set) && (end >= begin))
 		--end;
 	if (!(s2 = strtrim_alloc(s1, begin, end)))
 		return (NULL);
