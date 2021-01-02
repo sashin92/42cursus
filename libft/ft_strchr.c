@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 21:30:47 by sashin            #+#    #+#             */
-/*   Updated: 2021/01/01 13:20:42 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/02 14:24:57 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** - ft_strchr() search c(converted to a char) in string s
 ** during n bytes.(ascending index)
 ** - if find c, return a pointer to the byte located, else return NULL.
-** - if c is '\0', ft_strchr() locate the terminating `\0'.
+** - if c is '\0', ft_strchr() locate the terminating '\0'.
 */
 
 char			*ft_strchr(const char *s, int c)

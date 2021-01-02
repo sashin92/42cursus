@@ -6,14 +6,14 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 11:34:46 by sashin            #+#    #+#             */
-/*   Updated: 2021/01/01 14:42:39 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/02 14:23:50 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
-** - ft_putendl_fd() outputs the string ’s’ to the given file descriptor,
+** - ft_putendl_fd() outputs the string 's' to the given file descriptor,
 ** followed by a newline.
 */
 

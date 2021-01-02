@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 10:19:12 by sashin            #+#    #+#             */
-/*   Updated: 2021/01/01 17:38:50 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/02 14:24:49 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*
 ** - ft_split() allocates and returns an array of strings obtained
-** by splitting 's' using the character ’c’ as a delimiter.
+** by splitting 's' using the character 'c' as a delimiter.
 ** - The array must be ended by a NULL pointer.
 ** - return array of new strings resulting from the split.
 ** NULL if the allocation fails.

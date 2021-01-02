@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/31 15:26:33 by sashin            #+#    #+#             */
-/*   Updated: 2021/01/01 16:34:48 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/02 14:22:31 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*
 ** ft_lstclear() Deletes and frees the given element and
-** every successor of that element, using the function ’del’ and free.
+** every successor of that element, using the function 'del' and free.
 ** finally, the pointer to the list must be set to NULL.
 */
 

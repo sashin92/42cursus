@@ -6,16 +6,16 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 15:04:11 by sashin            #+#    #+#             */
-/*   Updated: 2021/01/01 14:41:05 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/02 14:25:43 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
-** - ft_strmapi() applies the function ’f’ to each character of the string ’s’
-** to create a new string  resulting from successive applications of ’f’.
-** - return the string created from the successive applications of ’f’.
+** - ft_strmapi() applies the function 'f' to each character of the string 's'
+** to create a new string  resulting from successive applications of 'f'.
+** - return the string created from the successive applications of 'f'.
 ** - returns NULL if the allocation fails.
 */
 
