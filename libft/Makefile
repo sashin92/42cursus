@@ -4,7 +4,7 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
 AR = ar
-ARFLAGS = rcsv
+ARFLAGS = rcs
 
 SRCS = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c \
 		ft_memmove.c ft_memchr.c ft_memcmp.c ft_strlen.c \
@@ -22,37 +22,27 @@ SRCS_BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
 
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
-ifdef WITH_BONUS
-	OBJ_FILES = $(OBJS_BONUS)
-else
-	OBJ_FILES = $(OBJS)
-endif
 
 all: $(NAME)
 
-$(NAME): $(OBJ_FILES)
-ifdef WITH_BONUS
-	$(AR) $(ARFLAGS) $(NAME) $(OBJS_BONUS)
-else
+$(NAME): $(OBJS)
 	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
-endif
 
 $(OBJS): %.o: %.c
 	$(CC) $(CFLAGS) -c $<
 
-$(OBJS_BONUS): %.o: %.c
-	$(CC) $(CFLAGS) -c $<
+bonus: $(OBJS_BONUS)
 
-bonus: 
-	make WITH_BONUS=1 all
+$(OBJS_BONUS):
+	$(CC) $(CFLAGS) -c $(SRCS_BONUS)
+	$(AR) $(ARFLAGS) $(NAME) $(OBJS_BONUS)
 
 clean:
-	rm -rf $(OBJS)
-	rm -rf $(OBJS_BONUS)
+	rm -rf $(OBJS) $(OBJS_BONUS)
 
 fclean: clean
 	rm -rf $(NAME)
 
-re:	fclean all
+re: fclean all
 
 .PHONY: all bonus clean fclean re
