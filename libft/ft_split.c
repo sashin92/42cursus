@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 10:19:12 by sashin            #+#    #+#             */
-/*   Updated: 2021/01/02 14:24:49 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/03 14:37:09 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@
 ** NULL if the allocation fails.
 */
 
-static int		split_str_count(char const *s, char c)
+static char		**split_allocate(char const *s, char c)
 {
 	int			idx;
 	int			count;
+	char		**s_arr;
 
 	idx = 0;
 	count = 0;
@@ -38,10 +39,12 @@ static int		split_str_count(char const *s, char c)
 		else
 			++idx;
 	}
-	return (count);
+	if (!(s_arr = (char **)malloc((count + 1) * sizeof(char *))))
+		return (NULL);
+	return (s_arr);
 }
 
-static int		split_length(char const *s, char c)
+static int		split_len(char const *s, char c)
 {
 	int			idx;
 	int			length;
@@ -73,24 +76,35 @@ static char		*split_dup(char const *s, int length)
 	return (str);
 }
 
+static void		split_free(char **s_arr, int arr_idx)
+{
+	while (arr_idx >= 0)
+	{
+		free(s_arr[arr_idx]);
+		--arr_idx;
+	}
+	free(s_arr);
+}
+
 char			**ft_split(char const *s, char c)
 {
-	int			count;
 	int			idx;
 	int			arr_idx;
 	char		**s_arr;
 
 	idx = 0;
 	arr_idx = 0;
-	count = split_str_count(s, c);
-	if (!(s_arr = (char **)malloc((count + 1) * sizeof(char *))))
+	if (!(s_arr = split_allocate(s, c)))
 		return (NULL);
 	while (s[idx])
 	{
 		if (!(s[idx] == c))
 		{
-			s_arr[arr_idx] = split_dup(&s[idx], split_length(&s[idx], c));
-			++arr_idx;
+			if (!(s_arr[arr_idx++] = split_dup(&s[idx], split_len(&s[idx], c))))
+			{
+				split_free(s_arr, (arr_idx - 1));
+				return (NULL);
+			}
 			while (!(s[idx] == c) && s[idx])
 				++idx;
 		}

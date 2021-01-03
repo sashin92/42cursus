@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 16:58:02 by sashin            #+#    #+#             */
-/*   Updated: 2021/01/02 12:35:55 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/03 13:23:22 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@
 
 size_t			ft_strlcat(char *dest, const char *src, size_t destsize)
 {
-	size_t		destlen;
 	size_t		srclen;
+	size_t		destlen;
 	size_t		idx;
 
-	destlen = 0;
 	srclen = 0;
+	destlen = 0;
 	idx = 0;
 	while (src[srclen])
 		++srclen;
-	while (dest[destlen])
+	while (dest[destlen] && destsize > destlen)
 		++destlen;
 	while ((destsize > idx + destlen + 1) && src[idx])
 	{
@@ -38,5 +38,5 @@ size_t			ft_strlcat(char *dest, const char *src, size_t destsize)
 	}
 	if (destsize > destlen)
 		dest[idx + destlen] = '\0';
-	return (destlen >= destsize ? (srclen + destsize) : (destlen + srclen));
+	return (destsize <= destlen ? (srclen + destsize) : (destlen + srclen));
 }
