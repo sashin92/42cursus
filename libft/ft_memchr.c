@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 17:13:34 by sashin            #+#    #+#             */
-/*   Updated: 2021/01/01 13:02:17 by sashin           ###   ########.fr       */
+/*   Updated: 2021/01/03 16:51:04 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,15 @@
 
 void			*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t		idx;
+	size_t			idx;
+	unsigned char	*cp_s;
 
+	cp_s = (unsigned char *)s;
 	idx = 0;
 	while (idx < n)
 	{
-		if (((char *)s)[idx] == c)
-			return ((char *)s + idx);
+		if (cp_s[idx] == (unsigned char)c)
+			return (cp_s + idx);
 		++idx;
 	}
 	return (NULL);
