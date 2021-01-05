@@ -1,8 +1,8 @@
 Libft
 =====
 
- Test code to these program
- --------------------------
+ Test libft codes using below listed program
+ -------------------------------------------
 
 	git clone https://github.com/jtoty/Libftest.git
 
