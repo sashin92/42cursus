@@ -5,19 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/06 10:05:27 by sashin            #+#    #+#             */
-/*   Updated: 2021/01/06 14:35:45 by sashin           ###   ########.fr       */
+/*   Created: 2021/01/13 20:27:44 by sashin            #+#    #+#             */
+/*   Updated: 2021/01/13 22:37:23 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-/*
-** - ft_strchr() search c(converted to a char) in string s
-** during n bytes.(ascending index)
-** - if find c, return a pointer to the byte located, else return NULL.
-** - if c is '\0', ft_strchr() locate the terminating '\0'.
-*/
 
 char			*ft_strchr(const char *s, int c)
 {
@@ -39,27 +32,42 @@ char			*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-/*
-** - ft_strjoin() allocates (with malloc(3)) and returns a newstring,
-** which is the result of the concatenation of 's1' and 's2'.
-** - return the new string.  NULL if the allocation fails.
-*/
-
-size_t			ft_strlen(const char *s)
+char			*ft_strdup(const char *s1)
 {
-	size_t		length;
+	char		*s2;
+	int			length;
+	int			idx;
 
 	length = 0;
-	while (s[length])
+	while (s1[length])
 		++length;
+	if (!(s2 = (char *)malloc((length + 1) * sizeof(char))))
+		return (NULL);
+	idx = 0;
+	while (s1[idx])
+	{
+		s2[idx] = s1[idx];
+		++idx;
+	}
+	s2[idx] = '\0';
+	return (s2);
+}
+
+int				ft_strlen(char const *str)
+{
+	int			length;
+
+	length = 0;
+	while (str[length])
+		length++;
 	return (length);
 }
 
 char			*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t		idx;
-	size_t		s1_len;
-	size_t		s2_len;
+	int			idx;
+	int			s1_len;
+	int			s2_len;
 	char		*ns;
 
 	s1_len = ft_strlen(s1);
