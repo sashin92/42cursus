@@ -1,1 +1,8 @@
 .DS_Store
+
+# Object Files
+*.o
+
+# Exe Files
+*.exe
+*.out
