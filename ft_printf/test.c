@@ -55,6 +55,8 @@ int main()
 
 	int a;
 
-	printf("|%*.*d **|\n%%", 8, 7, 5);
+	a = printf("Idontknow 왜about |%.8d|, |%4d|\n", -123, 432);
+	printf("return : %d\n", a);
     return 0;
 }
+

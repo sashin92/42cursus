@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 11:24:56 by sashin            #+#    #+#             */
-/*   Updated: 2021/01/28 21:44:52 by sashin           ###   ########.fr       */
+/*   Updated: 2021/02/04 11:37:57 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,22 @@
 # include <stdlib.h>
 # include <stdarg.h>
 
-
 # include "libft/libft.h"
 
 typedef struct	s_flag
 {
-	int			minus;
+	int			minus_sign;
+	int			plus_sign;
+	int			star_sign;
+	int			space_char;
+	int			sharp_sign;
+	int			zero_padding;
 	int			width;
 	int			precision;
-	int			star;
 }				t_flag;
 
 
-int		ft_printf(const char *type, ...);
+int		ft_printf(const char *format, ...);
 
 
 
