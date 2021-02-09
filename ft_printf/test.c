@@ -54,8 +54,13 @@ int main()
 	#include <fcntl.h>
 
 	int a;
+	// int ret;
 
-	a = printf("Idontknow 왜about |%.8d|, |%4d|\n", -123, 432);
+	printf("\n------------------printf---------------\n");
+	// ret = printf("this is %2147483646d", 42);
+	// printf("%d\n", ret);
+
+	a = printf("This is: |%.6d|, |%4d|\n", -1234, 432);
 	printf("return : %d\n", a);
     return 0;
 }
