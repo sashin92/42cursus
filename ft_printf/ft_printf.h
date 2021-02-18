@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 11:24:56 by sashin            #+#    #+#             */
-/*   Updated: 2021/02/04 11:37:57 by sashin           ###   ########.fr       */
+/*   Updated: 2021/02/18 14:30:22 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,16 @@ typedef struct	s_flag
 }				t_flag;
 
 
-int		ft_printf(const char *format, ...);
+int			ft_printf(const char *format, ...);
+
+void		printf_check_flags(char **form, t_flag *flags);
+void		printf_check_width(char **form, va_list *ap, t_flag *flags);
+void		printf_check_precision(char **form, va_list *ap, t_flag *flags);
+
+int			printf_conversion_d(va_list *ap, t_flag flags);
+
+int			printf_print(char *val, t_flag flags);
+
 
 
 
