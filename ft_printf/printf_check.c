@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 14:22:47 by sashin            #+#    #+#             */
-/*   Updated: 2021/02/18 14:23:28 by sashin           ###   ########.fr       */
+/*   Updated: 2021/02/18 17:40:24 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@ void		printf_check_width(char **form, va_list *ap, t_flag *flags)
 	else if (**form == '*')
 	{
 		flags->width = va_arg(*ap, int);
+		if (flags->width < 0)
+		{
+			flags->minus_sign = 1;
+			flags->width *= -1;
+		}
 		*form += sizeof(char);
 	}
 }

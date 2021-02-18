@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 11:06:20 by sashin            #+#    #+#             */
-/*   Updated: 2021/02/18 14:29:04 by sashin           ###   ########.fr       */
+/*   Updated: 2021/02/18 17:24:35 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,37 @@ void		printf_init_flags(t_flag *flags)
 int			printf_print(char *val, t_flag flags)
 {
 	int		val_len;
-	int		count;
+	int		idx;
 
+	idx = 0;
 	val_len = ft_strlen(val);
 	if (flags.width - val_len <= 0)
+	{
 		ft_putstr_fd(val, 1);
+		return (val_len);
+	}
 	else
 	{
 		if (flags.minus_sign == 1)
 		{
 			ft_putstr_fd(val, 1);
+			while (flags.width - val_len - idx > 0)
+			{
+				ft_putchar_fd(' ', 1);
+				++idx;
+			}
+		}
+		else if (flags.minus_sign == 0)
+		{
+			while (flags.width - val_len - idx > 0)
+			{
+				ft_putchar_fd(' ', 1);
+				++idx;
+			}
+			ft_putstr_fd(val, 1);
 		}
 	}
-	return (0);
+	return (flags.width);
 }
 
 int			printf_run(char **form, va_list *ap)
@@ -55,7 +73,7 @@ int			printf_run(char **form, va_list *ap)
 	printf_check_precision(form, ap, &flags);
 
 	if (ft_strchr("d", **form))
-		printf_conversion_d(ap, flags);
+		ret = printf_conversion_d(ap, flags);
 	else
 		ft_putstr_fd("wrong", 1);
 	*form += sizeof(char);
@@ -80,7 +98,7 @@ int			ft_printf(const char *format, ...)
 		}
 		else
 		{
-			write(1, form, 1);
+			ft_putchar_fd(*form, 1);
 			++form;
 			++ret;
 		}

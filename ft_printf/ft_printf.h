@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 11:24:56 by sashin            #+#    #+#             */
-/*   Updated: 2021/02/18 14:30:22 by sashin           ###   ########.fr       */
+/*   Updated: 2021/02/18 17:30:42 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void		printf_check_precision(char **form, va_list *ap, t_flag *flags);
 int			printf_conversion_d(va_list *ap, t_flag flags);
 
 int			printf_print(char *val, t_flag flags);
+
+int			printf_base_len(int num, int base);
 
 
 
