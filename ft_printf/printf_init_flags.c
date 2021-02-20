@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_tool.c                                      :+:      :+:    :+:   */
+/*   printf_init_flags.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/18 17:30:19 by sashin            #+#    #+#             */
-/*   Updated: 2021/02/20 14:41:17 by sashin           ###   ########.fr       */
+/*   Created: 2021/02/20 14:42:12 by sashin            #+#    #+#             */
+/*   Updated: 2021/02/20 14:42:56 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			printf_base_len(long long num, int base)
+void		printf_init_flags(t_flag *flags)
 {
-	int			len;
-
-	len = 0;
-	if (num == 0)
-		return (1);
-	while (num)
-	{
-		num = num / base;
-		++len;
-	}
-	return (len);
-}
-
-char		*printf_itoa_base(long long num, char *val, int num_len, char *base)
-{
-	val[num_len] = '\0';
-	while (--num_len >= 0 && val[num_len] != '-')
-	{
-		val[num_len] = base[num % 16];
-		num = num / 16;
-	}
-	return (val);
+	flags->minus_sign = 0;
+	flags->plus_sign = 0;
+	flags->sharp_sign = 0;
+	flags->space_char = 0;
+	flags->dot_sign = 0;
+	flags->zero_padding = ' ';
+	flags->star_sign = 0;
+	flags->precision = 0;
+	flags->width = 0;
 }

@@ -1,39 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_tool.c                                      :+:      :+:    :+:   */
+/*   printf_conversion_s.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/18 17:30:19 by sashin            #+#    #+#             */
-/*   Updated: 2021/02/20 14:41:17 by sashin           ###   ########.fr       */
+/*   Created: 2021/02/20 14:04:57 by sashin            #+#    #+#             */
+/*   Updated: 2021/02/20 14:05:05 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			printf_base_len(long long num, int base)
+char		*printf_conversion_s(va_list *ap, t_flag flags)
 {
-	int			len;
+	char			*s;
+	int				s_len;
+	char			*val;
 
-	len = 0;
-	if (num == 0)
-		return (1);
-	while (num)
-	{
-		num = num / base;
-		++len;
-	}
-	return (len);
-}
-
-char		*printf_itoa_base(long long num, char *val, int num_len, char *base)
-{
-	val[num_len] = '\0';
-	while (--num_len >= 0 && val[num_len] != '-')
-	{
-		val[num_len] = base[num % 16];
-		num = num / 16;
-	}
+	s = va_arg(*ap, char *);
+	s_len = ft_strlen(s);
+	if (flags.precision < s_len && flags.dot_sign == 1)
+		val = ft_substr(s, 0, flags.precision);
+	else
+		val = ft_strdup(s);
 	return (val);
 }

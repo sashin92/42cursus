@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 14:22:47 by sashin            #+#    #+#             */
-/*   Updated: 2021/02/18 17:40:24 by sashin           ###   ########.fr       */
+/*   Updated: 2021/02/20 14:02:51 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void		printf_check_flags(char **form, t_flag *flags)
 		else if (**form == ' ')
 			flags->space_char = 1;
 		else if (**form == '0')
-			flags->zero_padding = 1;
+			flags->zero_padding = '0';
 		else
 			break ;
 		*form += sizeof(char);
@@ -58,6 +58,8 @@ void		printf_check_precision(char **form, va_list *ap, t_flag *flags)
 {
 	if (**form == '.')
 	{
+		flags->dot_sign = 1;
+		flags->zero_padding = ' ';
 		*form += sizeof(char);
 		if (ft_isdigit(**form))
 		{
