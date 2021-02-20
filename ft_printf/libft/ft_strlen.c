@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 16:46:59 by sashin            #+#    #+#             */
-/*   Updated: 2021/01/01 13:06:38 by sashin           ###   ########.fr       */
+/*   Updated: 2021/02/20 22:07:54 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ size_t			ft_strlen(const char *s)
 {
 	size_t		length;
 
+	if (s == 0)
+		return (0);
 	length = 0;
 	while (s[length])
 		++length;

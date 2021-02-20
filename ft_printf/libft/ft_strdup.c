@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 17:35:29 by sashin            #+#    #+#             */
-/*   Updated: 2021/01/01 14:14:11 by sashin           ###   ########.fr       */
+/*   Updated: 2021/02/20 22:08:54 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char	*ft_strdup(const char *s1)
 	size_t		length;
 	size_t		idx;
 
+	if (s1 == 0)
+		return (0);
 	length = 0;
 	while (s1[length])
 		++length;

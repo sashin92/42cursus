@@ -6,36 +6,35 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 14:29:07 by sashin            #+#    #+#             */
-/*   Updated: 2021/02/20 13:02:01 by sashin           ###   ########.fr       */
+/*   Updated: 2021/02/20 21:59:50 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char		*printf_conversion_d(va_list *ap, t_flag flags)
+char		*printf_conversion_d(va_list ap, t_flag *flags)
 {
-	int			num;
+	long long	num;
 	int			num_len;
 	char		*val;
 
-	num = va_arg(*ap, int);
+	num = va_arg(ap, int);
+	if (flags->dot_sign == 1 && flags->precision >= 0)
+		flags->zero_padding = ' ';
+	if (flags->dot_sign == 1 && flags->precision == 0 && num == 0)
+		return (val = ft_strdup(""));
 	num_len = printf_base_len(num, 10);
-	if (flags.precision > num_len)
-		num_len = flags.precision;
+	if (flags->precision > num_len)
+		num_len = flags->precision;
 	if (num < 0)
 		++num_len;
-	if (!(val = (char *)malloc(sizeof(char) * (num_len + 1))))
+	if (!(val = ft_calloc(num_len + 1, sizeof(char))))
 		return (0);
 	if (num < 0)
 	{
 		val[0] = '-';
 		num = num * (-1);
 	}
-	val[num_len] = '\0';
-	while (--num_len >= 0 && val[num_len] != '-')
-	{
-		val[num_len] = num % 10 + '0';
-		num = num / 10;
-	}
+	val = printf_itoa_base(num, val, num_len, "0123456789");
 	return (val);
 }

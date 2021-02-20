@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 14:42:12 by sashin            #+#    #+#             */
-/*   Updated: 2021/02/20 14:42:56 by sashin           ###   ########.fr       */
+/*   Updated: 2021/02/20 23:21:39 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void		printf_init_flags(t_flag *flags)
 	flags->sharp_sign = 0;
 	flags->space_char = 0;
 	flags->dot_sign = 0;
+	flags->null_char = 0;
 	flags->zero_padding = ' ';
 	flags->star_sign = 0;
 	flags->precision = 0;
