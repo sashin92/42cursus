@@ -7,12 +7,6 @@ RUN apt-get upgrade -y
 RUN apt-get install -y vim nginx wget mariadb-server \
 php-mysql php7.3-fpm php-xml openssl
 
-RUN openssl req -newkey rsa:2048 -nodes -subj \
-"/C=KR/ST=Seoul/L=Seoul/O=42seoul/OU=Kill/CN=localhost" -keyout sashin-ssl.key -out sashin-ssl.csr
-RUN openssl x509 -req -days 365 -in sashin-ssl.csr -signkey sashin-ssl.key -out sashin-ssl.crt
-RUN mv sashin-ssl.key /etc/ssl/private/
-RUN mv sashin-ssl.crt /etc/ssl/certs/
-
 COPY ./src/default /etc/nginx/sites-available/
 COPY ./src/phpinfo.php /var/www/html/
 COPY ./src/set_mysql.sql /root/
