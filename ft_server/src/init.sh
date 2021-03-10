@@ -2,8 +2,8 @@
 
 #self signed certification(for ssl)
 echo making rootCA...
-openssl req -newkey rsa:2048 -x509 -nodes -days 365 -subj \
-"/C=KR/ST=Seoul/L=podong_podong_Gaepo-dong/O=42seoul/OU=Cluster/CN=localhost" -keyout sashin-ssl.key -out sashin-ssl.crt
+openssl req -newkey rsa:2048 -nodes -keyout sashin-ssl.key \
+-x509 -days 90 -subj "/C=KR/ST=Seoul/L=podong_podong_Gaepo-dong/O=42seoul/OU=Cluster/CN=localhost" -out sashin-ssl.crt
 mv sashin-ssl.key /etc/ssl/private/
 mv sashin-ssl.crt /etc/ssl/certs/
 
