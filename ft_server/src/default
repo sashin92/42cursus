@@ -84,6 +84,8 @@ server {
 
 	server_name _;
 
+	error_page 497 https://$host$request_uri;
+
 	location / {
 		# To use auto index, there must be no 'index' file.
 		autoindex on;
