@@ -30,8 +30,11 @@ int main()
 	// ret = printf("This is: %.*i, %.*d, %.*d, %.*d, %.*d, %.*d, %.*d, %.*d", a, i, a, j, a, k, a, l, a, m, a, c, a, e, a, d);
 
 
-	ft_printf("\n|%.4-5d|\n", 42);
-	printf("\n|%.4-5d|\n", 42);
+	a = ft_printf("val : |%2147483698d|\n", 42);
+	printf("ret : %d\n", a);
+	a = printf("val : |%2147483699d|\n", 42);
+	printf("ret : %d\n", a);
+
 
 
 	// printf("ret : %d\n", ft_printf("%c, %-c, %12c, %-3c, %-1c, %1c, %-2c, %-4c, %5c, %3c, %-*c, %-*c, %*c, %*c\n\n", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0,     0, 0));
