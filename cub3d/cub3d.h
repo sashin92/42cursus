@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:59:04 by sashin            #+#    #+#             */
-/*   Updated: 2021/03/15 19:00:13 by sashin           ###   ########.fr       */
+/*   Updated: 2021/04/06 15:22:48 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,17 @@
 
 # include "./mlx/mlx.h"
 
-// # include "libft.h"
+typedef struct	s_mlx
+{
+	void	*ptr;
+}				t_mlx;
+
+typedef struct	s_win
+{
+	int		x;
+	int		y;
+	void	*ptr;
+}				t_win;
 
 
 
