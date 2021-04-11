@@ -8,8 +8,8 @@
 #define X_EVENT_KEY_EXIT	17
 #define mapWidth 24
 #define mapHeight 24
-#define width 640
-#define height 480
+#define width 480
+#define height 360
 
 typedef struct	s_info
 {
@@ -24,48 +24,6 @@ typedef struct	s_info
 	double	moveSpeed;
 	double	rotSpeed;
 }				t_info;
-
-
-/*
-int	key_press(int key, t_info *info)
-{
-	if (key == KEY_ESCAPE)
-		exit(0);
-	return (0);
-}
-
-int		main_loop(t_info info)
-{
-	int		x = 0;
-	while (x < width)
-	{
-		int		rayX = info.dirX + ((((2 * x) / width) - 1) * info.planeX);
-		int		rayY = info.dirY + ((((2 * x) / width) - 1) * info.planeY);
-	}
-	return (0);
-}
-
-
-int		main(void)
-{
-	t_info	info;
-
-	info.mlx = mlx_init();
-	info.win = mlx_new_window(info.mlx, width, height, "haha");
-
-	info.posX = 12;
-	info.posY = 5;
-	info.dirX = 1;
-	info.dirY = 0;
-
-	mlx_loop_hook(info.mlx, &main_loop, &info);
-	mlx_hook(info.win, X_EVENT_KEY_PRESS, 0, &key_press, &info);
-
-	mlx_loop(info.mlx);
-
-
-}
-*/
 
 int	worldMap[24][24] = {
 							{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
@@ -109,6 +67,20 @@ void	verLine(t_info *info, int x, int y1, int y2, int color)
 void	calc(t_info *info)
 {
 	int	x;
+
+
+	int y;
+	x = 0;
+	while (x < width)
+	{
+		y = 0;
+		while (y < height)
+		{
+			mlx_pixel_put(info->mlx, info->win, x, y, 0x00000000);
+			y++;
+		}
+		x++;
+	}
 
 	x = 0;
 	while (x < width)
@@ -274,7 +246,7 @@ int	main(void)
 	info.dirX = -1;
 	info.dirY = 0;
 	info.planeX = 0;
-	info.planeY = 0.66;
+	info.planeY = 0.68;
 	info.moveSpeed = 0.05;
 	info.rotSpeed = 0.05;
 	

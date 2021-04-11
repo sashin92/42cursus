@@ -10,6 +10,9 @@ int		ft_init(char *cub)
 	mlx.ptr = mlx_init();
 	win.ptr = mlx_new_window(mlx.ptr, 500, 500, "untitiled");
 
+	// mlx_pixel_put(mlx_ptr, win_ptr, x, y, 0x0000ffff);
+
+
 	mlx_loop(mlx.ptr);
 	return (0);
 }
