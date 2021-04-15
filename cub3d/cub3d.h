@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:59:04 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/06 15:22:48 by sashin           ###   ########.fr       */
+/*   Updated: 2021/04/15 15:34:41 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ typedef struct	s_win
 	int		y;
 	void	*ptr;
 }				t_win;
+
+typedef struct	s_pos
+{
+	int		x;
+	int		y;
+}				t_pos;
 
 
 
