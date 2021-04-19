@@ -9,4 +9,4 @@
 *.a
 
 # vscode Files
-.vscode/*
+.vscode
