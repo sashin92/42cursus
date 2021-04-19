@@ -6,11 +6,11 @@
 #    By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/19 15:58:12 by sashin            #+#    #+#              #
-#    Updated: 2021/04/19 22:24:03 by sashin           ###   ########.fr        #
+#    Updated: 2021/04/19 22:50:25 by sashin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# If you want to add library, add "$(SRC)", "$(SRC_DIR), dependancy of $(NAME) and clean
+# If you want to add library, add "$(SRC)", "$(SRC_DIR)", dependancy of $(NAME) and clean
 
 NAME			= lib_sashin.a
 
@@ -19,8 +19,6 @@ CFLAGS			= -Wall -Werror -Wextra
 
 AR				= ar
 ARFLAGS			= -rcs
-
-SRCS_DIR		= srcs
 
 INCLUDES_DIR	= includes
 LIBFT_DIR		= srcs/libft
@@ -42,8 +40,6 @@ FT_PRINTF		= ft_printf.c printf_check.c printf_tool.c printf_init_flags.c printf
 				printf_conversion_x_large.c printf_conversion_percent.c
 
 GNL				= get_next_line.c
-
-OBJS			= $(LIBFT:.c=.o) $(FT_PRINTF:.c=.o) $(GNL:.c=.o)
 
 all: $(NAME)
 
