@@ -6,7 +6,7 @@
 #    By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/19 15:58:12 by sashin            #+#    #+#              #
-#    Updated: 2021/04/19 22:50:25 by sashin           ###   ########.fr        #
+#    Updated: 2021/04/20 13:48:44 by sashin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,13 +44,13 @@ GNL				= get_next_line.c
 all: $(NAME)
 
 $(NAME): libft ft_printf gnl
-	$(AR) $(ARFLAGS) $(NAME) $(addprefix $(LIBFT_DIR)/, $(LIBFT:.c=.o))
-	$(AR) $(ARFLAGS) $(NAME) $(addprefix $(FT_PRINTF_DIR)/, $(FT_PRINTF:.c=.o))
-	$(AR) $(ARFLAGS) $(NAME) $(addprefix $(GNL_DIR)/, $(GNL:.c=.o))
 
 libft: $(addprefix $(LIBFT_DIR)/, $(LIBFT:.c=.o))
+	$(AR) $(ARFLAGS) $(NAME) $^
 ft_printf: $(addprefix $(FT_PRINTF_DIR)/, $(FT_PRINTF:.c=.o))
+	$(AR) $(ARFLAGS) $(NAME) $^
 gnl: $(addprefix $(GNL_DIR)/, $(GNL:.c=.o))
+	$(AR) $(ARFLAGS) $(NAME) $^
 
 clean:
 	rm -rf $(addprefix $(LIBFT_DIR)/, $(LIBFT:.c=.o))
@@ -62,4 +62,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all bonus clean fclean re libft ft_printf gnl
