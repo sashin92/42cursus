@@ -6,7 +6,7 @@
 #    By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/20 14:30:35 by sashin            #+#    #+#              #
-#    Updated: 2021/04/20 14:37:15 by sashin           ###   ########.fr        #
+#    Updated: 2021/04/20 20:23:20 by sashin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ INCLUDES		= includes
 
 all: $(NAME)
 	./test_file
+	rm test_file
 
 $(NAME): $(addprefix $(SRCS_DIR)/, $(SRCS))
 	$(CC) $(CFLAGS) $^ $(addprefix $(LIBS_DIR)/, $(LIBS)) -o test_file

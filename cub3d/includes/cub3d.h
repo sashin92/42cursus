@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:59:04 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/20 14:21:29 by sashin           ###   ########.fr       */
+/*   Updated: 2021/04/20 20:13:47 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ typedef struct	s_mlx
 
 typedef struct	s_win
 {
-	int		x;
-	int		y;
 	void	*ptr;
 }				t_win;
 
@@ -39,6 +37,32 @@ typedef struct	s_pos
 {
 	int		x;
 	int		y;
+	int		xd;
+	int		yd;
+	int		angle;
 }				t_pos;
+
+typedef struct	s_cub
+{
+	int		res_x;
+	int		res_y;
+	int		res;
+	char	*north;
+	char	*south;
+	char	*west;
+	char	*east;
+	char	*sky;
+	char	*floor;
+	char	*ceilling;
+}				t_cub;
+
+typedef struct	s_info
+{
+	t_win		win;
+	t_mlx		mlx;
+	t_pos		pos;
+	t_cub		cub;
+}				t_info;
+
 
 #endif
