@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sashin <sashin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:59:04 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/15 15:34:41 by sashin           ###   ########.fr       */
+/*   Updated: 2021/04/20 14:21:29 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 # include <stdlib.h>
 # include <math.h>
 
+# include "lib_sashin.h"
 # include "keycode_mac.h"
-
-# include "./mlx/mlx.h"
+# include "../mlx/mlx.h"
 
 typedef struct	s_mlx
 {
@@ -40,7 +40,5 @@ typedef struct	s_pos
 	int		x;
 	int		y;
 }				t_pos;
-
-
 
 #endif

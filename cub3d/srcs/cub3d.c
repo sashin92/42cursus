@@ -1,4 +1,17 @@
-#include "cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/20 14:30:20 by sashin            #+#    #+#             */
+/*   Updated: 2021/04/20 14:55:37 by sashin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/cub3d.h"
+
 #define WIDTH 500
 #define HEIGHT 500
 #define ROW 5
@@ -47,10 +60,6 @@ int		move_dot(int key, t_pos *pos)
 	return (0);
 }
 
-int		draw_dot(t_mlx *mlx, t_win *win, t_pos *pos)
-{
-
-}
 
 
 int		ft_init(char *cub)
@@ -67,10 +76,7 @@ int		ft_init(char *cub)
 	pos.x = 35;
 	pos.y = 35;
 
-	draw_dot(&mlx, &win, &pos);
-
 	mlx_key_hook(win.ptr, move_dot, &pos);
-	mlx_loop_hook(mlx.ptr, main_loop, )
 
 
 	mlx_loop(mlx.ptr);
