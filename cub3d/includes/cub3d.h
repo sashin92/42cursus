@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:59:04 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/20 20:13:47 by sashin           ###   ########.fr       */
+/*   Updated: 2021/04/21 19:14:58 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
+# include <sys/errno.h>
 
 # include "lib_sashin.h"
 # include "keycode_mac.h"
@@ -63,6 +64,16 @@ typedef struct	s_info
 	t_pos		pos;
 	t_cub		cub;
 }				t_info;
+
+
+
+
+
+int			file_open(char *file);
+void		check_extension(char *file, char *extension, int fd);
+
+
+
 
 
 #endif

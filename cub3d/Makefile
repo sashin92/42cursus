@@ -6,7 +6,7 @@
 #    By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/20 14:30:35 by sashin            #+#    #+#              #
-#    Updated: 2021/04/20 20:23:20 by sashin           ###   ########.fr        #
+#    Updated: 2021/04/21 14:36:40 by sashin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME			= cub3d
 CC				= gcc
 CFLAGS			= -L./mlx -lmlx -framework OpenGL -framework AppKit
 
-SRCS			= cub3d.c
+SRCS			= cub3d.c check_files.c
 SRCS_DIR		= srcs
 
 LIBS			= lib_sashin.a
@@ -24,8 +24,6 @@ LIBS_DIR		= lib
 INCLUDES		= includes
 
 all: $(NAME)
-	./test_file
-	rm test_file
 
 $(NAME): $(addprefix $(SRCS_DIR)/, $(SRCS))
 	$(CC) $(CFLAGS) $^ $(addprefix $(LIBS_DIR)/, $(LIBS)) -o test_file

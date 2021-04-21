@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 14:30:20 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/20 20:24:19 by sashin           ###   ########.fr       */
+/*   Updated: 2021/04/21 19:45:33 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,35 +71,39 @@ int		ft_run(char *cub, t_info info)		// 돌려보자
 	mlx_key_hook(info.win.ptr, move_dot, &info);
 
 	mlx_loop(info.mlx.ptr);
+	return (0);
 }
 
-// t_cub		ft_load_cub(char *cub)
-// {
-// 	int		fd;
-// 	char	*line;
+int			ft_load_cub(char *cub_file)
+{
+	int		fd;
+	char	*line;
+	int		gnl;
 	
-// 	// <- 여기서 큐브파일 유효성 체크(이름)
-// 	fd = open(cub, O_RDONLY);
-// 	while (get_next_line(fd, &line))
-// 	{
-// 		if (line[0] == 'R' && line[1] == ' ')
-// 		{
-// 			// 해상도 파싱, 해상도 boolean 체크.
-// 		}
-// 	}
-// }
+	fd = file_open(cub_file);
+	check_extension(cub_file, ".cub", fd); // 파일 이름이 .cub인지 확인. 아니라면 닫고 끝내기.
+	printf("\nOK, .cub file is valid!\n\n");
+
+	while (1) // 여기서부터 파일 내용들을 파싱한다.
+	{
+		gnl = get_next_line(fd, &line);
+		if (line[0] == 'R' && line[1] == ' ')
+		{
+			// 해상도 파싱, 해상도 boolean 체크.
+		}
+		free(line);
+		if (gnl != 1)
+			break ;
+	}
+	return (0);
+}
 
 t_info		ft_init(char *cub)				// 초기화!
 {
 	t_info	info;
 
-	// if (ft_cub_isvalid(cub))
-	// 	info.cub = ft_load_cub(cub);
-	// else
-	// {
-	// 	printf("cub file is unvalid\n");
-	// 	return (info);
-	// }
+	ft_load_cub(cub);
+	
 	info.pos.x = 35;
 	info.pos.y = 35;
 	info.pos.xd = 0;
@@ -115,11 +119,13 @@ int		main(int argc, char **argv)
 {
 	t_info	info;
 	if (argc == 1)
+		printf("Please input a \'.cub\' file. - by sashin\n");
+	else if (argc == 2)
 	{
 		info = ft_init(argv[1]);
 		ft_run(argv[1], info);
 	}
 	else
-		write(2, "Error : Invalid arguments\n", 26);
+		printf("Error: Invalid arguments - by sashin\n");
 	return (0);
 }
