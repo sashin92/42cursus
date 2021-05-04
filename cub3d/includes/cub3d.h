@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:59:04 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/21 19:14:58 by sashin           ###   ########.fr       */
+/*   Updated: 2021/05/04 15:23:51 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 # define CUB3D_H
 
 # include <unistd.h>
+# include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
-# include <stdlib.h>
 # include <math.h>
 # include <sys/errno.h>
 
-# include "lib_sashin.h"
+# include "../lib/includes/lib_sashin.h"
 # include "keycode_mac.h"
 # include "../mlx/mlx.h"
 
@@ -47,7 +47,6 @@ typedef struct	s_cub
 {
 	int		res_x;
 	int		res_y;
-	int		res;
 	char	*north;
 	char	*south;
 	char	*west;

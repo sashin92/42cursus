@@ -6,7 +6,6 @@
 # Exe Files
 *.exe
 *.out
-*.a
 
 # vscode Files
 .vscode

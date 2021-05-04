@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 14:30:20 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/21 19:45:33 by sashin           ###   ########.fr       */
+/*   Updated: 2021/05/04 21:43:33 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int		move_dot(int key, t_info *info)
 	
 // }
 
-int		ft_run(char *cub, t_info info)		// 돌려보자
+int		run(char *cub, t_info info)		// 돌려보자
 {
 	draw_grid(&info);
 	// ft_calculate(&info);
@@ -74,7 +74,23 @@ int		ft_run(char *cub, t_info info)		// 돌려보자
 	return (0);
 }
 
-int			ft_load_cub(char *cub_file)
+void	parse_resolution(char *line)	// 여기에 인포가 잇어야되네
+{
+	int		i;
+
+	i = 2;
+	while (line[i] == ' ')
+		++i;
+	while (ft_isdigit(line[i]))
+		
+	
+	while (line[i] == ' ')
+		++i;
+
+		
+}
+
+int			load_cub(char *cub_file)
 {
 	int		fd;
 	char	*line;
@@ -87,9 +103,10 @@ int			ft_load_cub(char *cub_file)
 	while (1) // 여기서부터 파일 내용들을 파싱한다.
 	{
 		gnl = get_next_line(fd, &line);
-		if (line[0] == 'R' && line[1] == ' ')
+		if (!ft_strncmp("R ", line, 2))
 		{
-			// 해상도 파싱, 해상도 boolean 체크.
+			printf("%d x %d\n", ft_atoi(&line[2]), ft_atoi(&line[6]));	// 해상도 출력, 해상도 파싱할 것.
+			parse_resolution(line);
 		}
 		free(line);
 		if (gnl != 1)
@@ -98,32 +115,39 @@ int			ft_load_cub(char *cub_file)
 	return (0);
 }
 
-t_info		ft_init(char *cub)				// 초기화!
+void		init(t_info *info)				// 초기화!
 {
-	t_info	info;
-
-	ft_load_cub(cub);
-	
-	info.pos.x = 35;
-	info.pos.y = 35;
-	info.pos.xd = 0;
-	info.pos.yd = 0;
-	info.pos.angle = 0;
-	info.mlx.ptr = mlx_init();
-	info.win.ptr = mlx_new_window(info.mlx.ptr, WIDTH, HEIGHT, "untitiled");
-
-	return (info);
+	info->cub.res_x = 0;
+	info->cub.res_y = 0;
+	info->cub.north = NULL;
+	info->cub.south = NULL;
+	info->cub.west = NULL;
+	info->cub.east = NULL;
+	info->cub.sky = NULL;
+	info->cub.floor = NULL;
+	info->cub.ceilling = NULL;
+	info->pos.x = 35;
+	info->pos.y = 35;
+	info->pos.xd = 0;
+	info->pos.yd = 0;
+	info->pos.angle = 0;
+	info->mlx.ptr = mlx_init();
+	info->win.ptr = mlx_new_window(info->mlx.ptr, WIDTH, HEIGHT, "untitiled");
 }
+
+
 
 int		main(int argc, char **argv)
 {
 	t_info	info;
+	
 	if (argc == 1)
-		printf("Please input a \'.cub\' file. - by sashin\n");
+		printf("Please input a \".cub\" file. - by sashin\n");
 	else if (argc == 2)
 	{
-		info = ft_init(argv[1]);
-		ft_run(argv[1], info);
+		init(&info);
+		load_cub(argv[1]);
+		run(argv[1], info);
 	}
 	else
 		printf("Error: Invalid arguments - by sashin\n");

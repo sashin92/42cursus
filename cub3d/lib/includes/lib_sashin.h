@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 15:02:52 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/20 14:53:33 by sashin           ###   ########.fr       */
+/*   Updated: 2021/04/20 13:45:21 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,19 @@
 # include "libft.h"
 
 /*
-** ft_printf function [ft_printf.h]
+** ft_printf function
 */
 
 int					ft_printf(const char *format, ...);
 
 /*
-** get_next_line function [get_next_line.h]
+** get_next_line function
 */
 
 int					get_next_line(int fd, char **line);
 
 /*
-** libft(is, string, memory, list, etc.) function [libft.h]
+** libft(is, string, memory, list, etc.) function
 */
 
 void				*ft_memset(void *b, int c, size_t len);
