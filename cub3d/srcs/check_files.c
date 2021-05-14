@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 14:05:18 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/21 19:19:51 by sashin           ###   ########.fr       */
+/*   Updated: 2021/05/12 09:37:12 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ void		check_extension(char *file, char *extension, int fd)
 		exit (EXIT_FAILURE);
 	}
 	isvalid = ft_strncmp(&file[file_name_len - 4], extension, 4);
-	if (isvalid != 0)
+	if (isvalid == 0)
+		return ;
+	else
 	{
 		printf("Invalid extension\n");
 		close(fd);

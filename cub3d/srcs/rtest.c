@@ -1,5 +1,5 @@
-#include "mlx/mlx.h"
-#include "keycode_mac.h"
+#include "../mlx/mlx.h"
+#include "../includes/keycode_mac.h"
 #include <math.h>
 #include <string.h>
 #include <stdio.h>
@@ -67,9 +67,8 @@ void	verLine(t_info *info, int x, int y1, int y2, int color)
 void	calc(t_info *info)
 {
 	int	x;
-
-
 	int y;
+	
 	x = 0;
 	while (x < width)
 	{

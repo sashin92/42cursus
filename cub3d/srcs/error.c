@@ -6,9 +6,13 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 19:48:17 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/20 19:53:20 by sashin           ###   ########.fr       */
+/*   Updated: 2021/05/13 16:15:05 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "../includes/cub3d.h"
 
+// int		err_sentence(int err)
+// {
+	
+// }
