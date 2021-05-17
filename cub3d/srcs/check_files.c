@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 14:05:18 by sashin            #+#    #+#             */
-/*   Updated: 2021/05/12 09:37:12 by sashin           ###   ########.fr       */
+/*   Updated: 2021/05/17 19:17:35 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,20 @@ void		check_extension(char *file, char *extension, int fd)
 		close(fd);
 		exit (EXIT_FAILURE);
 	}
+}
+
+
+int			ismap(char *line)			// 니가 맵이냐
+{
+	int		i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == ' ' || line[i] == '1')
+			++i;
+		else
+			return (0);
+	}
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:59:04 by sashin            #+#    #+#             */
-/*   Updated: 2021/05/14 16:20:58 by sashin           ###   ########.fr       */
+/*   Updated: 2021/05/18 02:24:02 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,12 @@
 # include "keycode_mac.h"
 # include "../mlx/mlx.h"
 
-# define FOV 66
-# define FOV_2 FOV / 2
+# define FOV 10
+# define EPS 1e-06
+
+
+# define HIT_VERTICAL 1
+# define HIT_HORIZON 2
 
 typedef struct	s_mlx
 {
@@ -38,6 +42,17 @@ typedef struct	s_win
 	int		res_x;
 	int		res_y;
 }				t_win;
+
+typedef struct	s_img
+{
+	void			*ptr;
+	int				*adr;
+	int			width;
+	int			height;
+	int			size_l;
+	int			bpp;
+	int			endian;
+}				t_img;
 
 typedef struct	s_pos
 {
@@ -54,6 +69,7 @@ typedef struct	s_dir
 
 typedef struct	s_ray
 {
+	double		angle;
 	double		x;
 	double		y;
 	double		v;
@@ -63,6 +79,7 @@ typedef struct	s_ray
 
 typedef struct	s_hit
 {
+	double		key;
 	double		x;
 	double		y;
 	double		d;
@@ -95,12 +112,7 @@ typedef struct	s_stack
 	double		d;
 }				t_stack;
 
-typedef struct	s_img
-{
-	void			*ptr;
-	char			*adr;
-	int				fsh;
-}				t_img;
+
 
 typedef struct	s_info
 {
@@ -126,6 +138,7 @@ typedef struct	s_info
 */
 int			file_open(char *file);
 void		check_extension(char *file, char *extension, int fd);
+int			ismap(char *line);
 
 /*
 ** parse.c
@@ -133,6 +146,7 @@ void		check_extension(char *file, char *extension, int fd);
 int		parse_resolution(char *line, t_info *info);
 int		parse_rgb(char *line, int *rgb);
 int		parse_map(char *line, t_info *info); 
+int		parse_path(char *line, char **texture);
 
 /*
 ** error.c
@@ -144,6 +158,12 @@ int		err_sentence(int err);
 ** ray.c
 */
 void		raycasting(t_info *info);
+
+
+/*
+** draw.c
+*/
+int		draw_grid(t_info *info);
 
 
 #endif

@@ -67,7 +67,7 @@ void	verLine(t_info *info, int x, int y1, int y2, int color)
 void	calc(t_info *info)
 {
 	int	x;
-	int y;
+	int	y;
 	
 	x = 0;
 	while (x < width)
