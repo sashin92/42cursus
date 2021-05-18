@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:59:04 by sashin            #+#    #+#             */
-/*   Updated: 2021/05/18 23:50:26 by sashin           ###   ########.fr       */
+/*   Updated: 2021/05/19 00:28:12 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,9 +130,6 @@ typedef struct	s_info
 	t_stack		*stack;
 	t_img		img;
 }				t_info;
-
-
-
 
 /*
 ** check_files.c

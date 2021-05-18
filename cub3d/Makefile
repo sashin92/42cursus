@@ -6,7 +6,7 @@
 #    By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/20 14:30:35 by sashin            #+#    #+#              #
-#    Updated: 2021/05/17 19:31:17 by sashin           ###   ########.fr        #
+#    Updated: 2021/05/19 00:35:52 by sashin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,12 @@ NAME			= cub3d
 CC				= gcc
 CFLAGS			= -L./mlx -lmlx -framework OpenGL -framework AppKit
 
-SRCS			= cub3d.c check_files.c parse.c draw.c
+SRCS			= cub3d.c \
+				check_files.c \
+				parse.c \
+				draw.c \
+				ray.c
+
 SRCS_DIR		= srcs
 
 LIBS			= lib_sashin.a

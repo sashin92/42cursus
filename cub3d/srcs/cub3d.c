@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 14:30:20 by sashin            #+#    #+#             */
-/*   Updated: 2021/05/17 19:35:18 by sashin           ###   ########.fr       */
+/*   Updated: 2021/05/19 00:38:55 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,31 @@
 
 // move dot using key
 
+int	loop(t_info *info)
+{
+	raycasting(info);
+	mlx_put_image_to_window(info->mlx.ptr, info->win.ptr, info->img.ptr, 0, 0);
+	return (0);
+}
+
 int		move_dot(int key, t_info *info)
 {
 	if (key == KEY_W)
-		printf("\n\n\n\npos : %f, %f\n", info->pos.x, ++info->pos.y);
+		printf("\n\n\n\npos : %f, %f\n", info->pos.x, info->pos.y -= 0.1);
 	else if (key == KEY_S)
-		printf("\n\n\n\npos : %f, %f\n", info->pos.x, --info->pos.y);
+		printf("\n\n\n\npos : %f, %f\n", info->pos.x, info->pos.y += 0.1);
 	else if (key == KEY_A)
-		printf("\n\n\n\npos : %f, %f\n", --info->pos.x, info->pos.y);
+		printf("\n\n\n\npos : %f, %f\n", info->pos.x -= 0.1, info->pos.y);
 	else if (key == KEY_D)
-		printf("\n\n\n\npos : %f, %f\n", ++info->pos.x, info->pos.y);
+		printf("\n\n\n\npos : %f, %f\n", info->pos.x += 0.1, info->pos.y);
+	else if (key == KEY_RIGHT)
+		printf("\n\n\n\ndir_angle : %f\n", info->dir.angle += M_PI / 16.);
+	else if (key == KEY_LEFT)
+		printf("\n\n\n\ndir_angle : %f\n", info->dir.angle -= M_PI / 16.);
 	else if (key == KEY_ESCAPE)
 		exit(0);
+	printf("\n\n\n\ncur : %f, %f, dir_angle : %f\n", info->pos.x, info->pos.y, info->dir.angle);
+	loop(info);
 	return (0);
 }
 
@@ -36,18 +49,6 @@ int		move_dot(int key, t_info *info)
 	
 // 	mlx_pixel_put()
 // }
-
-int		run(char *cub, t_info *info)		// 돌려보자
-{
-	info->mlx.ptr = mlx_init();
-	info->win.ptr = mlx_new_window(info->mlx.ptr, info->win.res_x, info->win.res_y, "UI");
-
-	draw_grid(info);
-	// ray_draw(info);
-	mlx_key_hook(info->win.ptr, move_dot, info);
-	mlx_loop(info->mlx.ptr);
-	return (0);
-}
 
 int			load_cub(char *cub_file, t_info *info)
 {
@@ -94,8 +95,8 @@ void		init(t_info *info)				// 초기화!
 {
 	info->mlx.ptr = NULL;
 	info->win.ptr = NULL;
-	info->win.res_x = 0;
-	info->win.res_y = 0;
+	info->win.res_x = 800;
+	info->win.res_y = 600;
 	info->img.ptr = NULL;
 	info->img.adr = NULL;
 	info->img.width = 0;
@@ -106,10 +107,11 @@ void		init(t_info *info)				// 초기화!
 	info->map.x = 0;
 	info->map.y = 0;
 	info->map.spr = 0;
-	info->pos.x = 0;
-	info->pos.y = 0;
+	info->pos.x = 1.5;
+	info->pos.y = 3.5;
 	info->dir.x = 0;
 	info->dir.y = 0;
+	info->dir.angle = - M_PI / 2;
 	info->cub.north = NULL;
 	info->cub.south = NULL;
 	info->cub.east = NULL;
@@ -118,6 +120,18 @@ void		init(t_info *info)				// 초기화!
 	info->cub.ceilling = 0;
 	info->cub.sky = 0;
 	info->cub.floor = 0;
+}
+
+int		run(char *cub, t_info *info)		// 돌려보자
+{
+	info->mlx.ptr = mlx_init();
+	info->win.ptr = mlx_new_window(info->mlx.ptr, info->win.res_x, info->win.res_y, "UI");
+	write(1, "done\n", 5);
+
+	loop(info);
+	mlx_hook(info->win.ptr, 2, 0, move_dot, info);
+	mlx_loop(info->mlx.ptr);
+	return (0);
 }
 
 int		main(int argc, char **argv)

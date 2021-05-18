@@ -6,14 +6,11 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 19:18:49 by sashin            #+#    #+#             */
-/*   Updated: 2021/05/17 20:57:50 by sashin           ###   ########.fr       */
+/*   Updated: 2021/05/19 00:27:50 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-#define ROW 3
-#define COL 3
 
 int		draw_grid(t_info *info)
 {

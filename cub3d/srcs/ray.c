@@ -6,11 +6,22 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 15:11:05 by sashin            #+#    #+#             */
-/*   Updated: 2021/05/19 00:08:38 by sashin           ###   ########.fr       */
+/*   Updated: 2021/05/19 00:33:38 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+# define ROW 6
+# define COL 6
+
+int	w_map[ROW][COL] = {
+	{1, 1, 1, 1, 1},
+	{1, 0, 0, 0, 1},
+	{1, 0, 0, 0, 1},
+	{1, 0, 0, 0, 1},
+	{1, 1, 1, 1, 1}
+	};
 
 double deg_to_rad(double deg)
 {
@@ -29,17 +40,6 @@ int rad_step(double rad)
 	else
 		return (-1);
 }
-
-#define ROW 6
-#define COL 6
-
-int	w_map[ROW][COL] = {
-	{1, 1, 1, 1, 1},
-	{1, 0, 0, 0, 1},
-	{1, 0, 0, 0, 1},
-	{1, 0, 0, 0, 1},
-	{1, 1, 1, 1, 1}
-	};
 
 int	ct = 0;
 
@@ -159,20 +159,20 @@ void	draw_vertical(t_info *info, double fov_v)
 
 	height = (double)info->win.res_y / (2. * info->hit.dist * tan(fov_v / 2.0));
 	y0 = (int)((info->win.res_y - height) / 2.);
-	y1 = y0 + height - 1; // -1을 왜해주지?
+	y1 = y0 + (int)height - 1; // -1을 왜해주지?
 
 	start = info->win.res_x * (info->win.res_y - height) / 2;
 
 	while (y0 <= y1)
 	{
 		if (info->hit.dir == 1)
-			info->img.adr[(info->win.res_x * y0) - info->ray.i] = 0x00FF0000;
+			info->img.adr[(info->win.res_x * y0) + info->ray.i] = 0x00FF0000;
 		else if (info->hit.dir == 2)
-			info->img.adr[(info->win.res_x * y0) - info->ray.i] = 0x0000FF00;
+			info->img.adr[(info->win.res_x * y0) + info->ray.i] = 0x0000FF00;
 		else if (info->hit.dir == 3)
-			info->img.adr[(info->win.res_x * y0) - info->ray.i] = 0x00FFFFFF;
+			info->img.adr[(info->win.res_x * y0) + info->ray.i] = 0x00FFFFFF;
 		else if (info->hit.dir == 4)
-			info->img.adr[(info->win.res_x * y0) - info->ray.i] = 0x000000FF;
+			info->img.adr[(info->win.res_x * y0) + info->ray.i] = 0x000000FF;
 		++y0;
 	}
 }
@@ -195,51 +195,4 @@ void	raycasting(t_info *info)
 		draw_vertical(info, fov_v);
 		++info->ray.i;
 	}
-}
-
-int	loop(t_info *info)
-{
-	raycasting(info);
-	mlx_put_image_to_window(info->mlx.ptr, info->win.ptr, info->img.ptr, 0, 0);
-	return (0);
-}
-
-int		move_dot(int key, t_info *info)
-{
-	if (key == KEY_W)
-		printf("\n\n\n\npos : %f, %f\n", info->pos.x, info->pos.y -= 0.1);
-	else if (key == KEY_S)
-		printf("\n\n\n\npos : %f, %f\n", info->pos.x, info->pos.y += 0.1);
-	else if (key == KEY_A)
-		printf("\n\n\n\npos : %f, %f\n", info->pos.x -= 0.1, info->pos.y);
-	else if (key == KEY_D)
-		printf("\n\n\n\npos : %f, %f\n", info->pos.x += 0.1, info->pos.y);
-	else if (key == KEY_RIGHT)
-		printf("\n\n\n\ndir_angle : %f\n", info->dir.angle += M_PI / 15.);
-	else if (key == KEY_LEFT)
-		printf("\n\n\n\ndir_angle : %f\n", info->dir.angle -= M_PI / 15.);
-	else if (key == KEY_ESCAPE)
-		exit(0);
-	printf("\n\n\n\ncur : %f, %f, dir_angle : %f\n", info->pos.x, info->pos.y, info->dir.angle);
-	loop(info);
-	return (0);
-}
-
-int main()
-{
-	t_info info;
-
-	info.win.res_x = 800;
-	info.win.res_y = 600;
-	info.pos.x = 1.5;
-	info.pos.y = 3.5;
-	info.ray.i = 0;
-	info.dir.angle = - M_PI / 2;
-	info.mlx.ptr = mlx_init();
-
-	info.win.ptr = mlx_new_window(info.mlx.ptr, info.win.res_x, info.win.res_y, "UI");
-	write(1, "done\n", 5);
-	loop(&info);
-	mlx_hook(info.win.ptr, 2, 0, move_dot, &info);
-	mlx_loop(info.mlx.ptr);
 }
