@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:59:04 by sashin            #+#    #+#             */
-/*   Updated: 2021/05/18 02:24:02 by sashin           ###   ########.fr       */
+/*   Updated: 2021/05/18 23:50:26 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include "keycode_mac.h"
 # include "../mlx/mlx.h"
 
-# define FOV 10
+# define FOV 66.7
 # define EPS 1e-06
 
 
@@ -72,8 +72,8 @@ typedef struct	s_ray
 	double		angle;
 	double		x;
 	double		y;
-	double		v;
-	double		h;
+	double		ystep;
+	double		xstep;
 	int			i;
 }				t_ray;
 
@@ -82,7 +82,8 @@ typedef struct	s_hit
 	double		key;
 	double		x;
 	double		y;
-	double		d;
+	double		dir;
+	double		dist;
 }				t_hit;
 
 typedef struct	s_map
