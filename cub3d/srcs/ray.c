@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 15:11:05 by sashin            #+#    #+#             */
-/*   Updated: 2021/05/20 01:18:23 by sashin           ###   ########.fr       */
+/*   Updated: 2021/05/20 02:41:47 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ int rad_step(double rad)
 	else
 		return (-1);
 }
-
-int	ct = 0;
 
 double	l2dist(double x0, double y0, double x1, double y1)
 {

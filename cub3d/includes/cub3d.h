@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:59:04 by sashin            #+#    #+#             */
-/*   Updated: 2021/05/19 22:39:10 by sashin           ###   ########.fr       */
+/*   Updated: 2021/05/20 02:34:21 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,33 +128,34 @@ int	loop(t_info *info);
 int				file_open(char *file);
 void			check_extension(char *file, char *extension, int fd);
 int				ismap(char *line);
+void			check_str(char *line, t_info *info);
 
 /*
 ** parse.c
 */
-int			parse_resolution(char *line, t_info *info);
-int			parse_rgb(char *line, int *rgb);
-int			parse_map(char *line, t_info *info);
-int			parse_texture(t_info *info, char *line, int **texture);
+int				parse_resolution(char *line, t_info *info);
+int				parse_rgb(char *line, int *rgb);
+int				parse_map(char *line, t_info *info);
+int				parse_texture(t_info *info, char *line, int **texture);
 
 /*
 ** error.c
 */
-int			err_sentence(int err);
+int				err_sentence(int err);
 
 /*
 ** ray.c
 */
-void		raycasting(t_info *info);
+void			raycasting(t_info *info);
 
 /*
 ** draw.c
 */
-void	draw_vertical(t_info *info, double fov_v);
+void			draw_vertical(t_info *info, double fov_v);
 
 /*
 ** control.c
 */
-int		put_key(int key, t_info *info);
+int				put_key(int key, t_info *info);
 
 #endif
