@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 14:05:18 by sashin            #+#    #+#             */
-/*   Updated: 2021/05/17 19:17:35 by sashin           ###   ########.fr       */
+/*   Updated: 2021/05/19 19:48:12 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int			file_open(char *file)
 	if (fd == -1)
 	{
 		printf("errno: %d\n", errno);
-		perror ("open");
+		perror (file);
 		exit (EXIT_FAILURE);
 	}
 	return (fd);

@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 17:17:21 by sashin            #+#    #+#             */
-/*   Updated: 2021/05/17 21:37:15 by sashin           ###   ########.fr       */
+/*   Updated: 2021/05/19 22:57:16 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,34 +65,46 @@ int		parse_rgb(char *line, int *rgb)
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255 || line[i] != '\0')
 		return (-2);
 	*rgb = (r * 256 * 256) + (g * 256) + b;
-	printf("this rgb is %o\n", *rgb);
+	printf("%d %d %d\n", r, g, b);	// printf
+	printf("this rgb is 0x%X\n", *rgb);	// printf
 	return (0);
 }
 
-int			parse_path(char *line, char **texture)
+int			parse_texture(t_info *info, char *line, int **texture)
 {
 	int		i;
 	int		j;
-	char	*path;
-	int		path_len;
+	char	*texture_name;
+	void	*texture_img_ptr;
+	int		name_len;
+	int		fd;
+	int		a[5];
 
 	if (*texture != NULL)
 		return (-1);				// 만약 텍스처가 비어있지 않다면(경로지정을 이미 했다면) 에러
 	i = 2;
 	while (line[i] == ' ')
 		++i;
-	path_len = 0;
-	while (line[i + path_len] != ' ' && line[i + path_len] != '\0')		// 만약 파일이름에 공백이 있다면
-		++path_len;
-	j = i + path_len;
+	name_len = 0;
+	while (line[i + name_len] != ' ' && line[i + name_len] != '\0')		// 만약 파일이름에 공백이 있다면
+		++name_len;
+	j = i + name_len;
 	while (line[j] != '\0')
 		if (line[j++] != ' ')
-			return (-1);						// 경로 다음에 다른 문자가 나왔을 때 에러
-	path = (char *)malloc(sizeof(char) * (path_len + 1));
+			return (-1);						// 경로 다음에 다른 문자가 나왔을 때 에러, 스페이스는 허용
+	texture_name = (char *)malloc(sizeof(char) * (name_len + 1));
 	j = 0;
-	while (j < path_len)
-		path[j++] = line[i++];
-	path[j] = '\0';
-	*texture = path;
+	while (j < name_len)
+		texture_name[j++] = line[i++];
+	texture_name[j] = '\0';
+	fd = file_open(texture_name);
+	printf("%s\n", texture_name);		// printf
+	check_extension(texture_name, ".xpm", fd);
+	close(fd);
+	texture_img_ptr = mlx_xpm_file_to_image(info->mlx.ptr, texture_name, &a[3], &a[4]);
+	// *texture = (int *)mlx_get_data_addr(texture_img_ptr, &info->img.bpp, &info->img.size_l, &info->img.endian);
+	*texture = (int *)mlx_get_data_addr(texture_img_ptr, &a[0], &a[1], &a[2]);
+	free(texture_img_ptr);
+	free(texture_name);
 	return (0);
 }

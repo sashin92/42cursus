@@ -6,49 +6,25 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 14:30:20 by sashin            #+#    #+#             */
-/*   Updated: 2021/05/19 00:38:55 by sashin           ###   ########.fr       */
+/*   Updated: 2021/05/20 00:44:09 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-
-
-// move dot using key
-
 int	loop(t_info *info)
 {
+	info->img.ptr = mlx_new_image(info->mlx.ptr, info->win.res_x, info->win.res_y);
+	info->img.adr = (int *)mlx_get_data_addr(info->img.ptr, &info->img.bpp, &info->img.size_l, &info->img.endian);
 	raycasting(info);
 	mlx_put_image_to_window(info->mlx.ptr, info->win.ptr, info->img.ptr, 0, 0);
-	return (0);
-}
-
-int		move_dot(int key, t_info *info)
-{
-	if (key == KEY_W)
-		printf("\n\n\n\npos : %f, %f\n", info->pos.x, info->pos.y -= 0.1);
-	else if (key == KEY_S)
-		printf("\n\n\n\npos : %f, %f\n", info->pos.x, info->pos.y += 0.1);
-	else if (key == KEY_A)
-		printf("\n\n\n\npos : %f, %f\n", info->pos.x -= 0.1, info->pos.y);
-	else if (key == KEY_D)
-		printf("\n\n\n\npos : %f, %f\n", info->pos.x += 0.1, info->pos.y);
-	else if (key == KEY_RIGHT)
-		printf("\n\n\n\ndir_angle : %f\n", info->dir.angle += M_PI / 16.);
-	else if (key == KEY_LEFT)
-		printf("\n\n\n\ndir_angle : %f\n", info->dir.angle -= M_PI / 16.);
-	else if (key == KEY_ESCAPE)
-		exit(0);
-	printf("\n\n\n\ncur : %f, %f, dir_angle : %f\n", info->pos.x, info->pos.y, info->dir.angle);
-	loop(info);
-	return (0);
-}
-
-// int		ray_draw(t_info *info)
-// {
+	free(info->img.ptr);
+	free(info->img.adr);
+	info->img.ptr = NULL;
+	info->img.adr = NULL;
 	
-// 	mlx_pixel_put()
-// }
+	return (0);
+}
 
 int			load_cub(char *cub_file, t_info *info)
 {
@@ -65,15 +41,15 @@ int			load_cub(char *cub_file, t_info *info)
 		if (!ft_strncmp("R ", line, 2))
 			info->err = parse_resolution(line, info);
 		else if (!ft_strncmp("NO ", line, 3))
-			info->err = parse_path(line, &info->cub.north);
+			info->err = parse_texture(info, line, &info->cub.north);
 		else if (!ft_strncmp("SO ", line, 3))
-			info->err = parse_path(line, &info->cub.south);
+			info->err = parse_texture(info, line, &info->cub.south);
 		else if (!ft_strncmp("WE ", line, 3))
-			info->err = parse_path(line, &info->cub.west);
+			info->err = parse_texture(info, line, &info->cub.west);
 		else if (!ft_strncmp("EA ", line, 3))
-			info->err = parse_path(line, &info->cub.east);
+			info->err = parse_texture(info, line, &info->cub.east);
 		else if (!ft_strncmp("S ", line, 2))
-			info->err = parse_path(line, &info->cub.sprite);
+			info->err = parse_texture(info, line, &info->cub.sprite);
 		else if (!ft_strncmp("F ", line, 2))
 			info->err = parse_rgb(line, &info->cub.floor);
 		else if (!ft_strncmp("C ", line, 2))
@@ -86,8 +62,20 @@ int			load_cub(char *cub_file, t_info *info)
 		if (gnl != 1)
 			break ;
 	}
-	printf("%d x %d\n%s\n%s\n%s\n%s\n%s\n", info->win.res_x, info->win.res_y,
-			info->cub.north, info->cub.south, info->cub.west, info->cub.east, info->cub.sprite);
+	printf("%d x %d\n", info->win.res_x, info->win.res_y);
+	return (0);
+}
+
+int		run(char *cub, t_info *info)
+{
+	info->mlx.ptr = mlx_init();
+	load_cub(cub, info);
+	info->win.ptr = mlx_new_window(info->mlx.ptr, info->win.res_x, info->win.res_y, "UI");
+	write(1, "done\n", 5);
+
+	loop(info);
+	mlx_hook(info->win.ptr, 2, 0, put_key, info);
+	mlx_loop(info->mlx.ptr);
 	return (0);
 }
 
@@ -95,43 +83,26 @@ void		init(t_info *info)				// 초기화!
 {
 	info->mlx.ptr = NULL;
 	info->win.ptr = NULL;
-	info->win.res_x = 800;
-	info->win.res_y = 600;
-	info->img.ptr = NULL;
-	info->img.adr = NULL;
-	info->img.width = 0;
-	info->img.height = 0;
-	info->err = 0;
-	info->map.xy = NULL;
-	info->stack = NULL;
-	info->map.x = 0;
-	info->map.y = 0;
-	info->map.spr = 0;
-	info->pos.x = 1.5;
-	info->pos.y = 3.5;
-	info->dir.x = 0;
-	info->dir.y = 0;
-	info->dir.angle = - M_PI / 2;
+	info->win.res_x = 0;
+	info->win.res_y = 0;
 	info->cub.north = NULL;
 	info->cub.south = NULL;
 	info->cub.east = NULL;
 	info->cub.west = NULL;
 	info->cub.sprite = NULL;
-	info->cub.ceilling = 0;
-	info->cub.sky = 0;
 	info->cub.floor = 0;
-}
-
-int		run(char *cub, t_info *info)		// 돌려보자
-{
-	info->mlx.ptr = mlx_init();
-	info->win.ptr = mlx_new_window(info->mlx.ptr, info->win.res_x, info->win.res_y, "UI");
-	write(1, "done\n", 5);
-
-	loop(info);
-	mlx_hook(info->win.ptr, 2, 0, move_dot, info);
-	mlx_loop(info->mlx.ptr);
-	return (0);
+	info->cub.ceilling = 0;
+	info->map.xy = NULL;
+	info->map.x = 0;
+	info->map.y = 0;
+	info->img.ptr = NULL;
+	info->img.adr = NULL;
+	info->img.width = 0;
+	info->img.height = 0;
+	info->pos.x = 1.5;
+	info->pos.y = 3.5;
+	info->dir.angle = 0;
+	info->err = 0;
 }
 
 int		main(int argc, char **argv)
@@ -143,10 +114,9 @@ int		main(int argc, char **argv)
 	else if (argc == 2)
 	{
 		init(&info);
-		load_cub(argv[1], &info);
 		run(argv[1], &info);
 	}
 	else
-		printf("Error: Invalid arguments - by sashin\n");
+		printf("Error: Too much arguments - by sashin\n");
 	return (0);
 }

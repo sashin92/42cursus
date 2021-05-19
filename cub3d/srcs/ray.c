@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 15:11:05 by sashin            #+#    #+#             */
-/*   Updated: 2021/05/19 00:33:38 by sashin           ###   ########.fr       */
+/*   Updated: 2021/05/20 01:18:23 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ double	l2dist(double x0, double y0, double x1, double y1)
 	return (sqrt(dx * dx + dy * dy));
 }
 
-void	get_wall_intersection(t_info *info)
+void	get_wall(t_info *info)
 {
 	info->ray.xstep = rad_step(cos(info->ray.angle));
 	info->ray.ystep = rad_step(sin(info->ray.angle));
@@ -120,11 +120,12 @@ void	get_wall_intersection(t_info *info)
 		}
 		if (w_map[mapy][mapx] == 1)
 		{
+			info->hit.dir = 0;
 			if (info->hit.key == HIT_VERTICAL)
 			{
 				if (info->ray.xstep > 0)
 					info->hit.dir = 1;
-				else
+				else if (info->ray.xstep < 0)
 					info->hit.dir = 2;
 				info->hit.x = info->ray.x;
 				info->hit.y = f;
@@ -133,7 +134,7 @@ void	get_wall_intersection(t_info *info)
 			{
 				if (info->ray.ystep > 0)
 					info->hit.dir = 3;
-				else
+				else if (info->ray.ystep < 0)
 					info->hit.dir = 4;
 				info->hit.x = g;
 				info->hit.y = info->ray.y;
@@ -149,49 +150,30 @@ void	get_wall_intersection(t_info *info)
 	}
 }
 
-void	draw_vertical(t_info *info, double fov_v)
+void	draw_background(t_info *info)
 {
-	int		start;
-	double	height;
-	int		y0;
-	int		y1;
 	int		i;
 
-	height = (double)info->win.res_y / (2. * info->hit.dist * tan(fov_v / 2.0));
-	y0 = (int)((info->win.res_y - height) / 2.);
-	y1 = y0 + (int)height - 1; // -1을 왜해주지?
-
-	start = info->win.res_x * (info->win.res_y - height) / 2;
-
-	while (y0 <= y1)
-	{
-		if (info->hit.dir == 1)
-			info->img.adr[(info->win.res_x * y0) + info->ray.i] = 0x00FF0000;
-		else if (info->hit.dir == 2)
-			info->img.adr[(info->win.res_x * y0) + info->ray.i] = 0x0000FF00;
-		else if (info->hit.dir == 3)
-			info->img.adr[(info->win.res_x * y0) + info->ray.i] = 0x00FFFFFF;
-		else if (info->hit.dir == 4)
-			info->img.adr[(info->win.res_x * y0) + info->ray.i] = 0x000000FF;
-		++y0;
-	}
+	i = 0;
+	while (i < (info->win.res_x * info->win.res_y) / 2)
+		info->img.adr[i++] = info->cub.ceilling;
+	while (i < (info->win.res_x * info->win.res_y))
+		info->img.adr[i++] = info->cub.floor;
 }
 
 void	raycasting(t_info *info)
 {
 	double	fov;
 	double	fov_v;
-	int		ct = 0;
 
 	info->ray.i = 0;
-	info->img.ptr = mlx_new_image(info->mlx.ptr, info->win.res_x, info->win.res_y);
-	info->img.adr = (int *)mlx_get_data_addr(info->img.ptr, &info->img.bpp, &info->img.size_l, &info->img.endian);
+	draw_background(info);
 	fov = deg_to_rad(FOV);
 	fov_v = fov * ((double)info->win.res_x / (double)info->win.res_y);
 	while (info->ray.i < info->win.res_x)
 	{
 		info->ray.angle = (info->dir.angle + fov / 2.) - ((fov / ((double)info->win.res_x - 1.)) * (double)info->ray.i);
-		get_wall_intersection(info);
+		get_wall(info);
 		draw_vertical(info, fov_v);
 		++info->ray.i;
 	}
