@@ -6,7 +6,11 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 14:05:18 by sashin            #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2021/05/20 21:26:08 by sashin           ###   ########.fr       */
+=======
 /*   Updated: 2021/05/20 02:33:51 by sashin           ###   ########.fr       */
+>>>>>>> 68ef52ef5209690f063114a3fecfb17fa7a43f6d
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +56,33 @@ void		check_extension(char *file, char *extension, int fd)
 
 int			ismap(char *line)			// 니가 맵이냐
 {
-	int		i;
+	if (line[0] == '1' || line[0] == ' ')
+		return (1);
+	return (0);
+}
 
+<<<<<<< HEAD
+void		check_cubline(t_info *info, char *line)
+{
+	if (!ft_strncmp("R ", line, 2))
+		info->err = parse_resolution(line, info);
+	else if (!ft_strncmp("NO ", line, 3))
+		info->err = parse_texture(info, line, &info->cub.north);
+	else if (!ft_strncmp("SO ", line, 3))
+		info->err = parse_texture(info, line, &info->cub.south);
+	else if (!ft_strncmp("WE ", line, 3))
+		info->err = parse_texture(info, line, &info->cub.west);
+	else if (!ft_strncmp("EA ", line, 3))
+		info->err = parse_texture(info, line, &info->cub.east);
+	else if (!ft_strncmp("S ", line, 2))
+		info->err = parse_texture(info, line, &info->cub.sprite);
+	else if (!ft_strncmp("F ", line, 2))
+		info->err = parse_rgb(line, &info->cub.floor);
+	else if (!ft_strncmp("C ", line, 2))
+		info->err = parse_rgb(line, &info->cub.ceilling);
+	else if (ismap(line))
+		info->err = parse_map(line, info);
+=======
 	i = 0;
 	while (line[i])
 	{
@@ -85,4 +114,5 @@ void		check_str(char *line, t_info *info)
 			info->err = parse_rgb(line, &info->cub.ceilling);
 		// else if (ismap(line))
 		// info->err = parse_map(line, info);
+>>>>>>> 68ef52ef5209690f063114a3fecfb17fa7a43f6d
 }

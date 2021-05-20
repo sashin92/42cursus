@@ -6,7 +6,7 @@
 #    By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/20 14:30:35 by sashin            #+#    #+#              #
-#    Updated: 2021/05/19 22:23:57 by sashin           ###   ########.fr        #
+#    Updated: 2021/05/20 22:36:33 by sashin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS			= cub3d.c \
 				parse.c \
 				draw.c \
 				ray.c \
+				ray_tools.c \
 				control.c
 
 SRCS_DIR		= srcs

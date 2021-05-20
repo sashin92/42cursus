@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keycode_mac.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sashin <sashin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 19:00:15 by sashin            #+#    #+#             */
-/*   Updated: 2021/03/15 19:00:29 by sashin           ###   ########.fr       */
+/*   Updated: 2021/05/20 21:27:10 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # define KEYPRESS 2
 # define KEYRELEASE 3
-# define KEYPRESSMASK (1L<<0)
-# define KEYRELEASEMASK (1L<<1)
 
 # define KEY_ESCAPE			53
 # define KEY_F1 			122

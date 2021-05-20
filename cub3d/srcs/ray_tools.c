@@ -1,25 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ray_tools.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/22 16:43:00 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/19 16:45:56 by sashin           ###   ########.fr       */
+/*   Created: 2021/05/20 22:26:23 by sashin            #+#    #+#             */
+/*   Updated: 2021/05/20 22:36:57 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "../includes/cub3d.h"
 
-/*
-** ft_tolower() tests that char c is upper alphabet or not.
-** if char c is upper, convert to lower.
-*/
-
-int				ft_tolower(int c)
+double			deg_to_rad(double deg)
 {
-	if (c >= 'A' && c <= 'Z')
-		return (c + 32);
-	return (c);
+	double	rad;
+
+	rad = deg * M_PI / 180.0;
+	return (rad);
+}
+
+int				rad_step(double rad)
+{
+	if (fabs(rad) <= EPS)
+		return (0);
+	if (rad > 0)
+		return (1);
+	else
+		return (-1);
+}
+
+double			l2dist(double x0, double y0, double x1, double y1)
+{
+	double	dx;
+	double	dy;
+
+	dx = fabs(x1 - x0);
+	dy = fabs(y1 - y0);
+	return (sqrt(dx * dx + dy * dy));
 }

@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 17:17:21 by sashin            #+#    #+#             */
-/*   Updated: 2021/05/19 22:57:16 by sashin           ###   ########.fr       */
+/*   Updated: 2021/05/20 20:29:36 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,44 @@ int			parse_texture(t_info *info, char *line, int **texture)
 	*texture = (int *)mlx_get_data_addr(texture_img_ptr, &a[0], &a[1], &a[2]);
 	free(texture_img_ptr);
 	free(texture_name);
+	return (0);
+}
+
+
+int			parse_map(char *line, t_info *info)
+{
+	int		i;
+	int		len;
+	char	**tmp;
+	char	*cp_line;
+
+	tmp = (char **)malloc(sizeof(char *) * (info->map.y + 2));
+
+
+	i = 0;
+	while (i < info->map.y)
+	{
+		tmp[i] = info->map.xy[i];
+		++i;
+	}
+	if (info->map.xy)
+		free(info->map.xy);
+	cp_line = ft_strdup(line);
+	tmp[info->map.y] = cp_line;
+	info->map.xy = tmp;
+	len = ft_strlen(line);
+	int j = 0;
+	while (info->map.xy[info->map.y][j])
+	{
+		if (info->map.xy[info->map.y][j] == 'N')
+		{
+			info->pos.x = j + 0.5;
+			info->pos.y = info->map.y + 0.5;
+		}
+		++j;
+	}
+	if (len > info->map.x)
+		info->map.x = len;
+	info->map.y++;
 	return (0);
 }
