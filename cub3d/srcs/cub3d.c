@@ -6,11 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 14:30:20 by sashin            #+#    #+#             */
-<<<<<<< HEAD
 /*   Updated: 2021/05/20 21:26:03 by sashin           ###   ########.fr       */
-=======
-/*   Updated: 2021/05/20 02:37:08 by sashin           ###   ########.fr       */
->>>>>>> 68ef52ef5209690f063114a3fecfb17fa7a43f6d
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +14,8 @@
 
 int			loop(t_info *info)
 {
-<<<<<<< HEAD
 	info->img.ptr = mlx_new_image(info->mlx.ptr, info->win.res_x,
 							info->win.res_y);
-=======
-	info->img.ptr = mlx_new_image(info->mlx.ptr,
-								info->win.res_x, info->win.res_y);
->>>>>>> 68ef52ef5209690f063114a3fecfb17fa7a43f6d
 	info->img.adr = (int *)mlx_get_data_addr(info->img.ptr, &info->img.bpp,
 										&info->img.size_l, &info->img.endian);
 	raycasting(info);
@@ -41,25 +32,15 @@ int			load_cub(char *cub_file, t_info *info)
 	int		fd;
 	char	*line;
 	int		gnl;
-<<<<<<< HEAD
 	int		i;
 
 	fd = file_open(cub_file);
 	check_extension(cub_file, ".cub", fd);
-=======
-
-	fd = file_open(cub_file);
-	check_extension(cub_file, ".cub", fd); // 파일 이름이 .cub인지 확인
->>>>>>> 68ef52ef5209690f063114a3fecfb17fa7a43f6d
 	printf("\nOK, .cub file is valid!\n\n");
 	while (1)
 	{
 		gnl = get_next_line(fd, &line);
-<<<<<<< HEAD
 		check_cubline(info, line);
-=======
-		check_str(line, info);
->>>>>>> 68ef52ef5209690f063114a3fecfb17fa7a43f6d
 		free(line);
 		if (info->err < 0)
 			printf("Error\n");
@@ -79,13 +60,8 @@ int			run(char *cub, t_info *info)
 {
 	info->mlx.ptr = mlx_init();
 	load_cub(cub, info);
-<<<<<<< HEAD
 	info->win.ptr = mlx_new_window(info->mlx.ptr, info->win.res_x,
 									info->win.res_y, "cub3d");
-=======
-	info->win.ptr = mlx_new_window(info->mlx.ptr,
-								info->win.res_x, info->win.res_y, "UI");
->>>>>>> 68ef52ef5209690f063114a3fecfb17fa7a43f6d
 	write(1, "done\n", 5);
 	loop(info);
 	mlx_hook(info->win.ptr, 2, 0, put_key, info);
