@@ -6,30 +6,30 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 17:17:21 by sashin            #+#    #+#             */
-/*   Updated: 2021/05/20 20:29:36 by sashin           ###   ########.fr       */
+/*   Updated: 2021/05/23 01:17:27 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int		parse_resolution(char *line, t_info *info)
+int		parse_resolution(char *line, t_info *s)
 {
 	int		i;
 
-	if (info->win.res_x != 0 || info->win.res_y != 0)	// 해상도 중복 체크
+	if (s->win.res_x != 0 || s->win.res_y != 0)
 		return (-1);
 	i = 2;
 	while (line[i] == ' ')
 		++i;
 	while (ft_isdigit(line[i]))
-		info->win.res_x = (info->win.res_x * 10) + (line[i++] - '0');
+		s->win.res_x = (s->win.res_x * 10) + (line[i++] - '0');
 	while (line[i] == ' ')
 		++i;
 	while (ft_isdigit(line[i]))
-		info->win.res_y = (info->win.res_y * 10) + (line[i++] - '0');
+		s->win.res_y = (s->win.res_y * 10) + (line[i++] - '0');
 	while (line[i] == ' ')
 		++i;
-	if (info->win.res_x <= 0 || info->win.res_x <= 0 || line[i] != '\0')
+	if (s->win.res_x <= 0 || s->win.res_x <= 0 || line[i] != '\0')
 	{
 		printf("잘못된 해상도값\n");
 		return (-2);
@@ -54,7 +54,7 @@ int		parse_rgb(char *line, int *rgb)
 		r = (r * 10) + (line[i++] - '0');
 	if (line[i] == ',')
 		++i;
-	while (ft_isdigit(line[i]))						// 124,,5 라고 넣을 때에는?
+	while (ft_isdigit(line[i]))
 		g = (g * 10) + (line[i++] - '0');
 	if (line[i] == ',')
 		++i;
@@ -70,7 +70,7 @@ int		parse_rgb(char *line, int *rgb)
 	return (0);
 }
 
-int			parse_texture(t_info *info, char *line, int **texture)
+int			parse_texture(t_info *s, char *line, int **texture)
 {
 	int		i;
 	int		j;
@@ -78,7 +78,6 @@ int			parse_texture(t_info *info, char *line, int **texture)
 	void	*texture_img_ptr;
 	int		name_len;
 	int		fd;
-	int		a[5];
 
 	if (*texture != NULL)
 		return (-1);				// 만약 텍스처가 비어있지 않다면(경로지정을 이미 했다면) 에러
@@ -101,49 +100,48 @@ int			parse_texture(t_info *info, char *line, int **texture)
 	printf("%s\n", texture_name);		// printf
 	check_extension(texture_name, ".xpm", fd);
 	close(fd);
-	texture_img_ptr = mlx_xpm_file_to_image(info->mlx.ptr, texture_name, &a[3], &a[4]);
-	// *texture = (int *)mlx_get_data_addr(texture_img_ptr, &info->img.bpp, &info->img.size_l, &info->img.endian);
-	*texture = (int *)mlx_get_data_addr(texture_img_ptr, &a[0], &a[1], &a[2]);
+	texture_img_ptr = mlx_xpm_file_to_image(s->mlx.ptr, texture_name, &s->img.w, &s->img.h);
+	*texture = (int *)mlx_get_data_addr(texture_img_ptr, &s->img.bpp, &s->img.sl, &s->img.end);
 	free(texture_img_ptr);
 	free(texture_name);
 	return (0);
 }
 
 
-int			parse_map(char *line, t_info *info)
+int			parse_map(char *line, t_info *s)
 {
 	int		i;
 	int		len;
 	char	**tmp;
 	char	*cp_line;
 
-	tmp = (char **)malloc(sizeof(char *) * (info->map.y + 2));
+	tmp = (char **)malloc(sizeof(char *) * (s->map.y + 2));
 
 
 	i = 0;
-	while (i < info->map.y)
+	while (i < s->map.y)
 	{
-		tmp[i] = info->map.xy[i];
+		tmp[i] = s->map.xy[i];
 		++i;
 	}
-	if (info->map.xy)
-		free(info->map.xy);
+	if (s->map.xy)
+		free(s->map.xy);
 	cp_line = ft_strdup(line);
-	tmp[info->map.y] = cp_line;
-	info->map.xy = tmp;
+	tmp[s->map.y] = cp_line;
+	s->map.xy = tmp;
 	len = ft_strlen(line);
 	int j = 0;
-	while (info->map.xy[info->map.y][j])
+	while (s->map.xy[s->map.y][j])
 	{
-		if (info->map.xy[info->map.y][j] == 'N')
+		if (s->map.xy[s->map.y][j] == 'N')
 		{
-			info->pos.x = j + 0.5;
-			info->pos.y = info->map.y + 0.5;
+			s->pos.x = j + 0.5;
+			s->pos.y = s->map.y + 0.5;
 		}
 		++j;
 	}
-	if (len > info->map.x)
-		info->map.x = len;
-	info->map.y++;
+	if (len > s->map.x)
+		s->map.x = len;
+	s->map.y++;
 	return (0);
 }

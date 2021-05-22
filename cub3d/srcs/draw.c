@@ -6,58 +6,88 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 19:18:49 by sashin            #+#    #+#             */
-/*   Updated: 2021/05/20 22:42:12 by sashin           ###   ########.fr       */
+/*   Updated: 2021/05/23 01:18:05 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	draw_background(t_info *info)
+void			draw_background(t_info *s)
 {
-	int		i;
+	int			i;
 
 	i = 0;
-	while (i < (info->win.res_x * info->win.res_y) / 2)
-		info->img.adr[i++] = info->cub.ceilling;
-	while (i < (info->win.res_x * info->win.res_y))
-		info->img.adr[i++] = info->cub.floor;
+	while (i < (s->win.res_x * s->win.res_y) / 2)
+		s->img.adr[i++] = s->cub.ceilling;
+	while (i < (s->win.res_x * s->win.res_y))
+		s->img.adr[i++] = s->cub.floor;
 }
 
-
-void			draw_wall(t_info *info, double fov_v)
+void			draw_wall_dir(t_info *s, int i, int y1)
 {
-	int			start;
+	if (s->hit.dir == EAST)
+		s->img.adr[(s->win.res_x * y1) + s->ray.i] = s->cub.east[i];
+	else if (s->hit.dir == WEST)
+		s->img.adr[(s->win.res_x * y1) + s->ray.i] = s->cub.west[i];
+	else if (s->hit.dir == NORTH)
+		s->img.adr[(s->win.res_x * y1) + s->ray.i] = s->cub.north[i];
+	else if (s->hit.dir == SOUTH)
+		s->img.adr[(s->win.res_x * y1) + s->ray.i] = s->cub.south[i];
+}
+
+void			draw_wall(t_info *s, double fov_v, int i)
+{
 	double		height;
 	double		y0;
 	double		y1;
-	double		i;
+	double		per_h;
 
-	height = (double)info->win.res_y / (2. * info->hit.dist * tan(fov_v / 2.0));
-	y0 = ((info->win.res_y - height) / 2.);
+	height = (double)s->win.res_y / (2. * s->hit.dist * tan(fov_v / 2.0));
+	y0 = ((s->win.res_y - height) / 2.);
 	y1 = y0 + height;
+	if (y1 > s->win.res_y)
+		y1 = s->win.res_y;
 	while (y0 <= --y1 && y1 >= 0)
 	{
-		if (y1 > info->win.res_y)
-			continue ;
-		if (info->hit.dir == EAST)
+		per_h = floor(64 * ((y1 - y0) / height));
+		if (s->hit.dir == EAST || s->hit.dir == WEST)
+			i = floor(64 * (s->hit.y - floor(s->hit.y))) + 64 * per_h;
+		else if (s->hit.dir == NORTH || s->hit.dir == SOUTH)
+			i = floor(64 * (s->hit.x - floor(s->hit.x))) + 64 * per_h;
+		draw_wall_dir(s, i, (int)y1);
+	}
+}
+
+void			draw_sprite(t_info *s, double fov_v, int i)
+{
+	double		height;
+	double		y0;
+	double		y1;
+	double		per_h;
+
+
+	while (s->spr_count > 0)
+	{
+		height = (double)s->win.res_y / (2. * s->spr[s->spr_count].dist * tan(fov_v / 2.0));
+		y0 = ((s->win.res_y - height) / 2.);
+		y1 = y0 + height;
+		if (y1 > s->win.res_y)
+			y1 = s->win.res_y;
+	// while (y0 <= --y1 && y1 >= 0)
+	// {
+	// 	per_h = floor(64 * ((y1 - y0) / height));
+	// 	if (s->hit.dir == EAST || s->hit.dir == WEST)
+	// 		i = floor(64 * (s->hit.y - floor(s->hit.y))) + 64 * per_h;
+	// 	else if (s->hit.dir == NORTH || s->hit.dir == SOUTH)
+	// 		i = floor(64 * (s->hit.x - floor(s->hit.x))) + 64 * per_h;
+	// 	draw_wall_dir(s, i, (int)y1);
+	// }
+		while (y0 <= --y1 && y1 >= 0)
 		{
-			i = floor(64 * (info->hit.y - floor(info->hit.y))) + 64 * floor(64 * ((y1 - y0) / height));
-			info->img.adr[(info->win.res_x * (int)y1) + info->ray.i] = info->cub.east[(int)i];
+			per_h = floor(64 * ((y1 - y0) / height));
+			i = floor(64 * (s->ray.i) + 64 * per_h);
+			s->img.adr[(s->win.res_x * (int)y1) + s->ray.i] = s->cub.sprite[i];
 		}
-		else if (info->hit.dir == WEST)
-		{
-			i = floor(64 * (info->hit.y - floor(info->hit.y))) + 64 * floor(64 * ((y1 - y0) / height));
-			info->img.adr[(info->win.res_x * (int)y1) + info->ray.i] = info->cub.west[(int)i];
-		}
-		else if (info->hit.dir ==NORTH)
-		{
-			i = floor(64 * (info->hit.x - floor(info->hit.x))) + 64 * floor(64 * ((y1 - y0) / height));
-			info->img.adr[(info->win.res_x * (int)y1) + info->ray.i] = info->cub.north[(int)i];
-		}
-		else if (info->hit.dir == SOUTH)
-		{
-			i = floor(64 * (info->hit.x - floor(info->hit.x))) + 64 * floor(64 * ((y1 - y0) / height));
-			info->img.adr[(info->win.res_x * (int)y1) + info->ray.i] = info->cub.south[(int)i];
-		}
+		s->spr_count -= 1;
 	}
 }
