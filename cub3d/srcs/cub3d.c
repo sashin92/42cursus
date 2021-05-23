@@ -6,17 +6,36 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 14:30:20 by sashin            #+#    #+#             */
-/*   Updated: 2021/05/23 01:52:30 by sashin           ###   ########.fr       */
+/*   Updated: 2021/05/23 16:59:17 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+// void		create_sprite_map(t_info *s)
+// {
+// 	char	**tmp_map;
+// 	char	*tmp_str;
+// 	int		i;
+
+// 	tmp_str = (char *)malloc(sizeof(char) * s->map.x + 1);
+// 	i = 0;
+// 	while (i < s->map.x)
+// 		tmp_str[i++] = '0';
+// 	tmp_str[i] = '\0';
+// 	tmp_map = (char **)malloc(sizeof(char *) * s->map.y);
+// 	i = 0;
+// 	while (i < s->map.y)
+// 		tmp_map[i++] = ft_strdup(tmp_str);
+// 	s->vis.xy = tmp_map;
+// }
 
 int			loop(t_info *s)
 {
 	s->img.ptr = mlx_new_image(s->mlx.ptr, s->win.res_x, s->win.res_y);
 	s->img.adr = (int *)mlx_get_data_addr(s->img.ptr, &s->img.bpp,
 										&s->img.sl, &s->img.end);
+	// create_sprite_map(s);
 	raycasting(s);
 	mlx_put_image_to_window(s->mlx.ptr, s->win.ptr, s->img.ptr, 0, 0);
 	free(s->img.ptr);
@@ -105,8 +124,12 @@ int			main(int argc, char **argv)
 		init(&s);
 		run(argv[1], &s, 0);
 	}
-	else if (argc == 3)
+	else if (argc == 3 && !ft_strncmp(argv[2], "--save", 7))
+	{
 		init(&s);
-		run(argv[1], &s, argv[2]);
+		bmp(&s, argv[1]);
+	}
+	else
+		printf("Invalid arguments\n");
 	return (0);
 }

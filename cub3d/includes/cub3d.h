@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:59:04 by sashin            #+#    #+#             */
-/*   Updated: 2021/05/23 01:51:41 by sashin           ###   ########.fr       */
+/*   Updated: 2021/05/23 16:48:48 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ typedef struct	s_info
 ** cub3d.c
 */
 int			loop(t_info *s);
+int			load_cub(char *cub_file, t_info *s);
 
 /*
 ** check_files.c
@@ -193,11 +194,11 @@ int				put_key(int key, t_info *s);
 /*
 ** sprite.c
 */
-void			ray_touch_sprite(t_info *s, int i);
+void			ray_touch_sprite(t_info *s);
 
 /*
 ** bmp.c
 */
-int				ft_bmp(t_info *s);
+int				bmp(t_info *s, char *cub);
 
 #endif

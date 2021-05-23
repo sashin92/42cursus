@@ -6,29 +6,21 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/22 15:25:35 by sashin            #+#    #+#             */
-/*   Updated: 2021/05/23 01:16:29 by sashin           ###   ########.fr       */
+/*   Updated: 2021/05/23 17:06:22 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void		ray_touch_sprite(t_info *s, int i)
+void		ray_touch_sprite(t_info *s)
 {
-	
-	t_spr	*tmp;
-	tmp = (t_spr *)malloc(sizeof(t_spr) * i);
-
-	while (--i > 0)
-	{
-		tmp[i].x = s->ray.cx + 0.5;
-		tmp[i].y = s->ray.cy + 0.5;
-		tmp[i].th = atan2((tmp[i].y - s->pos.y), tmp[i].x - s->pos.x);
-		if (tmp[i].th < 0)
-			tmp[i].th += M_PI;
-		tmp[i].dist = l2dist(s->pos.x, s->pos.y, tmp[i].x, tmp[i].y);
-		--i;
-	}
-	if (s->spr != NULL)
-		free(s->spr);
-	s->spr = tmp;
+	s->spr[s->spr_count].x = s->ray.cx + 0.5;
+	s->spr[s->spr_count].y = s->ray.cy + 0.5;
+	s->spr[s->spr_count].dist = l2dist(s->pos.x, s->pos.y, s->spr[s->spr_count].x, s->spr[s->spr_count].y);
+	s->spr[s->spr_count].th = atan2(s->spr[s->spr_count].y - s->pos.y, s->spr[s->spr_count].x - s->pos.x);
+	if (s->spr[s->spr_count].th < 0)
+		s->spr[s->spr_count].th += 2 * M_PI;
+	s->spr[s->spr_count].dist *= cos(s->dir.angle - s->spr[s->spr_count].th);
+	++s->spr_count;
 }
+
