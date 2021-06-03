@@ -6,20 +6,19 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 14:22:14 by sashin            #+#    #+#             */
-/*   Updated: 2021/05/23 01:51:47 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/04 00:20:20 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-
 void	move_angle(t_info *s, double angle)
 {
 	s->pos.x += MOVE_SPD * cos(angle);
-	if (s->map.xy[(int)floor(s->pos.y)][(int)floor(s->pos.x)] == '1')
+	if (s->map.yx[(int)floor(s->pos.y)][(int)floor(s->pos.x)] == '1')
 		s->pos.x -= MOVE_SPD * cos(angle);
 	s->pos.y += MOVE_SPD * sin(angle);
-	if (s->map.xy[(int)floor(s->pos.y)][(int)floor(s->pos.x)] == '1')
+	if (s->map.yx[(int)floor(s->pos.y)][(int)floor(s->pos.x)] == '1')
 		s->pos.y -= MOVE_SPD * sin(angle);
 }
 

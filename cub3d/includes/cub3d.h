@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:59:04 by sashin            #+#    #+#             */
-/*   Updated: 2021/05/23 16:48:48 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/04 01:04:07 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,22 +56,13 @@ typedef struct	s_cub
 	int			*south;
 	int			*east;
 	int			*west;
-	int			*sprite;
 	int			floor;
 	int			ceilling;
 }				t_cub;
 
-typedef struct	s_spr
-{
-	double		x;
-	double		y;
-	double		dist;
-	double		th;
-}				t_spr;
-
 typedef struct	s_map
 {
-	char		**xy;
+	char		**yx;
 	int			x;
 	int			y;
 }				t_map;
@@ -133,15 +124,14 @@ typedef struct	s_info
 	int			err;
 	t_ray		ray;
 	t_hit		hit;
-	t_spr		*spr;
-	int			spr_count;
+	int			flag;
 }				t_info;
 
 /*
 ** cub3d.c
 */
-int			loop(t_info *s);
-int			load_cub(char *cub_file, t_info *s);
+int				loop(t_info *s);
+void			load_cub(char *cub_file, t_info *s);
 
 /*
 ** check_files.c
@@ -150,6 +140,7 @@ int				file_open(char *file);
 void			check_extension(char *file, char *extension, int fd);
 int				ismap(char *line);
 void			check_cubline(t_info *s, char *line);
+void			check_s(t_info *s);
 
 /*
 ** parse.c
@@ -158,11 +149,6 @@ int				parse_resolution(char *line, t_info *s);
 int				parse_rgb(char *line, int *rgb);
 int				parse_map(char *line, t_info *s);
 int				parse_texture(t_info *s, char *line, int **texture);
-
-/*
-** error.c
-*/
-int				err_sentence(int err);
 
 /*
 ** ray.c
@@ -179,26 +165,27 @@ void			ray_hit_v(t_info *s);
 void			ray_hit_h(t_info *s);
 
 /*
+** error.c
+*/
+int			check_error(int err);
+
+
+
+/*
 ** draw.c
 */
 void			draw_background(t_info *s);
 void			draw_wall(t_info *s, double fov_v, int i);
-void			draw_sprite(t_info *s, double fov_v, int i);
 
 /*
 ** control.c
 */
 int				put_key(int key, t_info *s);
 
-
 /*
-** sprite.c
+** tools.c
 */
-void			ray_touch_sprite(t_info *s);
-
-/*
-** bmp.c
-*/
-int				bmp(t_info *s, char *cub);
+void			ft_space_skip(char **s);
+void			ft_skip(char **s, char c);
 
 #endif

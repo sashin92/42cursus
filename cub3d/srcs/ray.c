@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 15:11:05 by sashin            #+#    #+#             */
-/*   Updated: 2021/05/23 17:32:45 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/04 00:19:31 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,18 +76,8 @@ void	ray_dda_step(t_info *s)
 		s->ray.y = s->pos.y;
 }
 
-void	create_spr_array(t_info *s)
+void	calc_wall(t_info *s)
 {
-	t_spr	*tmp;
-
-	tmp = (t_spr *)malloc(sizeof(t_spr) * (s->win.res_x * s->win.res_y) / 2);
-	s->spr = tmp;
-}
-
-void	calc_wall_sprite(t_info *s)
-{
-	create_spr_array(s);
-	s->spr_count = 0;
 	ray_dda_step(s);
 	while (1)
 	{
@@ -95,9 +85,7 @@ void	calc_wall_sprite(t_info *s)
 		if (s->ray.cx >= s->map.x || s->ray.cx < 0 ||
 			s->ray.cy >= s->map.y || s->ray.cy < 0)
 			break ;
-		// if (s->map.xy[s->ray.cy][s->ray.cx] == '2')
-		// 	ray_touch_sprite(s);
-		if (s->map.xy[s->ray.cy][s->ray.cx] == '1')
+		if (s->map.yx[s->ray.cy][s->ray.cx] == '1')
 		{
 			ray_touch_wall(s);
 			break ;
@@ -107,14 +95,13 @@ void	calc_wall_sprite(t_info *s)
 		else if (s->hit.key == HIT_HORIZON)
 			s->ray.y += s->ray.ystep;
 	}
-	free(s->spr);
 }
 
 void	raycasting(t_info *s)
 {
 	double	fov;
 	double	fov_v;
-	int	i;
+	int		i;
 
 	s->ray.i = 0;
 	i = 0;
@@ -125,9 +112,8 @@ void	raycasting(t_info *s)
 	{
 		s->ray.angle = (s->dir.angle + fov / 2.) -
 					((fov / ((double)s->win.res_x - 1.)) * (double)s->ray.i);
-		calc_wall_sprite(s);
+		calc_wall(s);
 		draw_wall(s, fov_v, i);
-		// draw_sprite(s, fov_v, i);
 		++s->ray.i;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 14:05:18 by sashin            #+#    #+#             */
-/*   Updated: 2021/05/23 01:15:02 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/04 01:33:18 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,22 +58,41 @@ int			ismap(char *line)
 
 void		check_cubline(t_info *s, char *line)
 {
-	if (!ft_strncmp("R ", line, 2))
-		s->err = parse_resolution(line, s);
-	else if (!ft_strncmp("NO ", line, 3))
-		s->err = parse_texture(s, line, &s->cub.north);
-	else if (!ft_strncmp("SO ", line, 3))
-		s->err = parse_texture(s, line, &s->cub.south);
-	else if (!ft_strncmp("WE ", line, 3))
-		s->err = parse_texture(s, line, &s->cub.west);
-	else if (!ft_strncmp("EA ", line, 3))
-		s->err = parse_texture(s, line, &s->cub.east);
-	else if (!ft_strncmp("S ", line, 2))
-		s->err = parse_texture(s, line, &s->cub.sprite);
-	else if (!ft_strncmp("F ", line, 2))
-		s->err = parse_rgb(line, &s->cub.floor);
-	else if (!ft_strncmp("C ", line, 2))
-		s->err = parse_rgb(line, &s->cub.ceilling);
-	else if (ismap(line))
+	if (ismap(line) || s->flag == 1)
+	{
+		s->flag = 1;
 		s->err = parse_map(line, s);
+	}
+	else if (!ft_strncmp("R ", line, 2) || !ft_strncmp("R\t", line, 2))
+		s->err = parse_resolution(&line[2], s);
+	else if (!ft_strncmp("NO ", line, 3) || !ft_strncmp("NO\t", line, 3))
+		s->err = parse_texture(s, &line[3], &s->cub.north);
+	else if (!ft_strncmp("SO ", line, 3) || !ft_strncmp("SO\t", line, 3))
+		s->err = parse_texture(s, &line[3], &s->cub.south);
+	else if (!ft_strncmp("WE ", line, 3) || !ft_strncmp("WE\t", line, 3))
+		s->err = parse_texture(s, &line[3], &s->cub.west);
+	else if (!ft_strncmp("EA ", line, 3) || !ft_strncmp("EA\t", line, 3))
+		s->err = parse_texture(s, &line[3], &s->cub.east);
+	else if (!ft_strncmp("F ", line, 2) || !ft_strncmp("F\t", line, 2))
+		s->err = parse_rgb(&line[2], &s->cub.floor);
+	else if (!ft_strncmp("C ", line, 2) || !ft_strncmp("C\t", line, 2))
+		s->err = parse_rgb(&line[2], &s->cub.ceilling);
+}
+
+void		check_s(t_info *s)
+{
+	if (s->cub.north == NULL)
+	s->err = -7;
+	else if (s->cub.south == NULL)
+	s->err = -8;
+	else if (s->cub.east == NULL)
+	s->err = -9;
+	else if (s->cub.west == NULL)
+	s->err = -10;
+	else if (s->cub.floor == -1)
+	s->err = -11;
+	else if (s->cub.ceilling == -1)
+	s->err = -12;
+	else if (s->win.res_x == 0 && s->win.res_y == 0)
+	s->err = -13;
 }

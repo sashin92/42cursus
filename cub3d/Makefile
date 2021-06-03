@@ -6,7 +6,7 @@
 #    By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/20 14:30:35 by sashin            #+#    #+#              #
-#    Updated: 2021/05/23 01:41:54 by sashin           ###   ########.fr        #
+#    Updated: 2021/06/03 23:43:34 by sashin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,8 @@ SRCS			= cub3d.c \
 				ray.c \
 				ray_tools.c \
 				control.c \
-				sprite.c \
-				bmp.c
+				error.c \
+				tools.c
 
 SRCS_DIR		= srcs
 
@@ -36,4 +36,4 @@ INCLUDES		= includes
 all: $(NAME)
 
 $(NAME): $(addprefix $(SRCS_DIR)/, $(SRCS))
-	$(CC) $(CFLAGS) $(MLX) $^ $(addprefix $(LIBS_DIR)/, $(LIBS)) -o test_file
+	$(CC) $(CFLAGS) $(MLX) $^ $(addprefix $(LIBS_DIR)/, $(LIBS)) -o $(NAME)
