@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 14:22:14 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/08 19:02:37 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/08 21:59:55 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,24 @@ static void	put_wasd(int key, t_info *s)
 		move_angle(s, s->dir.angle - M_PI / 2);
 }
 
+int			ft_destroy(t_info *s)
+{
+	int		i;
+
+	i = 0;
+	while (i < s->map.y)
+		free(s->map.yx[i++]);
+	free(s->map.yx);
+	free(s->cub.north);
+	free(s->cub.south);
+	free(s->cub.west);
+	free(s->cub.east);
+	mlx_destroy_window(s->mlx.ptr, s->win.ptr);
+	free(s->mlx.ptr);
+	exit(0);
+	return (0);
+}
+
 int			put_key(int key, t_info *s)
 {
 	put_wasd(key, s);
@@ -42,7 +60,7 @@ int			put_key(int key, t_info *s)
 	else if (key == KEY_LEFT)
 		s->dir.angle += (M_PI / 180) * ROTATE_SPD;
 	else if (key == KEY_ESCAPE)
-		exit(0);
+		ft_destroy(s);
 	while (s->dir.angle >= 2. * M_PI)
 		s->dir.angle -= 2. * M_PI;
 	while (s->dir.angle < 0)

@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 14:30:20 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/08 19:41:19 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/08 21:36:59 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ static int	run(char *cub, t_info *s)
 	write(1, "done\n", 5);
 	loop(s);
 	mlx_hook(s->win.ptr, 2, 0, put_key, s);
+	mlx_hook(s->win.ptr, 17, 0, ft_destroy, s);
 	mlx_loop(s->mlx.ptr);
 	return (0);
 }

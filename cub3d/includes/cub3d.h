@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:59:04 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/08 19:03:15 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/08 21:56:00 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include "keycode_mac.h"
 # include "../mlx/mlx.h"
 
-# define FOV 66.7
+# define FOV 66
 # define EPS 1e-06
 
 # define MOVE_SPD 0.05
@@ -189,6 +189,7 @@ void			draw_wall(t_info *s, double fov_v, int i);
 ** control.c
 */
 int				put_key(int key, t_info *s);
+int				ft_destroy(t_info *s);
 
 /*
 ** tools.c
