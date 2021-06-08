@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 14:30:20 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/08 17:22:22 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/08 18:00:23 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void		init(t_info *s)
 	s->mlx.ptr = NULL;
 	s->win.ptr = NULL;
 	s->win.res_x = 1024;
-	s->win.res_y =768;
+	s->win.res_y = 768;
 	s->cub.north = NULL;
 	s->cub.south = NULL;
 	s->cub.east = NULL;

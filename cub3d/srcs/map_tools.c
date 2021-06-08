@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 17:13:21 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/08 17:25:55 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/08 17:53:25 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void		map_sort(t_info *s)
 		if ((int)ft_strlen(s->map.yx[i]) < s->map.x)
 		{
 			j = -1;
-			tmp = (char *)malloc(sizeof(char) * (s->map.x + 1));
+			tmp = (char *)malloc(sizeof(char) * s->map.x);
 			while (++j < (int)ft_strlen(s->map.yx[i]))
 				tmp[j] = s->map.yx[i][j];
 			while (j < s->map.x)
