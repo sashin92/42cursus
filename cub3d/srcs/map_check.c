@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 17:21:02 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/08 18:01:09 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/08 22:16:21 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@ int			check_map_inside(t_info *s)
 	int		x;
 	int		y;
 
-	y = 1;
-	while (y < s->map.y - 1)
+	y = 0;
+	while (++y < s->map.y - 1)
 	{
-		x = 1;
-		while (x < s->map.x - 1)
+		x = 0;
+		while (++x < s->map.x - 1)
 		{
-			if (s->map.yx[y][x] == '0')
+			if (s->map.yx[y][x] == '0' || s->map.yx[y][x] == 'N'
+				|| s->map.yx[y][x] == 'S' || s->map.yx[y][x] == 'W'
+				|| s->map.yx[y][x] == 'E')
 			{
 				if (s->map.yx[y][x - 1] == ' ' || s->map.yx[y - 1][x] == ' '
 					|| s->map.yx[y][x + 1] == ' ' || s->map.yx[y + 1][x] == ' '
@@ -33,9 +35,7 @@ int			check_map_inside(t_info *s)
 					|| s->map.yx[y + 1][x + 1] == ' ')
 					return (s->err = -15);
 			}
-			++x;
 		}
-		++y;
 	}
 	return (0);
 }
