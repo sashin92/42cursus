@@ -6,7 +6,7 @@
 #    By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/20 14:30:35 by sashin            #+#    #+#              #
-#    Updated: 2021/06/03 23:43:34 by sashin           ###   ########.fr        #
+#    Updated: 2021/06/08 17:23:04 by sashin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ MLX				= -L./mlx -lmlx -framework OpenGL -framework AppKit
 SRCS			= cub3d.c \
 				check_files.c \
 				parse.c \
+				map_check.c \
+				map_tools.c \
 				draw.c \
 				ray.c \
 				ray_tools.c \

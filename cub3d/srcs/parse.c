@@ -6,27 +6,11 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 17:17:21 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/04 01:45:20 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/08 17:24:49 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-int			parse_resolution(char *line, t_info *s)
-{
-	if (s->win.res_x != 0 || s->win.res_y != 0)
-		return (-1);
-	ft_space_skip(&line);
-	while (ft_isdigit(*line))
-		s->win.res_x = (s->win.res_x * 10) + (*(line++) - '0');
-	ft_space_skip(&line);
-	while (ft_isdigit(*line))
-		s->win.res_y = (s->win.res_y * 10) + (*(line++) - '0');
-	ft_space_skip(&line);
-	if (s->win.res_x <= 0 || s->win.res_x <= 0 || *line != '\0')
-		return (-2);
-	return (0);
-}
 
 int			parse_rgb(char *line, int *rgb)
 {
@@ -100,66 +84,18 @@ int			parse_texture(t_info *s, char *line, int **texture)
 	return (texture_open(s, texture_name, texture));
 }
 
-int			check_map_isvalid(t_info *s, char *tmp, int i)
-{
-	int		j;
-
-	j = 0;
-	if (i == 0)
-	{
-		while (tmp[j])
-		{
-			if (tmp[j] == ' ' || tmp[j] == '1')
-				++j;
-			else
-				break ;
-		}
-		if (tmp[j] != '\0')
-			return (-1);
-	}
-	else
-	{
-		while (tmp[j]
-		{
-			if 
-		})
-
-	}
-	return (0);
-}
-
-
 int			parse_map(char *line, t_info *s)
 {
-	int		i;
 	int		len;
-	char	**tmp;
 
-	tmp = (char **)malloc(sizeof(char *) * (s->map.y + 2));
-	i = 0;
-	while (i < s->map.y)
-	{
-		tmp[i] = s->map.yx[i];
-		++i;
-	}
-	if (s->map.yx)
-		free(s->map.yx);
-	tmp[s->map.y] = ft_strdup(line);
-	s->map.yx = tmp;
-	check_map_isvalid(s, tmp, i);
+	if (s->err < 0)
+		return (s->err);
+	parse_map_copy(s, line);
+	map_check_arg(s);
+	parse_map_pos(s);
 	len = ft_strlen(line);
-	int j = 0;
-	while (s->map.yx[s->map.y][j])
-	{
-		if (s->map.yx[s->map.y][j] == 'N')
-		{
-			s->pos.x = j + 0.5;
-			s->pos.y = s->map.y + 0.5;
-		}
-		++j;
-	}
 	if (len > s->map.x)
 		s->map.x = len;
 	s->map.y++;
-	return (0);
+	return (s->err);
 }

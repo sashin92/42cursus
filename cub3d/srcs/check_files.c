@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 14:05:18 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/04 01:33:18 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/08 15:48:36 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,25 @@ void		check_extension(char *file, char *extension, int fd)
 	}
 }
 
-int			ismap(char *line)
+int			ismap(t_info *s, char *line)
 {
-	if (line[0] == '1' || line[0] == ' ')
+	if (s->flag == 0 && (line[0] == '1' || line[0] == ' '))
+	{
+		s->flag = 1;
 		return (1);
+	}
+	if (s->flag == 1)
+	{
+		if (line[0] != ' ' && line[0] != '1')
+			s->err = -15;
+	}
 	return (0);
 }
 
 void		check_cubline(t_info *s, char *line)
 {
-	if (ismap(line) || s->flag == 1)
-	{
-		s->flag = 1;
+	if (ismap(s, line) || s->flag == 1)
 		s->err = parse_map(line, s);
-	}
-	else if (!ft_strncmp("R ", line, 2) || !ft_strncmp("R\t", line, 2))
-		s->err = parse_resolution(&line[2], s);
 	else if (!ft_strncmp("NO ", line, 3) || !ft_strncmp("NO\t", line, 3))
 		s->err = parse_texture(s, &line[3], &s->cub.north);
 	else if (!ft_strncmp("SO ", line, 3) || !ft_strncmp("SO\t", line, 3))
@@ -77,22 +80,25 @@ void		check_cubline(t_info *s, char *line)
 		s->err = parse_rgb(&line[2], &s->cub.floor);
 	else if (!ft_strncmp("C ", line, 2) || !ft_strncmp("C\t", line, 2))
 		s->err = parse_rgb(&line[2], &s->cub.ceilling);
+	else if (line[0] == '\0');
+	else
+		s->err = -14;
 }
 
 void		check_s(t_info *s)
 {
 	if (s->cub.north == NULL)
-	s->err = -7;
+		s->err = -7;
 	else if (s->cub.south == NULL)
-	s->err = -8;
+		s->err = -8;
 	else if (s->cub.east == NULL)
-	s->err = -9;
+		s->err = -9;
 	else if (s->cub.west == NULL)
-	s->err = -10;
+		s->err = -10;
 	else if (s->cub.floor == -1)
-	s->err = -11;
+		s->err = -11;
 	else if (s->cub.ceilling == -1)
-	s->err = -12;
-	else if (s->win.res_x == 0 && s->win.res_y == 0)
-	s->err = -13;
+		s->err = -12;
+	else if (s->pos.x == 0)
+		s->err = -15;
 }

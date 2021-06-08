@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:59:04 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/04 01:04:07 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/08 17:24:54 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,17 +138,30 @@ void			load_cub(char *cub_file, t_info *s);
 */
 int				file_open(char *file);
 void			check_extension(char *file, char *extension, int fd);
-int				ismap(char *line);
+int				ismap(t_info *s, char *line);
 void			check_cubline(t_info *s, char *line);
 void			check_s(t_info *s);
 
 /*
 ** parse.c
 */
-int				parse_resolution(char *line, t_info *s);
 int				parse_rgb(char *line, int *rgb);
 int				parse_map(char *line, t_info *s);
 int				parse_texture(t_info *s, char *line, int **texture);
+
+/*
+** map_tools.c
+*/
+int			map_check_arg(t_info *s);
+void		parse_map_copy(t_info *s, char *line);
+int			parse_map_pos(t_info *s);
+void		map_sort(t_info *s);
+
+/*
+** map_check.c
+*/
+int			check_map_inside(t_info *s);
+int			check_map_outside(t_info *s);
 
 /*
 ** ray.c
@@ -167,9 +180,7 @@ void			ray_hit_h(t_info *s);
 /*
 ** error.c
 */
-int			check_error(int err);
-
-
+int				check_error(int err);
 
 /*
 ** draw.c

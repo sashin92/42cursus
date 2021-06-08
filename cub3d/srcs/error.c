@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 19:48:17 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/04 01:22:31 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/08 15:48:29 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,16 @@ static void	check_error_two(int err)
 		printf("Can't find 'C' line.\n");
 	else if (err == -13)
 		printf("Can't find 'R' line.\n");
+	else if (err == -14)
+		printf("Wrong identifier in cub file.\n");
+	else if (err == -15)
+		printf("Invalid map!\n");
 }
 
 int			check_error(int err)
 {
 	if (err == -1)
-		printf("multiple 'R' is in cub file.\n");
-	else if (err == -2)
-		printf("please input valid resolution value.\n");
+		printf("multiple texture line in cub file.\n");
 	else if (err == -3)
 		printf("multiple 'C' or 'F' is in cub file.\n");
 	else if (err == -4)

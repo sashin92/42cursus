@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 14:30:20 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/04 01:25:50 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/08 17:22:22 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ void		load_cub(char *cub_file, t_info *s)
 		if (gnl != 1)
 			break ;
 	}
+	map_sort(s);
+	check_map_inside(s);
+	check_map_outside(s);
 	if (s->err < 0)
 		return ;
 	check_s(s);
@@ -71,8 +74,8 @@ void		init(t_info *s)
 {
 	s->mlx.ptr = NULL;
 	s->win.ptr = NULL;
-	s->win.res_x = 0;
-	s->win.res_y = 0;
+	s->win.res_x = 1024;
+	s->win.res_y =768;
 	s->cub.north = NULL;
 	s->cub.south = NULL;
 	s->cub.east = NULL;
