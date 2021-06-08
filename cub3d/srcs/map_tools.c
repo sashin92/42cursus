@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 17:13:21 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/08 17:53:25 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/08 18:34:52 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void		parse_map_copy(t_info *s, char *line)
 {
 	int		i;
 	char	**tmp;
-	
+
 	i = 0;
 	tmp = (char **)malloc(sizeof(char *) * (s->map.y + 2));
 	while (i < s->map.y)

@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 19:48:17 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/08 15:48:29 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/08 18:49:56 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int			check_error(int err)
 	else if (err == -3)
 		printf("multiple 'C' or 'F' is in cub file.\n");
 	else if (err == -4)
-		printf("please input valid rgb value.\n");
+		printf("please input valid rgb value. color range: [0, 255]\n");
 	else if (err == -5)
 		printf("you can't use tab in texture line.\n");
 	else if (err == -6)

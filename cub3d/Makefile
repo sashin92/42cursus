@@ -6,7 +6,7 @@
 #    By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/20 14:30:35 by sashin            #+#    #+#              #
-#    Updated: 2021/06/08 17:23:04 by sashin           ###   ########.fr        #
+#    Updated: 2021/06/08 19:22:15 by sashin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,4 +38,16 @@ INCLUDES		= includes
 all: $(NAME)
 
 $(NAME): $(addprefix $(SRCS_DIR)/, $(SRCS))
+	make -C $(LIBS_DIR)
 	$(CC) $(CFLAGS) $(MLX) $^ $(addprefix $(LIBS_DIR)/, $(LIBS)) -o $(NAME)
+
+clean:
+	make clean -C $(LIBS_DIR)
+
+fclean: clean
+	make fclean -C $(LIBS_DIR)
+	rm -rf $(NAME)
+
+re: fclean all
+
+.PHONY: all bonus clean fclean re

@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:59:04 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/08 17:24:54 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/08 19:03:15 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
-# include <sys/errno.h>
 
 # include "../lib/includes/lib_sashin.h"
 # include "keycode_mac.h"
@@ -131,14 +130,12 @@ typedef struct	s_info
 ** cub3d.c
 */
 int				loop(t_info *s);
-void			load_cub(char *cub_file, t_info *s);
 
 /*
 ** check_files.c
 */
 int				file_open(char *file);
 void			check_extension(char *file, char *extension, int fd);
-int				ismap(t_info *s, char *line);
 void			check_cubline(t_info *s, char *line);
 void			check_s(t_info *s);
 
@@ -152,16 +149,16 @@ int				parse_texture(t_info *s, char *line, int **texture);
 /*
 ** map_tools.c
 */
-int			map_check_arg(t_info *s);
-void		parse_map_copy(t_info *s, char *line);
-int			parse_map_pos(t_info *s);
-void		map_sort(t_info *s);
+int				map_check_arg(t_info *s);
+void			parse_map_copy(t_info *s, char *line);
+int				parse_map_pos(t_info *s);
+void			map_sort(t_info *s);
 
 /*
 ** map_check.c
 */
-int			check_map_inside(t_info *s);
-int			check_map_outside(t_info *s);
+int				check_map_inside(t_info *s);
+int				check_map_outside(t_info *s);
 
 /*
 ** ray.c

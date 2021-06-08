@@ -6,13 +6,13 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 15:11:05 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/04 00:19:31 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/08 18:43:21 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	ray_dda_check(t_info *s)
+static void	ray_dda_check(t_info *s)
 {
 	double	dist_v;
 	double	dist_h;
@@ -33,7 +33,7 @@ void	ray_dda_check(t_info *s)
 		ray_hit_h(s);
 }
 
-void	ray_touch_wall(t_info *s)
+static void	ray_touch_wall(t_info *s)
 {
 	s->hit.dir = 0;
 	if (s->hit.key == HIT_VERTICAL)
@@ -58,7 +58,7 @@ void	ray_touch_wall(t_info *s)
 	s->hit.dist *= cos(s->ray.angle - s->dir.angle);
 }
 
-void	ray_dda_step(t_info *s)
+static void	ray_dda_step(t_info *s)
 {
 	s->ray.xstep = rad_step(cos(s->ray.angle));
 	s->ray.ystep = rad_step(sin(s->ray.angle));
@@ -76,7 +76,7 @@ void	ray_dda_step(t_info *s)
 		s->ray.y = s->pos.y;
 }
 
-void	calc_wall(t_info *s)
+static void	calc_wall(t_info *s)
 {
 	ray_dda_step(s);
 	while (1)
@@ -97,7 +97,7 @@ void	calc_wall(t_info *s)
 	}
 }
 
-void	raycasting(t_info *s)
+void		raycasting(t_info *s)
 {
 	double	fov;
 	double	fov_v;

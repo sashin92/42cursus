@@ -6,13 +6,13 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 14:22:14 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/04 00:20:20 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/08 19:02:37 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	move_angle(t_info *s, double angle)
+static void	move_angle(t_info *s, double angle)
 {
 	s->pos.x += MOVE_SPD * cos(angle);
 	if (s->map.yx[(int)floor(s->pos.y)][(int)floor(s->pos.x)] == '1')
@@ -22,7 +22,7 @@ void	move_angle(t_info *s, double angle)
 		s->pos.y -= MOVE_SPD * sin(angle);
 }
 
-void	put_wasd(int key, t_info *s)
+static void	put_wasd(int key, t_info *s)
 {
 	if (key == KEY_W)
 		move_angle(s, s->dir.angle);
@@ -34,7 +34,7 @@ void	put_wasd(int key, t_info *s)
 		move_angle(s, s->dir.angle - M_PI / 2);
 }
 
-int		put_key(int key, t_info *s)
+int			put_key(int key, t_info *s)
 {
 	put_wasd(key, s);
 	if (key == KEY_RIGHT)
@@ -47,7 +47,7 @@ int		put_key(int key, t_info *s)
 		s->dir.angle -= 2. * M_PI;
 	while (s->dir.angle < 0)
 		s->dir.angle += 2. * M_PI;
-	printf("\ncur : %f, %f, dir_angle : %f\n", s->pos.x, s->pos.y,
+	printf("\npos : %f, %f, dir_angle : %f\n", s->pos.x, s->pos.y,
 											(s->dir.angle) * 180 / M_PI);
 	loop(s);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 14:05:18 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/08 15:48:36 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/08 18:47:19 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int			file_open(char *file)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
-		printf("errno: %d\n", errno);
 		perror(file);
 		exit(EXIT_FAILURE);
 	}
@@ -49,7 +48,7 @@ void		check_extension(char *file, char *extension, int fd)
 	}
 }
 
-int			ismap(t_info *s, char *line)
+static int	ismap(t_info *s, char *line)
 {
 	if (s->flag == 0 && (line[0] == '1' || line[0] == ' '))
 	{
@@ -80,7 +79,8 @@ void		check_cubline(t_info *s, char *line)
 		s->err = parse_rgb(&line[2], &s->cub.floor);
 	else if (!ft_strncmp("C ", line, 2) || !ft_strncmp("C\t", line, 2))
 		s->err = parse_rgb(&line[2], &s->cub.ceilling);
-	else if (line[0] == '\0');
+	else if (line[0] == '\0')
+		return ;
 	else
 		s->err = -14;
 }

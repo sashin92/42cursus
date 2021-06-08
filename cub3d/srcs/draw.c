@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 19:18:49 by sashin            #+#    #+#             */
-/*   Updated: 2021/05/23 17:31:32 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/08 18:43:59 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void			draw_background(t_info *s)
 		s->img.adr[i++] = s->cub.floor;
 }
 
-void			draw_wall_dir(t_info *s, int i, int y1)
+static void		draw_wall_dir(t_info *s, int i, int y1)
 {
 	if (s->hit.dir == EAST)
 		s->img.adr[(s->win.res_x * y1) + s->ray.i] = s->cub.east[i];

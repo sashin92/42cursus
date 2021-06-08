@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 14:30:20 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/08 18:00:23 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/08 19:41:19 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int			loop(t_info *s)
 	return (0);
 }
 
-void		load_cub(char *cub_file, t_info *s)
+static void	load_cub(char *cub_file, t_info *s)
 {
 	int		fd;
 	char	*line;
@@ -54,9 +54,8 @@ void		load_cub(char *cub_file, t_info *s)
 	return ;
 }
 
-int			run(char *cub, t_info *s, char *bmp)
+static int	run(char *cub, t_info *s)
 {
-	(void)bmp;
 	s->mlx.ptr = mlx_init();
 	load_cub(cub, s);
 	if (s->err < 0)
@@ -70,12 +69,12 @@ int			run(char *cub, t_info *s, char *bmp)
 	return (0);
 }
 
-void		init(t_info *s)
+static void	init(t_info *s)
 {
 	s->mlx.ptr = NULL;
 	s->win.ptr = NULL;
-	s->win.res_x = 1024;
-	s->win.res_y = 768;
+	s->win.res_x = 1200;
+	s->win.res_y = 900;
 	s->cub.north = NULL;
 	s->cub.south = NULL;
 	s->cub.east = NULL;
@@ -99,11 +98,11 @@ int			main(int argc, char **argv)
 	t_info	s;
 
 	if (argc == 1)
-		printf("Please input a \".cub\" file. - by sashin\n");
+		printf("Please input a \".cub\" file.\n");
 	else if (argc == 2)
 	{
 		init(&s);
-		run(argv[1], &s, 0);
+		run(argv[1], &s);
 	}
 	else
 		printf("Invalid arguments\n");
