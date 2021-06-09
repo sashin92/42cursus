@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 15:11:05 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/08 18:43:21 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/09 17:05:03 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,23 +97,30 @@ static void	calc_wall(t_info *s)
 	}
 }
 
+
 void		raycasting(t_info *s)
 {
 	double	fov;
-	double	fov_v;
+	// double	fov_v;
 	int		i;
 
 	s->ray.i = 0;
 	i = 0;
 	draw_background(s);
 	fov = deg_to_rad(FOV);
-	fov_v = fov * ((double)s->win.res_x / (double)s->win.res_y);
+
+
+
+	// fov_v = fov * ((double)s->win.res_x / (double)s->win.res_y);
 	while (s->ray.i < s->win.res_x)
 	{
 		s->ray.angle = (s->dir.angle + fov / 2.) -
 					((fov / ((double)s->win.res_x - 1.)) * (double)s->ray.i);
 		calc_wall(s);
-		draw_wall(s, fov_v, i);
+		ft_minimap(s);
+		draw_wall(s, fov, i);
 		++s->ray.i;
 	}
 }
+
+

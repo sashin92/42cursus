@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:59:04 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/08 22:22:19 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/09 16:58:36 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include "keycode_mac.h"
 # include "../mlx/mlx.h"
 
-# define FOV 66
+# define FOV 133
 # define EPS 1e-06
 
 # define MOVE_SPD 0.05
@@ -124,6 +124,8 @@ typedef struct	s_info
 	t_ray		ray;
 	t_hit		hit;
 	int			flag;
+	double		dx;
+	double		mx;
 }				t_info;
 
 /*
@@ -183,7 +185,7 @@ int				check_error(int err);
 ** draw.c
 */
 void			draw_background(t_info *s);
-void			draw_wall(t_info *s, double fov_v, int i);
+void			draw_wall(t_info *s, double fov, int i);
 
 /*
 ** control.c
