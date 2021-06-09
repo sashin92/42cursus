@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   control.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: schoi <schoi@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 14:22:14 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/08 21:59:55 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/09 18:45:13 by schoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int			ft_destroy(t_info *s)
 	free(s->cub.south);
 	free(s->cub.west);
 	free(s->cub.east);
-	mlx_destroy_window(s->mlx.ptr, s->win.ptr);
+	mlx_destroy_window(s->mlx.ptr, s->win[0].ptr);
 	free(s->mlx.ptr);
 	exit(0);
 	return (0);
@@ -67,6 +67,8 @@ int			put_key(int key, t_info *s)
 		s->dir.angle += 2. * M_PI;
 	printf("\npos : %f, %f, dir_angle : %f\n", s->pos.x, s->pos.y,
 											(s->dir.angle) * 180 / M_PI);
+	s->mini.ppx = s->pos.x * s->mini.bsize;
+	s->mini.ppy = s->pos.y * s->mini.bsize;
 	loop(s);
 	return (0);
 }
