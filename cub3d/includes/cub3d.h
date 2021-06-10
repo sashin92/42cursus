@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:59:04 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/09 22:08:42 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/10 21:08:57 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include "keycode_mac.h"
 # include "../mlx/mlx.h"
 
-# define FOV 90
+# define FOV 66
 # define EPS 1e-06
 
 # define MOVE_SPD 0.05
@@ -88,6 +88,15 @@ typedef struct	s_mini_img
 	int			end;
 }				t_mini_img;
 
+typedef struct	s_mini
+{
+	int			mapsize;
+	int			blocks;
+	int			bsize;
+	int			ppx;
+	int			ppy;
+}				t_mini;
+
 typedef struct	s_pos
 {
 	double		x;
@@ -123,19 +132,20 @@ typedef struct	s_hit
 	double		camera_dist;
 }				t_hit;
 
-typedef struct	s_mini
+typedef struct	s_vec
 {
-	int			mapsize;
-	int			blocks;
-	int			bsize;
-	int			ppx;
-	int			ppy;
-}				t_mini;
+	double		dx;
+	double		dy;
+	double		cx;
+	double		cy;
+	double		rdx;
+	double		rdy;
+}				t_vec;
 
 typedef struct	s_info
 {
 	t_mlx		mlx;
-	t_win		win[2];
+	t_win		win;
 	t_cub		cub;
 	t_map		map;
 	t_img		img;
@@ -146,9 +156,8 @@ typedef struct	s_info
 	t_hit		hit;
 	t_mini		mini;
 	int			flag;
-	double		dx;
-	double		mx;
 	t_mini_img	mini_img;
+	t_vec		vec;
 }				t_info;
 
 /*
@@ -220,9 +229,17 @@ int				ft_destroy(t_info *s);
 ** tools.c
 */
 void			ft_space_skip(char **s);
-void			ft_skip(char **s, char c);
+int				ft_skip(char **s, char c);
+void			calc_rayangle(t_info *s);
+void			draw_line(t_info *s, int color);
+void			free_split(char **arr);
 
+/*
+** minimap.c
+*/
+void			ft_minimap(t_info *s);
+void			draw_minimap(t_info *s);
 void			draw_pixel(int x, int y, int color, t_mini_img *fi);
-void			draw_rectangle(t_info *a, int sx, int sy, int x, int y, int color);
+void			draw_rectangle(t_info *s, int x, int y, int color);
 
 #endif

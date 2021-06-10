@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 17:17:21 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/08 17:24:49 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/10 20:34:03 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,30 @@
 
 int			parse_rgb(char *line, int *rgb)
 {
-	int		r;
-	int		g;
-	int		b;
+	int		r_g_b[3];
+	int		i;
 
-	r = 0;
-	g = 0;
-	b = 0;
+	i = 0;
 	if (*rgb != -1)
 		return (-3);
+	ft_bzero(r_g_b, sizeof(int) * 3);
 	ft_space_skip(&line);
-	while (ft_isdigit(*line))
-		r = (r * 10) + (*(line++) - '0');
-	ft_skip(&line, ',');
-	while (ft_isdigit(*line))
-		g = (g * 10) + (*(line++) - '0');
-	ft_skip(&line, ',');
-	while (ft_isdigit(*line))
-		b = (b * 10) + (*(line++) - '0');
-	while (*line == ' ' || *line == '\t')
-		++line;
-	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255 || *line != 0)
+	while (i < 3)
+	{
+		if (!ft_isdigit(*line))
+			return (-4);
+		while (ft_isdigit(*line))
+			r_g_b[i] = (r_g_b[i] * 10) + (*(line++) - '0');
+		if (i != 2 && ft_skip(&line, ',') < 0)
+			return (-4);
+		if (r_g_b[i] > 255)
+			return (-4);
+		++i;
+	}
+	ft_space_skip(&line);
+	if (*line != 0)
 		return (-4);
-	*rgb = (r * 256 * 256) + (g * 256) + b + 1;
+	*rgb = (r_g_b[0] * 256 * 256) + (r_g_b[1] * 256) + r_g_b[2] + 1;
 	return (0);
 }
 

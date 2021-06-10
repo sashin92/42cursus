@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   control.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: schoi <schoi@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 14:22:14 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/09 18:45:13 by schoi            ###   ########.fr       */
+/*   Updated: 2021/06/10 17:11:50 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ static void	put_wasd(int key, t_info *s)
 		move_angle(s, s->dir.angle);
 	else if (key == KEY_S)
 		move_angle(s, s->dir.angle + M_PI);
-	else if (key == KEY_A)
-		move_angle(s, s->dir.angle + M_PI / 2);
 	else if (key == KEY_D)
+		move_angle(s, s->dir.angle + M_PI / 2);
+	else if (key == KEY_A)
 		move_angle(s, s->dir.angle - M_PI / 2);
 }
 
@@ -46,7 +46,7 @@ int			ft_destroy(t_info *s)
 	free(s->cub.south);
 	free(s->cub.west);
 	free(s->cub.east);
-	mlx_destroy_window(s->mlx.ptr, s->win[0].ptr);
+	mlx_destroy_window(s->mlx.ptr, s->win.ptr);
 	free(s->mlx.ptr);
 	exit(0);
 	return (0);
@@ -55,9 +55,9 @@ int			ft_destroy(t_info *s)
 int			put_key(int key, t_info *s)
 {
 	put_wasd(key, s);
-	if (key == KEY_RIGHT)
+	if (key == KEY_LEFT)
 		s->dir.angle -= (M_PI / 180) * ROTATE_SPD;
-	else if (key == KEY_LEFT)
+	else if (key == KEY_RIGHT)
 		s->dir.angle += (M_PI / 180) * ROTATE_SPD;
 	else if (key == KEY_ESCAPE)
 		ft_destroy(s);
