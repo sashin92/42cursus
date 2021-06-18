@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 14:34:43 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/18 20:52:26 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/18 21:37:47 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,5 @@ int			main(int argc, char **argv)
 	}
 	else
 		ft_putstr("Too much arguments.\n");
+	return (0);
 }
