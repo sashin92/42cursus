@@ -1,26 +1,37 @@
-NAME		= krome
-SERVER		= enzins
+NAME			= minitalk
+CLIENT			= client
+SERVER			= server
+CLIENT_DIR		= src_client
+SERVER_DIR		= src_server
 
-CC			= gcc
+CC				= gcc
+CFLAGS			= -Wall -Werror -Wextra
 
-CLI_SRCS	= client.c
-SER_SRCS	= server.c
+all:
+	make -C $(CLIENT_DIR)
+	cp $(CLIENT_DIR)/$(CLIENT) .
+	make -C $(SERVER_DIR)
+	cp $(SERVER_DIR)/$(SERVER) .
 
+client:
+	make -C $(CLIENT_DIR)
+	cp $(CLIENT_DIR)/$(CLIENT) .
 
-
-all: $(NAME) $(SERVER)
-
-$(NAME): $(CLI_SRCS)
-	$(CC) $(CFLAGS) -o $^ -c $@
-
-$(SERVER): $(SER_SRCS)
-	$(CC) $(CFLAGS) -o $^ -c $@
+server:
+	make -C $(SERVER_DIR)
+	cp $(SERVER_DIR)/$(SERVER) .
 
 clean:
-	rm -rf $(NAME) $(SERVER)
+	make clean -C $(CLIENT_DIR)
+	make clean -C $(SERVER_DIR)
 
-fclean: clean
+fclean:
+	make fclean -C $(CLIENT_DIR)
+	make fclean -C $(SERVER_DIR)
+	@echo '---------------------------------------------------'
+	rm -rf $(CLIENT)
+	rm -rf $(SERVER)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re client server
