@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 17:01:43 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/19 22:23:33 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/19 22:26:58 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,6 @@ void		push(t_dlist **src_dlst, t_dlist **dest_dlst)
 	*src_dlst = src_header;
 	*dest_dlst = dest_header;
 }
-
-
-
 
 int			parse_digit(char *str, int *flag)
 {
