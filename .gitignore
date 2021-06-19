@@ -9,3 +9,6 @@
 
 # vscode Files
 .vscode
+
+# Library File
+*.a
