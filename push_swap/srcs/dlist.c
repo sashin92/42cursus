@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 18:49:48 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/19 20:46:28 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/20 13:22:45 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,18 +73,15 @@ void		ft_dlstfree(t_dlist *dlst)
 	free(head);
 }
 
-// t_dlist		*ft_dlstfind(t_dlist *dlst, void *search)
-// {
-// 	t_dlist	*dlst_header;
+int				ft_dlstsize(t_dlist *dlst)
+{
+	int			count;
 
-// 	dlst_header = dlst;
-// 	while (dlst_header->next != NULL)
-// 	{
-// 		if (!ft_memcmp(dlst_header->content, search, sizeof(void *)))
-// 			return (dlst_header);
-// 		dlst_header = dlst_header->next;
-// 	}
-// 	if (!ft_memcmp(dlst_header->content, search, sizeof(void *)))
-// 			return (dlst_header);
-// 	return (NULL);
-// }
+	count = 0;
+	while (dlst != NULL)
+	{
+		++count;
+		dlst = dlst->next;
+	}
+	return (count);
+}

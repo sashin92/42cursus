@@ -6,7 +6,7 @@
 #    By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/19 17:09:40 by sashin            #+#    #+#              #
-#    Updated: 2021/06/19 19:18:25 by sashin           ###   ########.fr        #
+#    Updated: 2021/06/20 13:06:50 by sashin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME		= push_swap
 CC			= gcc
 CFLAGS		= -Wall -Werror -Wextra
 
-SRCS		= push_swap.c dlist.c
+SRCS		= push_swap.c dlist.c parse.c controls.c
 SRCS_DIR	= srcs
 
 OBJS		= $(SRCS:.c=.o)

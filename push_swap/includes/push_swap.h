@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 17:00:58 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/19 20:35:55 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/20 13:23:42 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,24 @@ typedef struct		s_dlist
 /*
 ** dlist.c
 */
-t_dlist		*ft_dlstnew(int content);
-void		ft_dlstadd_front(t_dlist **dlst, t_dlist *new);
-void		ft_dlstadd_back(t_dlist **dlst, t_dlist *new);
-t_dlist		*ft_dlstlast(t_dlist *dlst);
-void		ft_dlstfree(t_dlist *dlst);
-// t_dlist		*ft_dlstfind(t_dlist *dlst, void *search);
+t_dlist				*ft_dlstnew(int content);
+void				ft_dlstadd_front(t_dlist **dlst, t_dlist *new);
+void				ft_dlstadd_back(t_dlist **dlst, t_dlist *new);
+t_dlist				*ft_dlstlast(t_dlist *dlst);
+int					ft_dlstsize(t_dlist *dlst);
+void				ft_dlstfree(t_dlist *dlst);
 
+/*
+** controls.c
+*/
+void				ct_rev_rotater(t_dlist **dlst);
+void				ct_rotater(t_dlist **dlst);
+void				ct_swapper(t_dlist **dlst);
+void				ct_pusher(t_dlist **src_dlst, t_dlist **dest_dlst);
+
+/*
+** parse.c
+*/
+t_dlist				*parse(int argc, char **argv);
 
 #endif
