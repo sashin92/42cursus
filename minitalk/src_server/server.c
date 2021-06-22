@@ -6,12 +6,13 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 14:34:46 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/18 20:04:32 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/20 21:45:59 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minitalk.h"
 
+#include <stdio.h>
 static void		handle_signal(int signum)
 {
 	static char	c;
@@ -44,8 +45,8 @@ static int		print_pid(void)
 
 static void		pull_str(void)
 {
-	signal(SIGUSR1, &handle_signal);
-	signal(SIGUSR2, &handle_signal);
+	signal(SIGUSR1, handle_signal);
+	signal(SIGUSR2, handle_signal);
 }
 
 int				main(int argc, char **argv)

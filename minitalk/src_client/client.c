@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 14:34:43 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/18 21:37:47 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/20 22:08:01 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static void	char_to_signal(int server_pid, char c)
 {
-	int		power;
-	char	binary;
+	int				power;
+	unsigned char	binary;
 
-	binary = c;
+	binary = (unsigned char)c;
 	power = 0;
 	while (power <= 7)
 	{
