@@ -6,19 +6,20 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 18:49:48 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/20 13:22:45 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/25 18:11:14 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-t_dlist		*ft_dlstnew(int content)
+t_dlist		*ft_dlstnew(int content, int i)
 {
 	t_dlist	*new;
 
 	if (!(new = (t_dlist *)malloc(sizeof(t_dlist))))
 		return (NULL);
 	new->content = content;
+	new->i = i;
 	new->prev = NULL;
 	new->next = NULL;
 	return (new);
@@ -28,6 +29,7 @@ void		ft_dlstadd_front(t_dlist **dlst, t_dlist *new)
 {
 	new->next = *dlst;
 	(*dlst)->prev = new;
+	new->prev = NULL;
 	*dlst = new;
 }
 
@@ -75,13 +77,15 @@ void		ft_dlstfree(t_dlist *dlst)
 
 int				ft_dlstsize(t_dlist *dlst)
 {
+	t_dlist		*tmp;
 	int			count;
 
 	count = 0;
-	while (dlst != NULL)
+	tmp = dlst;
+	while (tmp != NULL)
 	{
 		++count;
-		dlst = dlst->next;
+		tmp = tmp->next;
 	}
 	return (count);
 }

@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 13:04:17 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/20 13:06:20 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/25 18:11:52 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_dlist					*parse(int argc, char **argv)
 			ft_dlstfree(new);
 			return (NULL);
 		}
-		tmp = ft_dlstnew(content);
+		tmp = ft_dlstnew(content, i);
 		ft_dlstadd_back(&new, tmp);
 		++i;
 	}

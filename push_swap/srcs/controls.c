@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 12:47:25 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/20 13:08:01 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/25 15:23:42 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,21 @@ void		ct_pusher(t_dlist **src_dlst, t_dlist **dest_dlst)
 
 	if (*src_dlst == NULL)
 		return ;
+	src_header = *src_dlst;
+	dest_header = *dest_dlst;
 	tmp = *src_dlst;
-	src_header = NULL;
-	if ((*src_dlst)->next != NULL)
+	if (src_header->next != NULL)
 	{
 		src_header = (*src_dlst)->next;
 		src_header->prev = NULL;
 	}
-	tmp->next = NULL;
-	dest_header = *dest_dlst;
+	else
+		src_header = NULL;
 	if (dest_header == NULL)
+	{
 		dest_header = tmp;
+		dest_header->next = NULL;
+	}
 	else
 		ft_dlstadd_front(&dest_header, tmp);
 	*src_dlst = src_header;

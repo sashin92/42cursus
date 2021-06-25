@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 17:01:43 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/20 13:46:14 by sashin           ###   ########.fr       */
+/*   Updated: 2021/06/25 18:15:57 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,27 +70,67 @@ int			check_ascending(t_dlist **a, t_dlist **b)
 	return (1);
 }
 
-void		sort(t_dlist **a, t_dlist **b)
+
+void		pre_sort(t_dlist **a)
 {
-	ct_rotater(a);
-	ct_pusher(a, b);
+	t_dlist	*pivot;
+	t_dlist	*start;
+	t_dlist	*end;
+	int		tmp;
+
+	pivot = *a;
+	start = (*a)->next;
+	end = ft_dlstlast(*a);
+	while (start->i <= end->i)
+	{
+		while (start->content <= pivot->content)
+		{
+
+		}
+
+
+
+	}
 }
 
+void		sort(t_dlist **a, t_dlist **b, int *ct)
+{
+	t_dlist	*a_last;
+	t_dlist *b_last;
+
+	a_last = ft_dlstlast(*a);
+	b_last = ft_dlstlast(*b);
+}
+
+
+#include <stdio.h>
 void		run(int argc, char **argv)
 {
 	t_dlist	*a;
 	t_dlist	*b;
 	int		count;
+	int		ct;
 
 	a = parse(argc, argv);
 	b = NULL;
+	ct = 0;
 	if (a == NULL)
 	{
 		ft_putstr_fd("Wrong Arguments.\n", 1);
 		return ;
 	}
 	count = ft_dlstsize(a);
-	sort(&a, &b);
+	pre_sort(&a);
+	while (1)
+	{
+		if (check_ascending(&a, &b) == 1)
+		{
+			ft_putstr_fd("Done!\n", 1);
+			break ;
+		}
+		sort(&a, &b, &ct);
+	}
+	printf("ct is : %d\n", ct);
 	print_result(a, b, count);
 }
 
