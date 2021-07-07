@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 16:08:42 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/19 16:44:51 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 11:55:17 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 ** dst & src overlap behavior is undefined.
 */
 
-void		*ft_memccpy(void *dest, const void *src, int c, size_t n)
+void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
 {
 	size_t		idx;
 

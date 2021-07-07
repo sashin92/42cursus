@@ -6,13 +6,13 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 14:42:12 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/19 16:43:27 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 11:33:42 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
 
-void		printf_init_flags(t_flag *flags)
+void	printf_init_flags(t_flag *flags)
 {
 	flags->minus_sign = 0;
 	flags->plus_sign = 0;

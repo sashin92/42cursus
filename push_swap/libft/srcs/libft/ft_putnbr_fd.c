@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 11:36:34 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/19 16:45:16 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 11:55:36 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** ft_putnbr_fd() outputs the integer 'n' to the given file descriptor.
 */
 
-void			ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
 	char		val;
 

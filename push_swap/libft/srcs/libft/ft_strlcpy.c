@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 12:57:38 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/19 16:45:36 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 11:56:49 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 ** - dest & src overlap behavior is undefined.
 */
 
-size_t			ft_strlcpy(char *dest, const char *src, size_t size)
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
 	size_t		src_length;
 	size_t		idx;

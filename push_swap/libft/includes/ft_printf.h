@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 11:24:56 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/19 15:35:04 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 11:30:27 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 */
 # include "libft.h"
 
-typedef struct	s_flag
+typedef struct s_flag
 {
 	int			minus_sign;
 	int			plus_sign;
@@ -61,6 +61,6 @@ int				printf_print(char *val, t_flag flags);
 int				printf_base_len(long long num, int base);
 int				printf_atoi(char **form);
 char			*printf_itoa_base(long long num, char *val, int num_len,
-									char *base);
+					char *base);
 void			printf_putchar_padding(t_flag flags, int *val_len);
 #endif

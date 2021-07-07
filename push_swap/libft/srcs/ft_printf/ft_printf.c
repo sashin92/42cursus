@@ -6,13 +6,13 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 11:06:20 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/19 16:42:59 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 11:32:56 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
 
-int			printf_print(char *val, t_flag flags)
+int	printf_print(char *val, t_flag flags)
 {
 	int		val_len;
 
@@ -41,7 +41,7 @@ int			printf_print(char *val, t_flag flags)
 	return (val_len);
 }
 
-char		*printf_conversion(char **form, va_list ap, t_flag *flags)
+char	*printf_conversion(char **form, va_list ap, t_flag *flags)
 {
 	char		*val;
 
@@ -66,7 +66,7 @@ char		*printf_conversion(char **form, va_list ap, t_flag *flags)
 	return (val);
 }
 
-int			printf_run(char **form, va_list ap)
+int	printf_run(char **form, va_list ap)
 {
 	t_flag		flags;
 	char		*val;
@@ -82,7 +82,7 @@ int			printf_run(char **form, va_list ap)
 	return (ret);
 }
 
-int			ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
 	va_list		ap;
 	char		*form;

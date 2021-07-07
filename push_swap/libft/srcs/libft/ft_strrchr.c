@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 15:55:35 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/19 16:45:48 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 12:00:32 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 ** - if c is '\0', ft_strrchr() locate the terminating '\0'.
 */
 
-char			*ft_strrchr(const char *s, int c)
+char	*ft_strrchr(const char *s, int c)
 {
 	int			idx;
 	int			length;
@@ -33,7 +33,7 @@ char			*ft_strrchr(const char *s, int c)
 	while (idx < length)
 	{
 		if (s[length - idx - 1] == c)
-			return (&((char*)s)[length - idx - 1]);
+			return (&((char *)s)[length - idx - 1]);
 		++idx;
 	}
 	return (NULL);

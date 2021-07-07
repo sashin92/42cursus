@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 17:00:58 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/25 18:11:26 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 16:07:08 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,20 @@
 
 # include "../libft/includes/lib_sashin.h"
 
-typedef struct		s_dlist
+typedef struct s_dlist
 {
 	int				content;
 	int				i;
 	struct s_dlist	*prev;
 	struct s_dlist	*next;
 }					t_dlist;
+
+typedef struct s_all
+{
+	t_dlist			*a;
+	t_dlist			*b;
+	t_dlist			*pivot;
+}					t_all;
 
 /*
 ** dlist.c
@@ -39,14 +46,18 @@ void				ft_dlstfree(t_dlist *dlst);
 /*
 ** controls.c
 */
-void				ct_rev_rotater(t_dlist **dlst);
-void				ct_rotater(t_dlist **dlst);
-void				ct_swapper(t_dlist **dlst);
-void				ct_pusher(t_dlist **src_dlst, t_dlist **dest_dlst);
+void				ct_rev_rotater(t_dlist **dlst, t_dlist **dlst_two,
+						char *operator);
+void				ct_rotater(t_dlist **dlst, t_dlist **dlst_two,
+						char *operator);
+void				ct_swapper(t_dlist **dlst, t_dlist **dlst_two,
+						char *operator);
+void				ct_pusher(t_dlist **src_dlst, t_dlist **dest_dlst,
+						char *operator);
 
 /*
 ** parse.c
 */
-t_dlist				*parse(int argc, char **argv);
+t_dlist				*parse_check_dup(int argc, char **argv);
 
 #endif

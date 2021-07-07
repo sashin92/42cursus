@@ -6,13 +6,13 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 14:04:57 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/19 16:43:16 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 11:33:34 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
 
-char		*printf_conversion_s(va_list ap, t_flag *flags)
+char	*printf_conversion_s(va_list ap, t_flag *flags)
 {
 	char			*s;
 	int				s_len;

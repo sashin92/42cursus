@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 11:34:46 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/19 18:08:03 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 11:55:34 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** followed by a newline.
 */
 
-void			ft_putendl_fd(char *s, int fd)
+void	ft_putendl_fd(char *s, int fd)
 {
 	int			len;
 

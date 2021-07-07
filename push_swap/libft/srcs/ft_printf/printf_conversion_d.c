@@ -6,13 +6,13 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 14:29:07 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/19 16:43:09 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 11:35:10 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
 
-char		*printf_conversion_d(va_list ap, t_flag *flags)
+char	*printf_conversion_d(va_list ap, t_flag *flags)
 {
 	long long	num;
 	int			num_len;
@@ -28,7 +28,8 @@ char		*printf_conversion_d(va_list ap, t_flag *flags)
 		num_len = flags->precision;
 	if (num < 0)
 		++num_len;
-	if (!(val = ft_calloc(num_len + 1, sizeof(char))))
+	val = ft_calloc(num_len + 1, sizeof(char));
+	if (!val)
 		return (0);
 	if (num < 0)
 	{

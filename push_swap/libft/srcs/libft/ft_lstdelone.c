@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/31 15:22:28 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/19 16:44:34 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 11:53:42 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** and free the node. the memory of 'next' must not be freed.
 */
 
-void		ft_lstdelone(t_list *lst, void (*del)(void *))
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
 	del(lst->content);
 	free(lst);

@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 16:30:26 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/19 16:45:44 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 11:57:13 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** if find diff, differing s1 & s2 (s1 - s2) at differenced location.
 */
 
-int				ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t		idx;
 

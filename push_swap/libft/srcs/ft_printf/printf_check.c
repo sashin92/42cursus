@@ -6,13 +6,13 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 14:22:47 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/19 16:43:04 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 11:33:22 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
 
-void		printf_check_flags(char **form, t_flag *flags)
+void	printf_check_flags(char **form, t_flag *flags)
 {
 	while (1)
 	{
@@ -34,7 +34,7 @@ void		printf_check_flags(char **form, t_flag *flags)
 		flags->zero_padding = ' ';
 }
 
-void		printf_check_width(char **form, va_list ap, t_flag *flags)
+void	printf_check_width(char **form, va_list ap, t_flag *flags)
 {
 	if (ft_isdigit(**form))
 	{
@@ -57,7 +57,7 @@ void		printf_check_width(char **form, va_list ap, t_flag *flags)
 	}
 }
 
-void		printf_check_precision(char **form, va_list ap, t_flag *flags)
+void	printf_check_precision(char **form, va_list ap, t_flag *flags)
 {
 	if (**form == '.')
 	{

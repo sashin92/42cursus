@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 10:19:12 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/19 16:45:22 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 12:34:01 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 ** NULL if the allocation fails.
 */
 
-static char		**split_allocate(char const *s, char c)
+static char	**split_allocate(char const *s, char c)
 {
 	int			idx;
 	int			count;
@@ -39,12 +39,13 @@ static char		**split_allocate(char const *s, char c)
 		else
 			++idx;
 	}
-	if (!(s_arr = (char **)malloc((count + 1) * sizeof(char *))))
+	s_arr = (char **)malloc((count + 1) * sizeof(char *));
+	if (!s_arr)
 		return (NULL);
 	return (s_arr);
 }
 
-static int		split_len(char const *s, char c)
+static int	split_len(char const *s, char c)
 {
 	int			idx;
 	int			length;
@@ -59,13 +60,14 @@ static int		split_len(char const *s, char c)
 	return (length);
 }
 
-static char		*split_dup(char const *s, int length)
+static char	*split_dup(char const *s, int length)
 {
 	int			idx;
 	char		*str;
 
 	idx = 0;
-	if (!(str = (char *)malloc((length + 1) * sizeof(char))))
+	str = (char *)malloc((length + 1) * sizeof(char));
+	if (!str)
 		return (NULL);
 	while (idx < length)
 	{
@@ -76,7 +78,7 @@ static char		*split_dup(char const *s, int length)
 	return (str);
 }
 
-static void		split_free(char **s_arr, int arr_idx)
+static void	*split_free(char **s_arr, int arr_idx)
 {
 	while (arr_idx >= 0)
 	{
@@ -84,9 +86,10 @@ static void		split_free(char **s_arr, int arr_idx)
 		--arr_idx;
 	}
 	free(s_arr);
+	return (NULL);
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	int			idx;
 	int			arr_idx;
@@ -94,17 +97,16 @@ char			**ft_split(char const *s, char c)
 
 	idx = 0;
 	arr_idx = 0;
-	if (!(s_arr = split_allocate(s, c)))
+	s_arr = split_allocate(s, c);
+	if (!s_arr)
 		return (NULL);
 	while (s[idx])
 	{
 		if (!(s[idx] == c))
 		{
-			if (!(s_arr[arr_idx++] = split_dup(&s[idx], split_len(&s[idx], c))))
-			{
-				split_free(s_arr, (arr_idx - 1));
-				return (NULL);
-			}
+			s_arr[arr_idx++] = split_dup(&s[idx], split_len(&s[idx], c));
+			if (!s_arr[arr_idx - 1])
+				return (split_free(s_arr, (arr_idx - 1)));
 			while (!(s[idx] == c) && s[idx])
 				++idx;
 		}

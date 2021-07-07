@@ -6,13 +6,13 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 14:27:11 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/19 16:43:11 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 11:35:46 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
 
-char		*printf_conversion_p(va_list ap, t_flag *flags)
+char	*printf_conversion_p(va_list ap, t_flag *flags)
 {
 	long long		num;
 	int				num_len;
@@ -31,7 +31,8 @@ char		*printf_conversion_p(va_list ap, t_flag *flags)
 	num_len = printf_base_len(num, 16);
 	if (flags->precision > num_len)
 		num_len = flags->precision;
-	if (!(temp = (char *)malloc(sizeof(char) * (num_len + 1))))
+	temp = (char *)malloc(sizeof(char) * (num_len + 1));
+	if (!temp)
 		return (0);
 	temp = printf_itoa_base(num, temp, num_len, "0123456789abcdef");
 	val = ft_strjoin("0x", temp);

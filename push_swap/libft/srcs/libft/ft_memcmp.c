@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 17:21:57 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/19 16:44:57 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 11:55:22 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** if find diff, differing s1 & s2 (s1 - s2) at differenced location.
 */
 
-int				ft_memcmp(const void *s1, const void *s2, size_t n)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	size_t		idx;
 

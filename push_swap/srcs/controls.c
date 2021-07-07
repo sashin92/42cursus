@@ -6,13 +6,13 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 12:47:25 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/25 15:23:42 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 15:52:53 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void		ct_rev_rotater(t_dlist **dlst)
+void	ct_rev_rotater(t_dlist **dlst, t_dlist **dlst_two, char *operator)
 {
 	t_dlist	*dlst_last;
 
@@ -24,9 +24,13 @@ void		ct_rev_rotater(t_dlist **dlst)
 	dlst_last->next = *dlst;
 	(*dlst)->prev = dlst_last;
 	*dlst = dlst_last;
+	if (dlst_two == NULL)
+		ft_putendl_fd(operator, 1);
+	else
+		ct_rev_rotater(dlst_two, NULL, "rrr");
 }
 
-void		ct_rotater(t_dlist **dlst)
+void	ct_rotater(t_dlist **dlst, t_dlist **dlst_two, char *operator)
 {
 	t_dlist	*dlst_last;
 	t_dlist	*head;
@@ -41,9 +45,13 @@ void		ct_rotater(t_dlist **dlst)
 	tmp->prev = dlst_last;
 	tmp->next = NULL;
 	*dlst = head;
+	if (dlst_two == NULL)
+		ft_putendl_fd(operator, 1);
+	else
+		ct_rotater(dlst_two, NULL, "rr");
 }
 
-void		ct_swapper(t_dlist **dlst)
+void	ct_swapper(t_dlist **dlst, t_dlist **dlst_two, char *operator)
 {
 	t_dlist	*tmp_one;
 	t_dlist	*tmp_two;
@@ -59,15 +67,19 @@ void		ct_swapper(t_dlist **dlst)
 	tmp_two->next = tmp_one;
 	tmp_two->prev = NULL;
 	*dlst = tmp_two;
+	if (dlst_two == NULL)
+		ft_putendl_fd(operator, 1);
+	else
+		ct_rotater(dlst_two, NULL, "ss");
 }
 
-void		ct_pusher(t_dlist **src_dlst, t_dlist **dest_dlst)
+void	ct_pusher(t_dlist **src_dlst, t_dlist **dest_dlst, char *operator)
 {
 	t_dlist	*src_header;
 	t_dlist	*dest_header;
 	t_dlist	*tmp;
 
-	if (*src_dlst == NULL)
+	if (src_dlst == NULL)
 		return ;
 	src_header = *src_dlst;
 	dest_header = *dest_dlst;
@@ -88,4 +100,5 @@ void		ct_pusher(t_dlist **src_dlst, t_dlist **dest_dlst)
 		ft_dlstadd_front(&dest_header, tmp);
 	*src_dlst = src_header;
 	*dest_dlst = dest_header;
+	ft_putendl_fd(operator, 1);
 }

@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 15:04:11 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/19 16:45:41 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 11:57:09 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 ** - returns NULL if the allocation fails.
 */
 
-char			*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	int			idx;
 	int			length;
@@ -29,7 +29,8 @@ char			*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	length = 0;
 	while (s[length])
 		++length;
-	if (!(str = (char *)malloc(sizeof(char) * (length + 1))))
+	str = (char *)malloc(sizeof(char) * (length + 1));
+	if (!str)
 		return (NULL);
 	while (idx < length)
 	{

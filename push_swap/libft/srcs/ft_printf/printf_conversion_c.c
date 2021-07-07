@@ -6,13 +6,13 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 13:45:49 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/19 16:43:06 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 11:34:34 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
 
-char		*printf_conversion_c(va_list ap, t_flag *flags)
+char	*printf_conversion_c(va_list ap, t_flag *flags)
 {
 	char			c;
 	char			*val;
@@ -20,7 +20,8 @@ char		*printf_conversion_c(va_list ap, t_flag *flags)
 	c = va_arg(ap, int);
 	if (flags->dot_sign == 1 && flags->precision >= 0)
 		flags->zero_padding = ' ';
-	if (!(val = (char *)malloc(sizeof(char) * 2)))
+	val = (char *)malloc(sizeof(char) * 2);
+	if (!val)
 		return (0);
 	if (c == '\0')
 		flags->null_char = 1;

@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 10:11:54 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/19 16:45:50 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 12:01:22 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** return the trimmed string.  NULL if the allocation fails.
 */
 
-static int		strtrim_isset(char const c, char const *set)
+static int	strtrim_isset(char const c, char const *set)
 {
 	int			idx;
 
@@ -32,7 +32,7 @@ static int		strtrim_isset(char const c, char const *set)
 	return (0);
 }
 
-static char		*strtrim_alloc(char const *s1, int begin, int end)
+static char	*strtrim_alloc(char const *s1, int begin, int end)
 {
 	char		*s2;
 	int			idx;
@@ -40,12 +40,14 @@ static char		*strtrim_alloc(char const *s1, int begin, int end)
 	idx = 0;
 	if (end < begin)
 	{
-		if (!(s2 = (char *)malloc(sizeof(char))))
+		s2 = (char *)malloc(sizeof(char));
+		if (!s2)
 			return (NULL);
 		*s2 = 0;
 		return (s2);
 	}
-	if (!(s2 = (char *)malloc((end - begin + 2) * sizeof(char))))
+	s2 = (char *)malloc((end - begin + 2) * sizeof(char));
+	if (!s2)
 		return (NULL);
 	while (idx < end - begin + 1)
 	{
@@ -56,7 +58,7 @@ static char		*strtrim_alloc(char const *s1, int begin, int end)
 	return (s2);
 }
 
-char			*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	int			begin;
 	int			end;
@@ -71,7 +73,8 @@ char			*ft_strtrim(char const *s1, char const *set)
 		++begin;
 	while (strtrim_isset(s1[end], set) && (end >= begin))
 		--end;
-	if (!(s2 = strtrim_alloc(s1, begin, end)))
+	s2 = strtrim_alloc(s1, begin, end);
+	if (!s2)
 		return (NULL);
 	return (s2);
 }

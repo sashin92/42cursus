@@ -6,13 +6,13 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 17:30:19 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/19 16:43:30 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 11:33:50 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
 
-int			printf_base_len(long long num, int base)
+int	printf_base_len(long long num, int base)
 {
 	int			len;
 
@@ -27,7 +27,7 @@ int			printf_base_len(long long num, int base)
 	return (len);
 }
 
-int			printf_atoi(char **form)
+int	printf_atoi(char **form)
 {
 	int			num;
 	int			sign;
@@ -47,7 +47,7 @@ int			printf_atoi(char **form)
 	return (sign * num);
 }
 
-char		*printf_itoa_base(long long num, char *val, int num_len, char *base)
+char	*printf_itoa_base(long long num, char *val, int num_len, char *base)
 {
 	int			base_len;
 
@@ -65,7 +65,7 @@ char		*printf_itoa_base(long long num, char *val, int num_len, char *base)
 	return (val);
 }
 
-void		printf_putchar_padding(t_flag flags, int *val_len)
+void	printf_putchar_padding(t_flag flags, int *val_len)
 {
 	int			idx;
 

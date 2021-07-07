@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 16:04:37 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/19 16:45:46 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 12:00:14 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@
 ** - if can't find little in big, return NULL.
 */
 
-char			*ft_strnstr(const char *big, const char *little, size_t len)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	size_t		i;
 	size_t		j;
 	const char	*pt;
 
 	if (little[0] == '\0')
-		return ((char*)big);
+		return ((char *)big);
 	i = 0;
 	while (big[i] && i < len)
 	{
@@ -36,7 +36,7 @@ char			*ft_strnstr(const char *big, const char *little, size_t len)
 			if (little[j] == '\0')
 			{
 				pt = &big[i];
-				return ((char*)pt);
+				return ((char *)pt);
 			}
 		}
 		++i;

@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 09:34:39 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/19 16:45:31 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 11:56:37 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static size_t	strjoin_length(char const *str)
 	return (length);
 }
 
-char			*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	size_t		idx;
 	size_t		s1_len;
@@ -37,7 +37,8 @@ char			*ft_strjoin(char const *s1, char const *s2)
 
 	s1_len = strjoin_length(s1);
 	s2_len = strjoin_length(s2);
-	if (!(ns = malloc(sizeof(char) * (s1_len + s2_len + 1))))
+	ns = malloc(sizeof(char) * (s1_len + s2_len + 1));
+	if (!ns)
 		return (NULL);
 	idx = 0;
 	while (s1[idx])

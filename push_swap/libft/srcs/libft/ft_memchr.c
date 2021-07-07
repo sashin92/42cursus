@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 17:13:34 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/19 16:44:54 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 11:55:19 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 **  if find c, return a pointer to the byte located, else return NULL.
 */
 
-void			*ft_memchr(const void *s, int c, size_t n)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
 	size_t			idx;
 	unsigned char	*cp_s;

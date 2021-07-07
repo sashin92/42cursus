@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/31 15:45:43 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/19 16:44:42 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 11:54:44 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 ** - the 'del' function is used to delete the content of the node if needed.
 */
 
-static void		lstmap_clear(t_list *lst, void (*del)(void *))
+static void	lstmap_clear(t_list *lst, void (*del)(void *))
 {
 	t_list		*temp;
 
@@ -34,19 +34,21 @@ static void		lstmap_clear(t_list *lst, void (*del)(void *))
 	lst = NULL;
 }
 
-t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list		*new;
 	t_list		*head;
 
-	if (!lst || !(new = (t_list *)malloc(sizeof(t_list))))
+	new = (t_list *)malloc(sizeof(t_list));
+	if (!lst || !new)
 		return (NULL);
 	new->content = (*f)(lst->content);
 	head = new;
 	head->next = NULL;
 	while (lst->next)
 	{
-		if (!(head->next = (t_list *)malloc(sizeof(t_list))))
+		head->next = (t_list *)malloc(sizeof(t_list));
+		if (!head->next)
 		{
 			lstmap_clear(new, del);
 			return (NULL);

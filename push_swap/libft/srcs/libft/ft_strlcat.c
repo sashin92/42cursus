@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 16:58:02 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/19 16:45:34 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 12:03:11 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@
 ** - dest & src overlap behavior is undefined.
 */
 
-size_t			ft_strlcat(char *dest, const char *src, size_t destsize)
+size_t	ft_strlcat(char *dest, const char *src, size_t destsize)
 {
 	size_t		srclen;
 	size_t		destlen;
 	size_t		idx;
+	size_t		ret;
 
 	srclen = 0;
 	destlen = 0;
@@ -37,6 +38,11 @@ size_t			ft_strlcat(char *dest, const char *src, size_t destsize)
 		++idx;
 	}
 	if (destsize > destlen)
+	{
+		ret = destlen + srclen;
 		dest[idx + destlen] = '\0';
-	return (destsize <= destlen ? (srclen + destsize) : (destlen + srclen));
+	}
+	else
+		ret = srclen + destsize;
+	return (ret);
 }

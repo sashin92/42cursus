@@ -6,13 +6,13 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 13:04:17 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/25 18:11:52 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 12:57:40 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static int				parse_digit(char *str, int *flag)
+static int	parse_digit(char *str, int *flag)
 {
 	int					i;
 	unsigned long long	ret;
@@ -21,6 +21,8 @@ static int				parse_digit(char *str, int *flag)
 	i = 0;
 	ret = 0;
 	sign = 1;
+	if (str[i] == '\0')
+		*flag = 1;
 	if (str[i] == '-')
 	{
 		sign = -1;
@@ -39,7 +41,25 @@ static int				parse_digit(char *str, int *flag)
 	return ((int)ret * sign);
 }
 
-t_dlist					*parse(int argc, char **argv)
+static void	check_duplicate(t_dlist *dlst, int content, int *flag)
+{
+	t_dlist	*head;
+
+	if (dlst == NULL)
+		return ;
+	head = dlst;
+	while (head)
+	{
+		if (head->content == content)
+		{
+			*flag = 1;
+			break ;
+		}
+		head = head->next;
+	}
+}
+
+t_dlist	*parse_check_dup(int argc, char **argv)
 {
 	t_dlist				*new;
 	t_dlist				*tmp;
@@ -54,6 +74,7 @@ t_dlist					*parse(int argc, char **argv)
 	while (i < argc)
 	{
 		content = parse_digit(argv[i], &flag);
+		check_duplicate(new, content, &flag);
 		if (flag == 1)
 		{
 			ft_dlstfree(new);

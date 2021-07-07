@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 18:11:07 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/19 16:45:53 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 11:58:13 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,18 @@
 ** return substring. NULL if the allocation fails.
 */
 
-static char		*substr_check_startlen(void)
+static char	*substr_check_startlen(void)
 {
 	char		*val;
 
-	if (!(val = (char *)malloc(sizeof(char))))
+	val = (char *)malloc(sizeof(char));
+	if (!val)
 		return (NULL);
 	val[0] = 0;
 	return (val);
 }
 
-char			*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char		*val;
 	size_t		s_len;
@@ -42,7 +43,8 @@ char			*ft_substr(char const *s, unsigned int start, size_t len)
 		val = substr_check_startlen();
 	else
 	{
-		if (!(val = (char *)malloc(sizeof(char) * (len + 1))))
+		val = (char *)malloc(sizeof(char) * (len + 1));
+		if (!val)
 			return (NULL);
 		while (idx < len && s[start + idx])
 		{

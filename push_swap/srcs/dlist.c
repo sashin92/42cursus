@@ -6,17 +6,18 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 18:49:48 by sashin            #+#    #+#             */
-/*   Updated: 2021/06/25 18:11:14 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 12:42:12 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-t_dlist		*ft_dlstnew(int content, int i)
+t_dlist	*ft_dlstnew(int content, int i)
 {
 	t_dlist	*new;
 
-	if (!(new = (t_dlist *)malloc(sizeof(t_dlist))))
+	new = (t_dlist *)malloc(sizeof(t_dlist));
+	if (!new)
 		return (NULL);
 	new->content = content;
 	new->i = i;
@@ -25,7 +26,7 @@ t_dlist		*ft_dlstnew(int content, int i)
 	return (new);
 }
 
-void		ft_dlstadd_front(t_dlist **dlst, t_dlist *new)
+void	ft_dlstadd_front(t_dlist **dlst, t_dlist *new)
 {
 	new->next = *dlst;
 	(*dlst)->prev = new;
@@ -33,9 +34,9 @@ void		ft_dlstadd_front(t_dlist **dlst, t_dlist *new)
 	*dlst = new;
 }
 
-void		ft_dlstadd_back(t_dlist **dlst, t_dlist *new)
+void	ft_dlstadd_back(t_dlist **dlst, t_dlist *new)
 {
-	t_dlist *temp;
+	t_dlist	*temp;
 
 	if (*dlst == NULL)
 		*dlst = new;
@@ -49,7 +50,7 @@ void		ft_dlstadd_back(t_dlist **dlst, t_dlist *new)
 	}
 }
 
-t_dlist		*ft_dlstlast(t_dlist *dlst)
+t_dlist	*ft_dlstlast(t_dlist *dlst)
 {
 	if (dlst == NULL)
 		return (NULL);
@@ -58,7 +59,7 @@ t_dlist		*ft_dlstlast(t_dlist *dlst)
 	return (dlst);
 }
 
-void		ft_dlstfree(t_dlist *dlst)
+void	ft_dlstfree(t_dlist *dlst)
 {
 	t_dlist	*head;
 	t_dlist	*tmp;
@@ -75,7 +76,7 @@ void		ft_dlstfree(t_dlist *dlst)
 	free(head);
 }
 
-int				ft_dlstsize(t_dlist *dlst)
+int	ft_dlstsize(t_dlist *dlst)
 {
 	t_dlist		*tmp;
 	int			count;

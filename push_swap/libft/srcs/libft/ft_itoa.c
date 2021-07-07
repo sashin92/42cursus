@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 14:09:46 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/19 16:44:24 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 11:52:25 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,25 @@
 ** - return NULL if the allocation fails.
 */
 
-static char		*itoa_is_zero(void)
+static char	*itoa_is_zero(void)
 {
 	char		*num;
 
-	if (!(num = (char *)malloc(sizeof(char) * (2))))
+	num = (char *)malloc(sizeof(char) * (2));
+	if (!num)
 		return (NULL);
 	num[0] = '0';
 	num[1] = '\0';
 	return (num);
 }
 
-static char		*itoa_is_positive(int n, int digit)
+static char	*itoa_is_positive(int n, int digit)
 {
 	int			idx;
 	char		*num;
 
-	if (!(num = (char *)malloc(sizeof(char) * (digit + 1))))
+	num = (char *)malloc(sizeof(char) * (digit + 1));
+	if (!num)
 		return (NULL);
 	idx = digit;
 	while (idx > 0)
@@ -48,12 +50,13 @@ static char		*itoa_is_positive(int n, int digit)
 	return (num);
 }
 
-static char		*itoa_is_negative(int n, int digit)
+static char	*itoa_is_negative(int n, int digit)
 {
 	int			idx;
 	char		*num;
 
-	if (!(num = (char *)malloc(sizeof(char) * (digit + 2))))
+	num = (char *)malloc(sizeof(char) * (digit + 2));
+	if (!num)
 		return (NULL);
 	idx = digit;
 	if (n == -2147483648)
@@ -73,7 +76,7 @@ static char		*itoa_is_negative(int n, int digit)
 	return (num);
 }
 
-char			*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char		*num;
 	int			cp_n;

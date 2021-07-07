@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 16:48:33 by sashin            #+#    #+#             */
-/*   Updated: 2021/04/19 16:45:03 by sashin           ###   ########.fr       */
+/*   Updated: 2021/07/07 11:55:27 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** resturn dest.
 */
 
-void			*ft_memmove(void *dest, const void *src, size_t len)
+void	*ft_memmove(void *dest, const void *src, size_t len)
 {
 	size_t			idx;
 
