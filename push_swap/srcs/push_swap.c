@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 17:01:43 by sashin            #+#    #+#             */
-/*   Updated: 2021/10/28 12:12:13 by sashin           ###   ########.fr       */
+/*   Updated: 2021/10/28 16:16:13 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,22 +96,22 @@ void	pre_sort(t_dlist **a)
 	}
 }
 
-t_dlist	*find_pivot(t_dlist **a, int dlst_size)
-{
-	t_dlist	*head;
-	int		dlst_size_half;
+// t_dlist	*find_pivot(t_dlist **a, int dlst_size)
+// {
+// 	t_dlist	*head;
+// 	int		dlst_size_half;
 	
-	dlst_size_half = (dlst_size / 2) + (dlst_size % 2);
-	head = *a;
-	while (head)
-	{
-		if (head->i == dlst_size_half)
-			return (head);
-		head = head->next;
-	}
-	ft_putstr_fd("i cannot find pivot T_T\n", 1);
-	return (NULL);
-}
+// 	dlst_size_half = (dlst_size / 2) + (dlst_size % 2);
+// 	head = *a;
+// 	while (head)
+// 	{
+// 		if (head->i == dlst_size_half)
+// 			return (head);
+// 		head = head->next;
+// 	}
+// 	ft_putstr_fd("i cannot find pivot T_T\n", 1);
+// 	return (NULL);
+// }
 
 // void	sort_a_to_b(t_all *s, int range)
 // {
@@ -169,94 +169,138 @@ t_dlist	*find_pivot(t_dlist **a, int dlst_size)
 
 
 
-void	sort(t_all *s, int dlst_size)
+void	sort(t_all *s)
 {
+	int		i_mid;
 	int		i;
-	int		a_i_mid;
-	int		b_i_mid;
 
-	a_i_mid = dlst_size / 2 + 1;
-	b_i_mid = (a_i_mid - 1) / 2 + 1;
+	i_mid = (s->idx_max - s->idx_min + 1) / 2 + s->idx_min;
 	i = 1;
 
-	while (i < a_i_mid)
+	while (i < i_mid)
 	{
-		if (s->a->i < a_i_mid)
+		if (s->a->i < i_mid)
 		{
-			ct_pusher(s->a, s->b, "pb");
+			ct_pusher(&s->a, &s->b, "pb");
+			if (s->b != NULL && s->b->i < (i_mid - 1) / 2 + 1)
+				ct_rotater(NULL, &s->b, "rb");
 			++i;
 		}
 		else
-		{
-			ct_rotater(s->a, NULL, "ra");
-			if (s->b != NULL && s->b->i < b_i_mid)
-				ct_rotater(NULL, s->b, "rb");
-		}
+			ct_rotater(&s->a, NULL, "ra");
 	}
-
 }
 
-void	ft_sort_second_half(t_infobox *box)
+
+void	sort_pa(t_all *s)
 {
-	while (box->afirst->portion == 0)
+	int		i_mid;
+
+
+	while (s->b != NULL)
 	{
-		if (box->afirst->index == box->imin)
-			ft_ra_plus_rb(1, box, (box->imax - box->imin + 1) / 2 + box->imin);
-		else if (box->afirst->next->index == box->imin)
-		{
-			ft_sort_operation(box, sa);
-			ft_ra_plus_rb(1, box, (box->imax - box->imin + 1) / 2 + box->imin);
-		}
-		else if (box->bfirst != NULL && box->bfirst->index == box->imin)
-		{
-			ft_sort_operation(box, pa);
-			ft_ra_plus_rb(1, box, (box->imax - box->imin + 1) / 2 + box->imin);
-		}
-		else if (box->bfirst != NULL && box->blast->index == box->imin)
-		{
-			ft_sort_operation(box, rrb);
-			ft_sort_operation(box, pa);
-			ft_ra_plus_rb(1, box, (box->imax - box->imin + 1) / 2 + box->imin);
-		}
-		else
-			ft_sort_operation(box, pb);
+		i_mid = (s->idx_max - s->idx_min + 1) / 2 + s->idx_min;
+		if (s->b == ft_dlstlast(s->b))
+			
+
+
 	}
-	ft_push_b_to_a(box, box->imax);
-	ft_sort_by_portion(box);
+}
+
+
+
+void	ft_push_b_to_a(t_infobox *box, int imax)
+{
+	int	imid;
+	int	i;
+
+	while (box->bfirst != NULL)
+	{
+		imid = (imax - box->imin + 1) / 2 + box->imin;
+		i = imax - imid;
+		if (i < 1 || box->bfirst == box->blast)
+			ft_push_last_b_to_a(box, imax);
+		while (box->bfirst != NULL && i > 0)
+		{
+			if (ft_find_sorted_elem(box) < 0)
+			{
+				if (box->bfirst != NULL && box->bfirst->index > imid)
+				{
+					box->bfirst->portion = imax;
+					ft_sort_operation(box, pa);
+					i--;
+				}
+				else
+					ft_sort_operation(box, rb);
+			}
+		}
+		imax = imid;
+	}
 }
 
 
 
 
 
+// void	ft_sort_second_half(t_infobox *box)
+// {
+// 	while (box->afirst->portion == 0)
+// 	{
+// 		if (box->afirst->index == box->imin)
+// 			ft_ra_plus_rb(1, box, (box->imax - box->imin + 1) / 2 + box->imin);
+// 		else if (box->afirst->next->index == box->imin)
+// 		{
+// 			ft_sort_operation(box, sa);
+// 			ft_ra_plus_rb(1, box, (box->imax - box->imin + 1) / 2 + box->imin);
+// 		}
+// 		else if (box->bfirst != NULL && box->bfirst->index == box->imin)
+// 		{
+// 			ft_sort_operation(box, pa);
+// 			ft_ra_plus_rb(1, box, (box->imax - box->imin + 1) / 2 + box->imin);
+// 		}
+// 		else if (box->bfirst != NULL && box->blast->index == box->imin)
+// 		{
+// 			ft_sort_operation(box, rrb);
+// 			ft_sort_operation(box, pa);
+// 			ft_ra_plus_rb(1, box, (box->imax - box->imin + 1) / 2 + box->imin);
+// 		}
+// 		else
+// 			ft_sort_operation(box, pb);
+// 	}
+// 	ft_push_b_to_a(box, box->imax);
+// 	ft_sort_by_portion(box);
+// }
 
 
 
 
+
+
+void	init_s(t_all *s)
+{
+	s->a = NULL;
+	s->b = NULL;
+	s->idx_min = 1;
+	s->idx_max = 0;
+}
 
 void	run(int argc, char **argv)
 {
 	t_all	s;
-	int		dlst_size;
 
+	init_s(&s);
 	s.a = parse_check_dup(argc, argv);
-	s.b = NULL;
 	if (s.a == NULL)
 	{
-		ft_putstr_fd("Wrong Arguments.\n", 1);
+		ft_putstr_fd("Wrong Arguments.\n", 2);
 		return ;
 	}
-	dlst_size = ft_dlstsize(s.a);
+	s.idx_max = ft_dlstsize(s.a);
 	pre_sort(&s.a);
-	// while (a)
-	// {
-	// 	printf("idx = %d\n", a->i);
-	// 	a = a->next;
-	// }
 	if (check_ascending(&s.a, &s.b) == 1)
 		ft_putstr_fd("Done!\n", 1);
 	else
-		sort(&s, dlst_size);
+		sort(&s);
 }
 
 int	main(int argc, char **argv)
@@ -267,5 +311,4 @@ int	main(int argc, char **argv)
 		run(argc, argv);
 	return (0);
 }
-
 

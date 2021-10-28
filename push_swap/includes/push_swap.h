@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 17:00:58 by sashin            #+#    #+#             */
-/*   Updated: 2021/07/07 16:07:08 by sashin           ###   ########.fr       */
+/*   Updated: 2021/10/28 15:16:46 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ typedef struct s_all
 {
 	t_dlist			*a;
 	t_dlist			*b;
-	t_dlist			*pivot;
+	int				idx_min;
+	int				idx_max;
 }					t_all;
 
 /*
