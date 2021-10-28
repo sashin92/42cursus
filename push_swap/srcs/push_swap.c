@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 17:01:43 by sashin            #+#    #+#             */
-/*   Updated: 2021/07/07 18:50:02 by sashin           ###   ########.fr       */
+/*   Updated: 2021/10/28 12:12:13 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,36 +144,86 @@ t_dlist	*find_pivot(t_dlist **a, int dlst_size)
 
 
 
+// void	sort(t_all *s, int dlst_size)
+// {
+// 	int		i;
+
+// 	i = 0;
+// 	s->pivot = find_pivot(&s->a, dlst_size);
+// 	while (i++ < dlst_size)
+// 	{
+// 		if ((s->a)->content < (s->pivot)->content)
+// 		{
+// 			ct_pusher(&s->a, &s->b, "pb");
+// 			print_result(s->a, s->b, dlst_size);
+// 			sleep(1);
+// 		}
+// 		else
+// 		{
+// 			ct_rotater(&s->a, NULL, "ra");
+// 			print_result(s->a, s->b, dlst_size);
+// 			sleep(1);
+// 		}
+// 	}
+// }
+
+
+
 void	sort(t_all *s, int dlst_size)
 {
 	int		i;
+	int		a_i_mid;
+	int		b_i_mid;
 
-	i = 0;
-	s->pivot = find_pivot(&s->a, dlst_size);
-	while (i++ < dlst_size)
+	a_i_mid = dlst_size / 2 + 1;
+	b_i_mid = (a_i_mid - 1) / 2 + 1;
+	i = 1;
+
+	while (i < a_i_mid)
 	{
-		if ((s->a)->content < (s->pivot)->content)
+		if (s->a->i < a_i_mid)
 		{
-			ct_pusher(&s->a, &s->b, "pb");
-			print_result(s->a, s->b, dlst_size);
-			sleep(1);
+			ct_pusher(s->a, s->b, "pb");
+			++i;
 		}
 		else
 		{
-			ct_rotater(&s->a, NULL, "ra");
-			print_result(s->a, s->b, dlst_size);
-			sleep(1);
+			ct_rotater(s->a, NULL, "ra");
+			if (s->b != NULL && s->b->i < b_i_mid)
+				ct_rotater(NULL, s->b, "rb");
 		}
 	}
+
 }
 
-
-
-
-
-
-
-
+void	ft_sort_second_half(t_infobox *box)
+{
+	while (box->afirst->portion == 0)
+	{
+		if (box->afirst->index == box->imin)
+			ft_ra_plus_rb(1, box, (box->imax - box->imin + 1) / 2 + box->imin);
+		else if (box->afirst->next->index == box->imin)
+		{
+			ft_sort_operation(box, sa);
+			ft_ra_plus_rb(1, box, (box->imax - box->imin + 1) / 2 + box->imin);
+		}
+		else if (box->bfirst != NULL && box->bfirst->index == box->imin)
+		{
+			ft_sort_operation(box, pa);
+			ft_ra_plus_rb(1, box, (box->imax - box->imin + 1) / 2 + box->imin);
+		}
+		else if (box->bfirst != NULL && box->blast->index == box->imin)
+		{
+			ft_sort_operation(box, rrb);
+			ft_sort_operation(box, pa);
+			ft_ra_plus_rb(1, box, (box->imax - box->imin + 1) / 2 + box->imin);
+		}
+		else
+			ft_sort_operation(box, pb);
+	}
+	ft_push_b_to_a(box, box->imax);
+	ft_sort_by_portion(box);
+}
 
 
 
