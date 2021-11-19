@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 17:01:43 by sashin            #+#    #+#             */
-/*   Updated: 2021/10/28 16:16:13 by sashin           ###   ########.fr       */
+/*   Updated: 2021/11/19 15:23:39 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,37 +171,41 @@ void	pre_sort(t_dlist **a)
 
 void	sort(t_all *s)
 {
-	int		i_mid;
+	int		idx_mid;
 	int		i;
 
-	i_mid = (s->idx_max - s->idx_min + 1) / 2 + s->idx_min;
+	idx_mid = (s->idx_max - s->idx_min + 1) / 2 + s->idx_min;
 	i = 1;
 
-	while (i < i_mid)
+	while (i < idx_mid)
 	{
-		if (s->a->i < i_mid)
+		if (s->a->i < idx_mid)
 		{
 			ct_pusher(&s->a, &s->b, "pb");
-			if (s->b != NULL && s->b->i < (i_mid - 1) / 2 + 1)
+			if (s->b != NULL && s->b->i < (idx_mid - 1) / 2 + 1)
 				ct_rotater(NULL, &s->b, "rb");
 			++i;
 		}
 		else
 			ct_rotater(&s->a, NULL, "ra");
 	}
+	sort_pa(s);
 }
 
 
 void	sort_pa(t_all *s)
 {
-	int		i_mid;
+	int		i;
+	int		idx_mid;
 
 
 	while (s->b != NULL)
 	{
-		i_mid = (s->idx_max - s->idx_min + 1) / 2 + s->idx_min;
-		if (s->b == ft_dlstlast(s->b))
-			
+		idx_mid = (s->idx_max - s->idx_min + 1) / 2 + s->idx_min;
+		i = s->idx_max - s->idx_min;
+		// if (i == 0 || s->b == ft_dlstlast(s->b))
+		// 	ft_push_last_pa(s);		정렬할 필요없이 바로 pa할 수 있는 경우, 해당 줄은 pb를 하나만 했을때
+		while (s->b != NULL && i)
 
 
 	}
