@@ -6,17 +6,17 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/20 08:40:56 by sashin            #+#    #+#             */
-/*   Updated: 2021/11/21 09:00:11 by sashin           ###   ########.fr       */
+/*   Updated: 2021/11/21 13:19:14 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int			get_max(t_dlist *lst, int size)
+int	get_max(t_dlist *lst, int size)
 {
 	int		i;
 	int		val;
-	t_dlist *tmp_lst;
+	t_dlist	*tmp_lst;
 
 	i = 0;
 	val = lst->i;
@@ -31,11 +31,11 @@ int			get_max(t_dlist *lst, int size)
 	return (val);
 }
 
-int			get_min(t_dlist *lst, int size)
+int	get_min(t_dlist *lst, int size)
 {
 	int		i;
 	int		val;
-	t_dlist *tmp_lst;
+	t_dlist	*tmp_lst;
 
 	i = 0;
 	val = lst->i;
@@ -50,7 +50,7 @@ int			get_min(t_dlist *lst, int size)
 	return (val);
 }
 
-int			get_mid(t_dlist *lst, int size)
+int	get_mid(t_dlist *lst, int size)
 {
 	int		i;
 	int		j;
@@ -78,7 +78,7 @@ int			get_mid(t_dlist *lst, int size)
 	return (tmp_lst_one->i);
 }
 
-void		get_pivot(t_dlist *lst, t_count *count, int size)
+void	get_pivot(t_dlist *lst, t_count *count, int size)
 {
 	int		max;
 	int		min;

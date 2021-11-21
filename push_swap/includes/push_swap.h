@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 17:00:58 by sashin            #+#    #+#             */
-/*   Updated: 2021/11/21 11:17:48 by sashin           ###   ########.fr       */
+/*   Updated: 2021/11/21 13:25:18 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct s_count
 	int				pivot_two;
 }					t_count;
 
-
 /*
 ** dlist.c
 */
@@ -50,8 +49,12 @@ t_dlist				*ft_dlstnew(int content, int i);
 void				ft_dlstadd_front(t_dlist **dlst, t_dlist *new);
 void				ft_dlstadd_back(t_dlist **dlst, t_dlist *new);
 t_dlist				*ft_dlstlast(t_dlist *dlst);
-int					ft_dlstsize(t_dlist *dlst);
 void				ft_dlstfree(t_dlist *dlst);
+
+/*
+** dlist_size.c
+*/
+int					ft_dlstsize(t_dlist *dlst);
 
 /*
 ** controls*.c
@@ -109,7 +112,6 @@ void				ra_sa_rra(t_all *s);
 void				ra_sa_rra_sa(t_all *s);
 void				sa_ra_sa_rra(t_all *s);
 void				sa_ra_sa_rra_sa(t_all *s);
-
 
 /*
 ** b_to_a.c

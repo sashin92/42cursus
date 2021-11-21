@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 10:57:51 by sashin            #+#    #+#             */
-/*   Updated: 2021/11/21 11:12:18 by sashin           ###   ########.fr       */
+/*   Updated: 2021/11/21 13:16:23 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	a_to_b_sort(t_all *s, t_count *count, int size)
 
 void	three_a(t_all *s)
 {
-	if (s->a->i < s->a->next->i &&
+	if (s->a->i < s->a->next->i && \
 		s->a->next->i > s->a->next->next->i)
 	{
 		if (s->a->i < s->a->next->next->i)
@@ -44,7 +44,7 @@ void	three_a(t_all *s)
 		else
 			ra_sa_rra_sa(s);
 	}
-	else if (s->a->i > s->a->next->i &&
+	else if (s->a->i > s->a->next->i && \
 		s->a->next->i < s->a->next->next->i)
 	{
 		if (s->a->i < s->a->next->next->i)
@@ -52,7 +52,7 @@ void	three_a(t_all *s)
 		else
 			sa_ra_sa_rra(s);
 	}
-	else if (s->a->i > s->a->next->i &&
+	else if (s->a->i > s->a->next->i && \
 		s->a->next->i > s->a->next->next->i)
 		sa_ra_sa_rra_sa(s);
 }
@@ -85,6 +85,15 @@ void	four_a(t_all *s)
 	pa(s);
 }
 
+static void	set_stuff(t_all *s)
+{
+	if (s->b->i < s->b->next->i)
+		sb(s);
+	three_a(s);
+	pa(s);
+	pa(s);
+}
+
 void	five_a(t_all *s)
 {
 	int		mid;
@@ -109,9 +118,5 @@ void	five_a(t_all *s)
 	}
 	while (i-- > 0)
 		rra(s);
-	if (s->b->i < s->b->next->i)
-		sb(s);
-	three_a(s);
-	pa(s);
-	pa(s);
+	set_stuff(s);
 }

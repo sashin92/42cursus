@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 11:00:27 by sashin            #+#    #+#             */
-/*   Updated: 2021/11/21 11:17:38 by sashin           ###   ########.fr       */
+/*   Updated: 2021/11/21 13:12:49 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void	b_to_a_sort(t_all *s, t_count *count, int size)
 
 void	three_b(t_all *s)
 {
-	if (s->b->i < s->b->next->i &&
+	if (s->b->i < s->b->next->i && \
 		s->b->next->i < s->b->next->next->i)
 		sb_rb_sb_rrb_sb(s);
-	else if (s->b->i < s->b->next->i &&
+	else if (s->b->i < s->b->next->i && \
 		s->b->next->i > s->b->next->next->i)
 	{
 		if (s->b->i < s->b->next->next->i)
@@ -47,7 +47,7 @@ void	three_b(t_all *s)
 		else
 			sb(s);
 	}
-	else if (s->b->i > s->b->next->i &&
+	else if (s->b->i > s->b->next->i && \
 		s->b->next->i < s->b->next->next->i)
 	{
 		if (s->b->i < s->b->next->next->i)

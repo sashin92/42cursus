@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 17:01:43 by sashin            #+#    #+#             */
-/*   Updated: 2021/11/21 11:04:53 by sashin           ###   ########.fr       */
+/*   Updated: 2021/11/21 13:21:26 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_rewind(t_all *s, t_count count)
 {
-
 	while (count.ra != 0 && count.rb != 0)
 	{
 		rrr(s);
@@ -33,7 +32,7 @@ void	ft_rewind(t_all *s, t_count count)
 	}
 }
 
-int		check_ascending(t_dlist **a, t_dlist **b)
+int	check_ascending(t_dlist **a, t_dlist **b)
 {
 	t_dlist	*a_ptr;
 	t_dlist	*b_ptr;
@@ -54,7 +53,7 @@ int		check_ascending(t_dlist **a, t_dlist **b)
 
 void	pre_sort(t_dlist **a)
 {
-	t_dlist *head;
+	t_dlist	*head;
 	t_dlist	*cmp;
 	int		idx;
 
@@ -88,8 +87,12 @@ void	run(int argc, char **argv)
 	}
 	lst_size = ft_dlstsize(s.a);
 	pre_sort(&s.a);
-	if (check_ascending(&s.a, &s.b) == 1);
-	else if (lst_size <= 5)
+	if (check_ascending(&s.a, &s.b) == 1)
+	{
+		ft_dlstfree(s.a);
+		return ;
+	}
+	if (lst_size <= 5)
 		small_sort(&s, lst_size);
 	else
 		a_to_b(&s, lst_size);
@@ -98,10 +101,9 @@ void	run(int argc, char **argv)
 		ft_dlstfree(s.b);
 }
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	if (argc > 1)
 		run(argc, argv);
 	return (0);
 }
-

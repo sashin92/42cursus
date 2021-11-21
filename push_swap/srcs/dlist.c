@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 18:49:48 by sashin            #+#    #+#             */
-/*   Updated: 2021/07/07 12:42:12 by sashin           ###   ########.fr       */
+/*   Updated: 2021/11/21 13:25:37 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,19 +74,4 @@ void	ft_dlstfree(t_dlist *dlst)
 		free(tmp);
 	}
 	free(head);
-}
-
-int	ft_dlstsize(t_dlist *dlst)
-{
-	t_dlist		*tmp;
-	int			count;
-
-	count = 0;
-	tmp = dlst;
-	while (tmp != NULL)
-	{
-		++count;
-		tmp = tmp->next;
-	}
-	return (count);
 }

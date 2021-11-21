@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/20 07:52:22 by sashin            #+#    #+#             */
-/*   Updated: 2021/11/20 14:41:28 by sashin           ###   ########.fr       */
+/*   Updated: 2021/11/21 13:18:54 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	sort_three(t_all *s)
 			ra(s);
 		}
 	}
-	else if (s->a->next->next->i > s->a->i &&
+	else if (s->a->next->next->i > s->a->i && \
 		s->a->next->next->i > s->a->next->i && s->a->i > s->a->next->i)
 		sa(s);
 }

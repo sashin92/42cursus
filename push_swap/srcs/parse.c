@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 13:04:17 by sashin            #+#    #+#             */
-/*   Updated: 2021/11/20 14:39:35 by sashin           ###   ########.fr       */
+/*   Updated: 2021/11/21 13:17:30 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	parse_digit(char *str, int *flag, int i)
 
 	ret = 0;
 	sign = 1;
-	if (str[0] == '\0' || (str[0] == '-' && str[1] == '\0') ||
+	if (str[0] == '\0' || (str[0] == '-' && str[1] == '\0') || \
 			(str[0] == '+' && str[1] == '\0'))
 		*flag = 1;
 	if (str[i] == '-')
