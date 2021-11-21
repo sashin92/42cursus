@@ -6,22 +6,21 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 13:04:17 by sashin            #+#    #+#             */
-/*   Updated: 2021/07/07 12:57:40 by sashin           ###   ########.fr       */
+/*   Updated: 2021/11/20 14:39:35 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static int	parse_digit(char *str, int *flag)
+static int	parse_digit(char *str, int *flag, int i)
 {
-	int					i;
-	unsigned long long	ret;
-	int					sign;
+	long long			ret;
+	long long			sign;
 
-	i = 0;
 	ret = 0;
 	sign = 1;
-	if (str[i] == '\0')
+	if (str[0] == '\0' || (str[0] == '-' && str[1] == '\0') ||
+			(str[0] == '+' && str[1] == '\0'))
 		*flag = 1;
 	if (str[i] == '-')
 	{
@@ -35,10 +34,10 @@ static int	parse_digit(char *str, int *flag)
 		else
 			*flag = 1;
 		++i;
-		if (ret > 2147483647)
-			*flag = 1;
 	}
-	return ((int)ret * sign);
+	if (ret > 2147483647 && (ret * sign) != -2147483648)
+		*flag = 1;
+	return (ret * sign);
 }
 
 static void	check_duplicate(t_dlist *dlst, int content, int *flag)
@@ -73,7 +72,7 @@ t_dlist	*parse_check_dup(int argc, char **argv)
 	content = 0;
 	while (i < argc)
 	{
-		content = parse_digit(argv[i], &flag);
+		content = parse_digit(argv[i], &flag, 0);
 		check_duplicate(new, content, &flag);
 		if (flag == 1)
 		{

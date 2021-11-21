@@ -6,56 +6,34 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 17:01:43 by sashin            #+#    #+#             */
-/*   Updated: 2021/11/19 15:23:39 by sashin           ###   ########.fr       */
+/*   Updated: 2021/11/21 11:04:53 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-
-#include <stdio.h>
-
-
-void	print_result(t_dlist *a, t_dlist *b, int count)
+void	ft_rewind(t_all *s, t_count count)
 {
-	char	*a_str;
-	char	*b_str;
-	char	*no;
-	int		i;
 
-	i = 1;
-	ft_putstr_fd("------------\n n | a | b |\n---|---|---|\n", 1);
-	while (i <= count)
+	while (count.ra != 0 && count.rb != 0)
 	{
-		no = ft_itoa(i);
-		ft_putstr_fd(" ", 1);
-		ft_putstr_fd(no, 1);
-		free(no);
-		++i;
-		if (a != NULL)
-			a_str = ft_itoa(a->content);
-		else
-			a_str = ft_strdup(" ");
-		if (b != NULL)
-			b_str = ft_itoa(b->content);
-		else
-			b_str = ft_strdup(" ");
-		ft_putstr_fd(" | ", 1);
-		ft_putstr_fd(a_str, 1);
-		ft_putstr_fd(" | ", 1);
-		ft_putstr_fd(b_str, 1);
-		ft_putstr_fd(" |\n", 1);
-		free(a_str);
-		free(b_str);
-		if (a != NULL)
-			a = a->next;
-		if (b != NULL)
-			b = b->next;
+		rrr(s);
+		count.ra--;
+		count.rb--;
 	}
-	ft_putstr_fd("------------\n", 1);
+	while (count.ra != 0)
+	{
+		rra(s);
+		count.ra--;
+	}
+	while (count.rb != 0)
+	{
+		rrb(s);
+		count.rb--;
+	}
 }
 
-int	check_ascending(t_dlist **a, t_dlist **b)
+int		check_ascending(t_dlist **a, t_dlist **b)
 {
 	t_dlist	*a_ptr;
 	t_dlist	*b_ptr;
@@ -96,222 +74,33 @@ void	pre_sort(t_dlist **a)
 	}
 }
 
-// t_dlist	*find_pivot(t_dlist **a, int dlst_size)
-// {
-// 	t_dlist	*head;
-// 	int		dlst_size_half;
-	
-// 	dlst_size_half = (dlst_size / 2) + (dlst_size % 2);
-// 	head = *a;
-// 	while (head)
-// 	{
-// 		if (head->i == dlst_size_half)
-// 			return (head);
-// 		head = head->next;
-// 	}
-// 	ft_putstr_fd("i cannot find pivot T_T\n", 1);
-// 	return (NULL);
-// }
-
-// void	sort_a_to_b(t_all *s, int range)
-// {
-// 	int		i;
-
-// 	i = 0;
-// 	s->pivot = find_pivot(&s->a, range);
-// 	if (range > 2)
-// 	{
-// 		while (i++ < range)
-// 		{
-// 			if ((s->a)->content < (s->pivot)->content)
-// 			{
-// 				ct_pusher(&s->a, &s->b, "pb");
-// 				print_result(s->a, s->b, range);
-// 				sleep(1);
-// 			}
-// 			else
-// 			{
-// 				ct_rotater(&s->a, NULL, "ra");
-// 				print_result(s->a, s->b, range);
-// 				sleep(1);
-// 			}
-// 		}
-// 	}
-// }
-
-
-
-
-
-
-// void	sort(t_all *s, int dlst_size)
-// {
-// 	int		i;
-
-// 	i = 0;
-// 	s->pivot = find_pivot(&s->a, dlst_size);
-// 	while (i++ < dlst_size)
-// 	{
-// 		if ((s->a)->content < (s->pivot)->content)
-// 		{
-// 			ct_pusher(&s->a, &s->b, "pb");
-// 			print_result(s->a, s->b, dlst_size);
-// 			sleep(1);
-// 		}
-// 		else
-// 		{
-// 			ct_rotater(&s->a, NULL, "ra");
-// 			print_result(s->a, s->b, dlst_size);
-// 			sleep(1);
-// 		}
-// 	}
-// }
-
-
-
-void	sort(t_all *s)
-{
-	int		idx_mid;
-	int		i;
-
-	idx_mid = (s->idx_max - s->idx_min + 1) / 2 + s->idx_min;
-	i = 1;
-
-	while (i < idx_mid)
-	{
-		if (s->a->i < idx_mid)
-		{
-			ct_pusher(&s->a, &s->b, "pb");
-			if (s->b != NULL && s->b->i < (idx_mid - 1) / 2 + 1)
-				ct_rotater(NULL, &s->b, "rb");
-			++i;
-		}
-		else
-			ct_rotater(&s->a, NULL, "ra");
-	}
-	sort_pa(s);
-}
-
-
-void	sort_pa(t_all *s)
-{
-	int		i;
-	int		idx_mid;
-
-
-	while (s->b != NULL)
-	{
-		idx_mid = (s->idx_max - s->idx_min + 1) / 2 + s->idx_min;
-		i = s->idx_max - s->idx_min;
-		// if (i == 0 || s->b == ft_dlstlast(s->b))
-		// 	ft_push_last_pa(s);		정렬할 필요없이 바로 pa할 수 있는 경우, 해당 줄은 pb를 하나만 했을때
-		while (s->b != NULL && i)
-
-
-	}
-}
-
-
-
-void	ft_push_b_to_a(t_infobox *box, int imax)
-{
-	int	imid;
-	int	i;
-
-	while (box->bfirst != NULL)
-	{
-		imid = (imax - box->imin + 1) / 2 + box->imin;
-		i = imax - imid;
-		if (i < 1 || box->bfirst == box->blast)
-			ft_push_last_b_to_a(box, imax);
-		while (box->bfirst != NULL && i > 0)
-		{
-			if (ft_find_sorted_elem(box) < 0)
-			{
-				if (box->bfirst != NULL && box->bfirst->index > imid)
-				{
-					box->bfirst->portion = imax;
-					ft_sort_operation(box, pa);
-					i--;
-				}
-				else
-					ft_sort_operation(box, rb);
-			}
-		}
-		imax = imid;
-	}
-}
-
-
-
-
-
-// void	ft_sort_second_half(t_infobox *box)
-// {
-// 	while (box->afirst->portion == 0)
-// 	{
-// 		if (box->afirst->index == box->imin)
-// 			ft_ra_plus_rb(1, box, (box->imax - box->imin + 1) / 2 + box->imin);
-// 		else if (box->afirst->next->index == box->imin)
-// 		{
-// 			ft_sort_operation(box, sa);
-// 			ft_ra_plus_rb(1, box, (box->imax - box->imin + 1) / 2 + box->imin);
-// 		}
-// 		else if (box->bfirst != NULL && box->bfirst->index == box->imin)
-// 		{
-// 			ft_sort_operation(box, pa);
-// 			ft_ra_plus_rb(1, box, (box->imax - box->imin + 1) / 2 + box->imin);
-// 		}
-// 		else if (box->bfirst != NULL && box->blast->index == box->imin)
-// 		{
-// 			ft_sort_operation(box, rrb);
-// 			ft_sort_operation(box, pa);
-// 			ft_ra_plus_rb(1, box, (box->imax - box->imin + 1) / 2 + box->imin);
-// 		}
-// 		else
-// 			ft_sort_operation(box, pb);
-// 	}
-// 	ft_push_b_to_a(box, box->imax);
-// 	ft_sort_by_portion(box);
-// }
-
-
-
-
-
-
-void	init_s(t_all *s)
-{
-	s->a = NULL;
-	s->b = NULL;
-	s->idx_min = 1;
-	s->idx_max = 0;
-}
-
 void	run(int argc, char **argv)
 {
 	t_all	s;
+	int		lst_size;
 
 	init_s(&s);
 	s.a = parse_check_dup(argc, argv);
 	if (s.a == NULL)
 	{
-		ft_putstr_fd("Wrong Arguments.\n", 2);
+		ft_putstr_fd("Error\n", 2);
 		return ;
 	}
-	s.idx_max = ft_dlstsize(s.a);
+	lst_size = ft_dlstsize(s.a);
 	pre_sort(&s.a);
-	if (check_ascending(&s.a, &s.b) == 1)
-		ft_putstr_fd("Done!\n", 1);
+	if (check_ascending(&s.a, &s.b) == 1);
+	else if (lst_size <= 5)
+		small_sort(&s, lst_size);
 	else
-		sort(&s);
+		a_to_b(&s, lst_size);
+	ft_dlstfree(s.a);
+	if (s.b != NULL)
+		ft_dlstfree(s.b);
 }
 
-int	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
-	if (argc == 1)
-		ft_putstr_fd("Please Input Arguments.\n", 1);
-	else
+	if (argc > 1)
 		run(argc, argv);
 	return (0);
 }
