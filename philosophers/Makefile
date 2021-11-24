@@ -6,24 +6,24 @@
 #    By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 18:20:18 by sashin            #+#    #+#              #
-#    Updated: 2021/11/23 18:34:15 by sashin           ###   ########.fr        #
+#    Updated: 2021/11/24 16:33:47 by sashin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= philo
+NAME			= philo
 
-CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra
+CC				= gcc
+CFLAGS			= -Wall -Werror -Wextra
 
-INCLUDES	= includes
+INCLUDES_DIR	= includes
 
-SRCS		= philosophers.c utils.c
-SRCS_DIR	= srcs
+SRCS			= philosophers.c utils.c error.c
+SRCS_DIR		= srcs
 
-OBJS		= $(SRCS:.c=.o)
+OBJS			= $(SRCS:.c=.o)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $^ -o $@ -I $(INCLUDES)
+	$(CC) $(CFLAGS) -c $^ -o $@ -I $(INCLUDES_DIR)
 
 all: $(NAME)
 

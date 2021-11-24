@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 18:18:50 by sashin            #+#    #+#             */
-/*   Updated: 2021/11/24 11:12:08 by sashin           ###   ########.fr       */
+/*   Created: 2021/11/24 09:52:51 by sashin            #+#    #+#             */
+/*   Updated: 2021/11/24 10:38:11 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int		ft_atoi_nosign(char *str)
+void		error_msg(int err_flag)
 {
-	long long	val;
-	int			i;
-
-	if (str == NULL || str[0] < '0' || str[0] > '9')
-		return (-1);
-	val = 0;
-	i = 0;
-	while (str[i] >= '0' && str[i] <= '9')
+	if (err_flag < 0)
 	{
-		val = (val * (long long)10) + (long long)(str[i] - '0');
-		if (val > 2147483647)
-			return (-1);
-		++i;
+		if (err_flag == -1)
+			printf("Please input valid arg\n");
+		else if (err_flag == -2)
+			printf("Malloc error\n");
+		else if (err_flag == -3)
+			printf("mutex init fail\n");
+		else if (err_flag == -4)
+			printf("mutex destroy fail\n");
 	}
-	if (str[i] != '\0')
-		return (-1);
-	return (val);
 }
