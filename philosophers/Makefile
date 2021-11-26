@@ -6,7 +6,7 @@
 #    By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 18:20:18 by sashin            #+#    #+#              #
-#    Updated: 2021/11/24 16:33:47 by sashin           ###   ########.fr        #
+#    Updated: 2021/11/26 18:26:10 by sashin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CFLAGS			= -Wall -Werror -Wextra
 
 INCLUDES_DIR	= includes
 
-SRCS			= philosophers.c utils.c error.c
+SRCS			= philosophers.c utils.c error.c action.c thread.c
 SRCS_DIR		= srcs
 
 OBJS			= $(SRCS:.c=.o)
