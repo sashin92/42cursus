@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 18:18:50 by sashin            #+#    #+#             */
-/*   Updated: 2021/11/26 20:21:32 by sashin           ###   ########.fr       */
+/*   Updated: 2021/11/27 10:26:45 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,20 @@ int		ft_atou(char *str)
 	long long	val;
 	int			i;
 
-	if (str == NULL || str[0] < '0' || str[0] > '9')
+	if (str == NULL)
 		return (-1);
 	val = 0;
 	i = 0;
+	if (str[i] == '+' ||str[i] == '-')
+		++i;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		val = (val * (long long)10) + (long long)(str[i] - '0');
-		if (val > 2147483647)
+		if (val > 604800000)
 			return (-1);
 		++i;
 	}
-	if (str[i] != '\0')
+	if (str[i] != '\0' || (str[0] == '-' && val != 0))
 		return (-1);
 	return (val);
 }

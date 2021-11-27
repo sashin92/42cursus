@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 09:26:45 by sashin            #+#    #+#             */
-/*   Updated: 2021/11/26 20:16:45 by sashin           ###   ########.fr       */
+/*   Updated: 2021/11/27 18:19:43 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,11 @@ typedef struct	s_info
 typedef struct	s_philo
 {
 	pthread_t		thread;
-	int				i;
+	int				num;
 	int				fork_l;
 	int				fork_r;
 	int				eat_count;
+	long long		time;
 	t_status		status;
 	t_info			*info;
 }					t_philo;

@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 09:26:29 by sashin            #+#    #+#             */
-/*   Updated: 2021/11/26 20:09:34 by sashin           ###   ########.fr       */
+/*   Updated: 2021/11/27 19:27:15 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		generate_philo(t_info *info, t_philo **philo)
 	idx = 0;
 	while (flag == 0 && idx < info->number_of_philosophers)
 	{
-		new[idx].i = idx + 1;
+		new[idx].num = idx + 1;
 		new[idx].fork_l = idx + 1;
 		new[idx].fork_r = (idx + 1) % info->number_of_philosophers + 1;
 		new[idx].eat_count = 0;
@@ -76,13 +76,9 @@ static void		run(t_info *info)
 		info->err_flag = -5;
 	while (info->err_flag == 0 && i < info->number_of_philosophers)
 	{
+		philo[i].time = info->start_time;
 		pthread_create(&philo[i].thread, NULL, thread_main, &philo[i]);
-		++i;
-	}
-	i = 0;
-	while (info->err_flag == 0 && i < info->number_of_philosophers)
-	{
-		pthread_join(philo[i].thread, NULL);
+		pthread_detach(philo[i].thread);
 		++i;
 	}
 }
