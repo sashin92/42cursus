@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 09:26:45 by sashin            #+#    #+#             */
-/*   Updated: 2021/11/27 18:19:43 by sashin           ###   ########.fr       */
+/*   Updated: 2021/11/29 19:46:14 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,7 @@
 # include <sys/time.h>
 # include <pthread.h>
 
-// typedef enum	t_error
-// {
-// 	ERROR = -1,
-
-// }
-
-typedef enum	e_status
+typedef enum e_status
 {
 	THINKING,
 	EATING,
@@ -34,22 +28,24 @@ typedef enum	e_status
 	DIED,
 }				t_status;
 
-typedef struct	s_info
+typedef struct s_info
 {
+	int				err_flag;
 	int				number_of_philosophers;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				number_of_times_each_philosopher_must_eat;
+	int				ismin;
 	long long		start_time;
-	int				err_flag;
-	pthread_mutex_t	*fork;
-	pthread_mutex_t	print;
+	int				isdead;
+	pthread_mutex_t	*mutex_fork;
+	pthread_mutex_t	mutex_print;
+	pthread_mutex_t	mutex_dead;
 }					t_info;
 
-typedef struct	s_philo
+typedef struct s_philo
 {
-	pthread_t		thread;
 	int				num;
 	int				fork_l;
 	int				fork_r;
@@ -64,8 +60,8 @@ typedef struct	s_philo
 */
 int			ft_atou(char *str);
 void		ft_putstr_fd(char *str, int fd);
-int			ft_relative_time(struct timeval t1, struct timeval t2);
 long long	ft_get_time(void);
+void		*ft_memset(void *src, int c, size_t size);
 
 /*
 ** error.c
@@ -76,12 +72,13 @@ int			error_msg(int err_flag);
 ** thread.c
 */
 void		*thread_main(void *philo);
+void		*thread_monitor(void *info_void);
 
 /*
 ** action.c
 */
 void		action_eating(t_philo *philo);
 void		action_sleeping(t_philo *philo);
-
+void		ft_mutex_print(t_philo *philo, char *str, int time, int i);
 
 #endif

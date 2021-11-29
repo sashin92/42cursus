@@ -6,13 +6,13 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 09:52:51 by sashin            #+#    #+#             */
-/*   Updated: 2021/11/26 17:24:34 by sashin           ###   ########.fr       */
+/*   Updated: 2021/11/29 18:13:49 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int			error_msg(int err_flag)
+int	error_msg(int err_flag)
 {
 	if (err_flag < 0)
 	{
@@ -30,11 +30,3 @@ int			error_msg(int err_flag)
 	}
 	return (0);
 }
-
-// int				error_function_msg(int err_flag, void (*f)(void))
-// {
-// 	if (f)
-// 		f();
-// 	error_msg(err_flag);
-// 	return (1);
-// }
