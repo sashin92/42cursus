@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 18:17:43 by sashin            #+#    #+#             */
-/*   Updated: 2021/11/29 20:11:26 by sashin           ###   ########.fr       */
+/*   Updated: 2021/11/30 15:35:56 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,20 @@ void	*thread_monitor(void *philo_void)
 	{
 		if (ft_get_time() - philo[i].time > philo[i].info->time_to_die)
 		{
-			ft_mutex_print(philo, "died", \
-					ft_get_time() - philo[i].info->start_time, philo[i].num);
+			pthread_mutex_lock(&philo->info->mutex_print);
+			printf("%lld\t%d died\n", ft_get_time() - philo[i].info->start_time, philo[i].num);
+			usleep(100);
+			// ft_mutex_print(philo, "died", \
+			// 		ft_get_time() - philo[i].info->start_time, philo[i].num);
 			break ;
 		}
-		if (philo->info->ismin == 1)
-		{
-			if (check_isfinished(philo))
-			{
-				ft_mutex_print(philo, "FINISH", \
-						ft_get_time() - philo[i].info->start_time, -1);
-				break ;
-			}
-		}
-			++i;
-			i = i % philo->info->number_of_philosophers;
+		if (philo->info->ismin == 1 && check_isfinished(philo))
+			break ;
+		++i;
+		i = i % philo->info->number_of_philosophers;
 	}
-	pthread_mutex_destroy(&philo->info->mutex_dead);
 	pthread_mutex_destroy(&philo->info->mutex_print);
+	pthread_mutex_destroy(&philo->info->mutex_dead);
 	i = 0;
 	while (i < philo->info->number_of_philosophers)
 		pthread_mutex_destroy(&philo->info->mutex_fork[i++]);
@@ -80,7 +76,7 @@ void	*thread_main(void *philo_void)
 	{
 		action_eating(philo);
 		action_sleeping(philo);
-		usleep(100);
+		usleep(1000);
 	}
 	return (NULL);
 }

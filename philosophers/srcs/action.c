@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 18:16:44 by sashin            #+#    #+#             */
-/*   Updated: 2021/11/29 20:12:36 by sashin           ###   ########.fr       */
+/*   Updated: 2021/11/30 15:40:32 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ void	action_sleeping(t_philo *philo)
 	long long	now;
 
 	now = ft_get_time();
+	ft_mutex_print(philo, "is sleeping", \
+			now - philo->info->start_time, philo->num);
+	philo->eat_count++;
 	while (ft_get_time() - now < philo->info->time_to_sleep)
 		usleep(100);
 }
@@ -56,7 +59,4 @@ void	action_eating(t_philo *philo)
 		usleep(100);
 	pthread_mutex_unlock(&philo->info->mutex_fork[philo->fork_l]);
 	pthread_mutex_unlock(&philo->info->mutex_fork[philo->fork_r]);
-	philo->eat_count++;
-	ft_mutex_print(philo, "is sleeping", \
-					ft_get_time() - philo->info->start_time, philo->num);
 }

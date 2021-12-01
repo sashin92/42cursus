@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 09:26:29 by sashin            #+#    #+#             */
-/*   Updated: 2021/11/29 19:49:35 by sashin           ###   ########.fr       */
+/*   Updated: 2021/11/30 15:33:30 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ static void	run(t_info *info)
 	int			i;
 	t_philo		*philo;
 	pthread_t	thread;
-	pthread_t	monitor;
 
 	info->err_flag = generate_philo(info, &philo);
 	if (info->err_flag != 0)
@@ -83,8 +82,9 @@ static void	run(t_info *info)
 		pthread_detach(thread);
 		++i;
 	}
-	pthread_create(&monitor, NULL, thread_monitor, philo);
-	pthread_join(monitor, NULL);
+	pthread_create(&thread, NULL, thread_monitor, philo);
+	pthread_join(thread, NULL);
+	// printf("EEEE\n");
 }
 
 static void	check_parse(t_info *info, int argc, char **argv)
@@ -130,5 +130,6 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Please Input valid data.\n", 2);
 		return (1);
 	}
+
 	return (0);
 }
