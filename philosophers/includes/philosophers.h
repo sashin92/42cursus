@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 09:26:45 by sashin            #+#    #+#             */
-/*   Updated: 2021/11/29 19:46:14 by sashin           ###   ########.fr       */
+/*   Updated: 2021/12/01 13:49:14 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@
 typedef enum e_status
 {
 	THINKING,
+	TAKE_FORK,
 	EATING,
 	SLEEPING,
 	DIED,
 }				t_status;
+
 
 typedef struct s_info
 {
@@ -38,10 +40,11 @@ typedef struct s_info
 	int				number_of_times_each_philosopher_must_eat;
 	int				ismin;
 	long long		start_time;
-	int				isdead;
+	int				isdied;
 	pthread_mutex_t	*mutex_fork;
 	pthread_mutex_t	mutex_print;
-	pthread_mutex_t	mutex_dead;
+	pthread_mutex_t	mutex_status;
+	pthread_mutex_t	mutex_process;
 }					t_info;
 
 typedef struct s_philo
@@ -71,14 +74,15 @@ int			error_msg(int err_flag);
 /*
 ** thread.c
 */
-void		*thread_main(void *philo);
-void		*thread_monitor(void *info_void);
+void		*thread_main(void *philo_void);
+void		thread_monitor(t_philo *philo);
 
 /*
 ** action.c
 */
+void	change_status(t_philo *philo, t_status cur);
 void		action_eating(t_philo *philo);
 void		action_sleeping(t_philo *philo);
-void		ft_mutex_print(t_philo *philo, char *str, int time, int i);
+void		ft_mutex_print(t_philo *philo, t_status status, int i);
 
 #endif

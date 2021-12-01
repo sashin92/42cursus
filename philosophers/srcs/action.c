@@ -6,23 +6,30 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 18:16:44 by sashin            #+#    #+#             */
-/*   Updated: 2021/11/30 15:40:32 by sashin           ###   ########.fr       */
+/*   Updated: 2021/12/01 14:03:49 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	ft_mutex_print(t_philo *philo, char *str, int time, int i)
+void	ft_mutex_print(t_philo *philo, t_status status, int i)
 {
-	if (!philo->info->isdead)
-	{
-		pthread_mutex_lock(&philo->info->mutex_print);
-		if (i == -1)
-			printf("%d\t%s\n", time, str);
-		else
-			printf("%d\t%d %s\n", time, i, str);
-		pthread_mutex_unlock(&philo->info->mutex_print);
-	}
+	long long	timestamp;
+
+	timestamp = 0;
+	pthread_mutex_lock(&philo->info->mutex_print);
+	pthread_mutex_lock(&philo->info->mutex_status);
+	timestamp = ft_get_time() - philo->info->start_time;
+	if (status == TAKE_FORK)
+		printf("%lld\t%d has taken a fork\n",timestamp, i);
+	else if (status == EATING)
+		printf("%lld\t%d is eating\n",timestamp, i);
+	else if (status == SLEEPING)
+		printf("%lld\t%d is sleeping\n",timestamp, i);
+	else if (status == THINKING)
+		printf("%lld\t%d is thinking\n",timestamp, i);
+	pthread_mutex_unlock(&philo->info->mutex_print);
+	pthread_mutex_unlock(&philo->info->mutex_status);
 }
 
 void	action_sleeping(t_philo *philo)
@@ -30,11 +37,24 @@ void	action_sleeping(t_philo *philo)
 	long long	now;
 
 	now = ft_get_time();
-	ft_mutex_print(philo, "is sleeping", \
-			now - philo->info->start_time, philo->num);
+	change_status(philo, SLEEPING);
+	if (!philo->info->isdied)
+		ft_mutex_print(philo, philo->status, philo->num);
 	philo->eat_count++;
-	while (ft_get_time() - now < philo->info->time_to_sleep)
-		usleep(100);
+	while (ft_get_time() - now < philo->info->time_to_sleep);
+	change_status(philo, THINKING);
+	if (!philo->info->isdied)
+		ft_mutex_print(philo, philo->status, philo->num);
+}
+
+void	change_status(t_philo *philo, t_status cur)
+{
+	pthread_mutex_lock(&philo->info->mutex_status);
+	if (philo->status != DIED)
+		philo->status = cur;
+	if (philo->status == EATING)
+		philo->time = ft_get_time();
+	pthread_mutex_unlock(&philo->info->mutex_status);
 }
 
 void	action_eating(t_philo *philo)
@@ -43,20 +63,20 @@ void	action_eating(t_philo *philo)
 
 	if (philo->num % 2)
 		pthread_mutex_lock(&philo->info->mutex_fork[philo->fork_l]);
-	else
+	else if (!(philo->num % 2))
 		pthread_mutex_lock(&philo->info->mutex_fork[philo->fork_r]);
-	ft_mutex_print(philo, "has taken a fork", \
-					ft_get_time() - philo->info->start_time, philo->num);
+	change_status(philo, TAKE_FORK);
+	if (!philo->info->isdied)
+		ft_mutex_print(philo, philo->status, philo->num);
 	if (philo->num % 2)
 		pthread_mutex_lock(&philo->info->mutex_fork[philo->fork_r]);
-	else
+	else if (!(philo->num % 2))
 		pthread_mutex_lock(&philo->info->mutex_fork[philo->fork_l]);
 	now = ft_get_time();
-	philo->time = ft_get_time();
-	ft_mutex_print(philo, "is eating", now - philo->info->start_time, \
-					philo->num);
-	while (ft_get_time() - now < philo->info->time_to_eat)
-		usleep(100);
+	change_status(philo, EATING);
+	if (!philo->info->isdied)
+		ft_mutex_print(philo, philo->status, philo->num);
+	while (ft_get_time() - now < philo->info->time_to_eat);
 	pthread_mutex_unlock(&philo->info->mutex_fork[philo->fork_l]);
 	pthread_mutex_unlock(&philo->info->mutex_fork[philo->fork_r]);
 }

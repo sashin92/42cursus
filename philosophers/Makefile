@@ -6,7 +6,7 @@
 #    By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 18:20:18 by sashin            #+#    #+#              #
-#    Updated: 2021/11/26 18:26:10 by sashin           ###   ########.fr        #
+#    Updated: 2021/12/01 14:37:55 by sashin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME			= philo
 
 CC				= gcc
 CFLAGS			= -Wall -Werror -Wextra
+CDEBUG			= -fsanitize=address -g
 
 INCLUDES_DIR	= includes
 
@@ -23,12 +24,12 @@ SRCS_DIR		= srcs
 OBJS			= $(SRCS:.c=.o)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $^ -o $@ -I $(INCLUDES_DIR)
+	$(CC) $(CFLAGS) $(CDEBUG) -c $^ -o $@ -I $(INCLUDES_DIR)
 
 all: $(NAME)
 
 $(NAME): $(addprefix $(SRCS_DIR)/, $(OBJS))
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $(CDEBUG) $^ -o $@
 
 clean:
 	rm -rf $(addprefix $(SRCS_DIR)/, $(OBJS))

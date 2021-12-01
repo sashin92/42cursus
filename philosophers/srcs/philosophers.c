@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 09:26:29 by sashin            #+#    #+#             */
-/*   Updated: 2021/11/30 15:33:30 by sashin           ###   ########.fr       */
+/*   Updated: 2021/12/01 13:54:10 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ static int	generate_philo(t_info *info, t_philo **philo)
 		new[idx].fork_l = idx;
 		new[idx].fork_r = (idx + 1) % info->number_of_philosophers;
 		new[idx].eat_count = 0;
-		new[idx].status = THINKING;
 		new[idx].info = info;
+		new[idx].status = THINKING;
 		flag = pthread_mutex_init(&new[idx].info->mutex_fork[idx], NULL);
 		if (flag != 0)
 			flag = philo_free_mutex_destroy(&new, idx);
@@ -82,9 +82,10 @@ static void	run(t_info *info)
 		pthread_detach(thread);
 		++i;
 	}
-	pthread_create(&thread, NULL, thread_monitor, philo);
-	pthread_join(thread, NULL);
-	// printf("EEEE\n");
+	thread_monitor(philo);
+	// pthread_detach(thread);
+	// pthread_mutex_lock(&info->mutex_process);
+	// while (1);
 }
 
 static void	check_parse(t_info *info, int argc, char **argv)
@@ -103,13 +104,18 @@ static void	check_parse(t_info *info, int argc, char **argv)
 		if (info->number_of_times_each_philosopher_must_eat == -1)
 			info->err_flag = -1;
 	}
-	info->mutex_fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * \
-					info->number_of_philosophers);
-	if (info->mutex_fork == NULL)
-		info->err_flag = -2;
-	if (pthread_mutex_init(&info->mutex_dead, NULL) && \
-			pthread_mutex_init(&info->mutex_print, NULL))
-		info->err_flag = -3;
+	if (info->err_flag == 0)
+	{
+		info->mutex_fork = malloc(sizeof(pthread_mutex_t) * \
+						info->number_of_philosophers);
+		if (info->mutex_fork == NULL)
+			info->err_flag = -2;
+		if (pthread_mutex_init(&info->mutex_status, NULL) && \
+				pthread_mutex_init(&info->mutex_print, NULL) && \
+				pthread_mutex_init(&info->mutex_process, NULL))
+			info->err_flag = -3;
+	}
+	info->isdied = 0;
 }
 
 int	main(int argc, char **argv)
@@ -127,9 +133,8 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
-		ft_putstr_fd("Please Input valid data.\n", 2);
+		ft_putstr_fd("Please input valid data.\n", 2);
 		return (1);
 	}
-
 	return (0);
 }

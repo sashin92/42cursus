@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 18:17:43 by sashin            #+#    #+#             */
-/*   Updated: 2021/11/30 15:35:56 by sashin           ###   ########.fr       */
+/*   Updated: 2021/12/01 14:40:54 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,36 +30,36 @@ int	check_isfinished(t_philo *philo)
 	return (1);
 }
 
-void	*thread_monitor(void *philo_void)
+void	thread_monitor(t_philo *philos)
 {
-	t_philo	*philo;
 	int		i;
+	int		j;
 
-	philo = (t_philo *)philo_void;
 	i = 0;
+	printf("this %lld\n", ft_get_time() - philos[i].time);
 	while (1)
 	{
-		if (ft_get_time() - philo[i].time > philo[i].info->time_to_die)
+		if (ft_get_time() - philos[i].time >= philos[i].info->time_to_die)
 		{
-			pthread_mutex_lock(&philo->info->mutex_print);
-			printf("%lld\t%d died\n", ft_get_time() - philo[i].info->start_time, philo[i].num);
-			usleep(100);
-			// ft_mutex_print(philo, "died", \
-			// 		ft_get_time() - philo[i].info->start_time, philo[i].num);
+			pthread_mutex_lock(&philos[i].info->mutex_print);
+			philos[i].info->isdied = 1;
+			change_status(&philos[i], DIED);
+			printf("%lld\t%d died\n",ft_get_time() - philos[i].info->start_time, philos[i].num);
+			pthread_mutex_unlock(&philos[i].info->mutex_print);
 			break ;
 		}
-		if (philo->info->ismin == 1 && check_isfinished(philo))
+		else if (philos->info->ismin == 1 && check_isfinished(philos))
 			break ;
 		++i;
-		i = i % philo->info->number_of_philosophers;
+		i = i % philos->info->number_of_philosophers;
 	}
-	pthread_mutex_destroy(&philo->info->mutex_print);
-	pthread_mutex_destroy(&philo->info->mutex_dead);
-	i = 0;
-	while (i < philo->info->number_of_philosophers)
-		pthread_mutex_destroy(&philo->info->mutex_fork[i++]);
-	free(philo);
-	return (NULL);
+	pthread_mutex_destroy(&philos[i].info->mutex_print);
+	pthread_mutex_destroy(&philos[i].info->mutex_status);
+	j = 0;
+	while (j < philos[i].info->number_of_philosophers)
+		pthread_mutex_destroy(&philos[i].info->mutex_fork[j++]);
+	// free(philos);
+	// free(philos[i].info->mutex_fork);
 }
 
 void	*thread_main(void *philo_void)
@@ -69,14 +69,13 @@ void	*thread_main(void *philo_void)
 
 	i = 0;
 	philo = (t_philo *)philo_void;
-	philo->time = ft_get_time();
-	if (philo->info->ismin == 1 && philo->info->number_of_times_each_philosopher_must_eat == 0)
+	if (philo->info->ismin == 1 && \
+		philo->info->number_of_times_each_philosopher_must_eat == 0)
 		return (NULL);
-	while (1)
+	while (!philo->info->isdied)
 	{
 		action_eating(philo);
 		action_sleeping(philo);
-		usleep(1000);
 	}
 	return (NULL);
 }
