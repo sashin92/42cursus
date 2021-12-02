@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 09:26:29 by sashin            #+#    #+#             */
-/*   Updated: 2021/12/02 19:40:02 by sashin           ###   ########.fr       */
+/*   Updated: 2021/12/02 20:17:39 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static void	check_parse(t_info *info, int argc, char **argv)
 	info->time_to_die = ft_atou(argv[2]);
 	info->time_to_eat = ft_atou(argv[3]);
 	info->time_to_sleep = ft_atou(argv[4]);
-	if (info->number_of_philosophers == -1 || info->time_to_die == -1 || \
+	if (info->number_of_philosophers <= 0 || info->time_to_die == -1 || \
 		info->time_to_eat == -1 || info->time_to_sleep == -1)
 		info->err_flag = -1;
 	if (argc == 6)
