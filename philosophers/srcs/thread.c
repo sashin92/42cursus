@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 18:17:43 by sashin            #+#    #+#             */
-/*   Updated: 2021/12/02 18:29:19 by sashin           ###   ########.fr       */
+/*   Updated: 2021/12/02 20:07:02 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,15 @@ static void	action_eating(t_philo *philo)
 	pthread_mutex_unlock(&philo->info->mutex_fork[philo->fork_r]);
 }
 
+static void	plus_count(t_philo *philo, int flag)
+{
+	pthread_mutex_lock(&philo->info->mutex_count);
+	philo->info->thread_count++;
+	if (flag == 1)
+		philo->info->end_count++;
+	pthread_mutex_unlock(&philo->info->mutex_count);
+}
+
 void	*thread_function(void *philo_void)
 {
 	t_philo		*philo;
@@ -95,20 +104,17 @@ void	*thread_function(void *philo_void)
 	philo = (t_philo *)philo_void;
 	if (philo->info->ismin == 1 && \
 		philo->info->number_of_times_each_philosopher_must_eat == 0)
+		plus_count(philo, 1);
+	else if (philo->info->number_of_philosophers == 1)
+		plus_count(philo, 0);
+	else
 	{
-		pthread_mutex_lock(&philo->info->mutex_count);
-		philo->info->end_count++;
-		philo->info->thread_count++;
-		pthread_mutex_unlock(&philo->info->mutex_count);
-		return (NULL);
+		while (!philo->info->isfinish)
+		{
+			action_eating(philo);
+			action_sleeping(philo);
+		}
+		plus_count(philo, 0);
 	}
-	while (!philo->info->isfinish)
-	{
-		action_eating(philo);
-		action_sleeping(philo);
-	}
-	pthread_mutex_lock(&philo->info->mutex_count);
-	philo->info->thread_count++;
-	pthread_mutex_unlock(&philo->info->mutex_count);
 	return (NULL);
 }

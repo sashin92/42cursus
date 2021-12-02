@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 18:16:44 by sashin            #+#    #+#             */
-/*   Updated: 2021/12/02 18:40:51 by sashin           ###   ########.fr       */
+/*   Updated: 2021/12/02 20:05:50 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	monitor(t_philo *philos)
 	total = philos[i].info->number_of_philosophers;
 	while (1)
 	{
-		if (ft_get_time() - philos[i].time >= philos[i].info->time_to_die)
+		if (ft_get_time() - philos[i].time > philos[i].info->time_to_die)
 		{
 			die_process(&philos[i]);
 			break ;

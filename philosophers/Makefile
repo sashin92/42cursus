@@ -6,7 +6,7 @@
 #    By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 18:20:18 by sashin            #+#    #+#              #
-#    Updated: 2021/12/02 17:22:43 by sashin           ###   ########.fr        #
+#    Updated: 2021/12/02 19:00:09 by sashin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME			= philo
 
 CC				= gcc
 CFLAGS			= -Wall -Werror -Wextra
-CDEBUG			= -fsanitize=address -g
+# CDEBUG			= -fsanitize=address -g
 
 INCLUDES_DIR	= includes
 
