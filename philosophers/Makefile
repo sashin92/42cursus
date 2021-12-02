@@ -6,7 +6,7 @@
 #    By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 18:20:18 by sashin            #+#    #+#              #
-#    Updated: 2021/12/01 14:37:55 by sashin           ###   ########.fr        #
+#    Updated: 2021/12/02 17:22:43 by sashin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CDEBUG			= -fsanitize=address -g
 
 INCLUDES_DIR	= includes
 
-SRCS			= philosophers.c utils.c error.c action.c thread.c
+SRCS			= philosophers.c utils.c error.c monitor.c thread.c
 SRCS_DIR		= srcs
 
 OBJS			= $(SRCS:.c=.o)

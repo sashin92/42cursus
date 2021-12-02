@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 09:26:45 by sashin            #+#    #+#             */
-/*   Updated: 2021/12/01 13:49:14 by sashin           ###   ########.fr       */
+/*   Updated: 2021/12/02 18:41:36 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,12 @@
 
 typedef enum e_status
 {
-	THINKING,
+	THINKING = 0,
 	TAKE_FORK,
 	EATING,
 	SLEEPING,
 	DIED,
 }				t_status;
-
 
 typedef struct s_info
 {
@@ -39,12 +38,13 @@ typedef struct s_info
 	int				time_to_sleep;
 	int				number_of_times_each_philosopher_must_eat;
 	int				ismin;
+	int				isfinish;
 	long long		start_time;
-	int				isdied;
+	int				end_count;
+	int				thread_count;
 	pthread_mutex_t	*mutex_fork;
 	pthread_mutex_t	mutex_print;
-	pthread_mutex_t	mutex_status;
-	pthread_mutex_t	mutex_process;
+	pthread_mutex_t	mutex_count;
 }					t_info;
 
 typedef struct s_philo
@@ -63,8 +63,9 @@ typedef struct s_philo
 */
 int			ft_atou(char *str);
 void		ft_putstr_fd(char *str, int fd);
-long long	ft_get_time(void);
 void		*ft_memset(void *src, int c, size_t size);
+long long	ft_get_time(void);
+int			free_and_destroy(t_philo *philo, t_info *info);
 
 /*
 ** error.c
@@ -74,15 +75,11 @@ int			error_msg(int err_flag);
 /*
 ** thread.c
 */
-void		*thread_main(void *philo_void);
-void		thread_monitor(t_philo *philo);
+void		*thread_function(void *philo_void);
 
 /*
-** action.c
+** monitor.c
 */
-void	change_status(t_philo *philo, t_status cur);
-void		action_eating(t_philo *philo);
-void		action_sleeping(t_philo *philo);
-void		ft_mutex_print(t_philo *philo, t_status status, int i);
+void		monitor(t_philo *philo);
 
 #endif

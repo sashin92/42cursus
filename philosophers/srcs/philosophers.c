@@ -6,60 +6,33 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 09:26:29 by sashin            #+#    #+#             */
-/*   Updated: 2021/12/01 13:54:10 by sashin           ###   ########.fr       */
+/*   Updated: 2021/12/02 18:43:38 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	philo_free_mutex_destroy(t_philo **new, int idx)
-{
-	int		i;
-	int		ret;
-	int		flag;
-
-	i = 0;
-	flag = 0;
-	while (i < idx)
-	{
-		ret = pthread_mutex_destroy(&new[i]->info->mutex_fork[i]);
-		if (ret != 0)
-			flag = -4;
-		++i;
-	}
-	free(*new);
-	*new = NULL;
-	if (flag == -4)
-		return (-4);
-	return (-3);
-}
-
 static int	generate_philo(t_info *info, t_philo **philo)
 {
 	t_philo	*new;
 	int		idx;
-	int		flag;
 
-	flag = 0;
 	new = (t_philo *)malloc(sizeof(t_philo) * info->number_of_philosophers);
 	if (new == NULL)
-		flag = -2;
+		return (-2);
 	idx = 0;
-	while (flag == 0 && idx < info->number_of_philosophers)
+	while (idx < info->number_of_philosophers)
 	{
 		new[idx].num = idx + 1;
 		new[idx].fork_l = idx;
 		new[idx].fork_r = (idx + 1) % info->number_of_philosophers;
 		new[idx].eat_count = 0;
-		new[idx].info = info;
 		new[idx].status = THINKING;
-		flag = pthread_mutex_init(&new[idx].info->mutex_fork[idx], NULL);
-		if (flag != 0)
-			flag = philo_free_mutex_destroy(&new, idx);
+		new[idx].info = info;
 		idx++;
 	}
 	*philo = new;
-	return (flag);
+	return (0);
 }
 
 static void	run(t_info *info)
@@ -74,18 +47,37 @@ static void	run(t_info *info)
 	i = 0;
 	info->start_time = ft_get_time();
 	if (info->start_time < 0)
+	{
 		info->err_flag = -5;
-	while (info->err_flag == 0 && i < info->number_of_philosophers)
+		return ;
+	}
+	while (i < info->number_of_philosophers)
 	{
 		philo[i].time = ft_get_time();
-		pthread_create(&thread, NULL, thread_main, &philo[i]);
+		pthread_create(&thread, NULL, thread_function, &philo[i]);
 		pthread_detach(thread);
 		++i;
 	}
-	thread_monitor(philo);
-	// pthread_detach(thread);
-	// pthread_mutex_lock(&info->mutex_process);
-	// while (1);
+	monitor(philo);
+	info->err_flag = free_and_destroy(philo, info);
+}
+
+static int	init_malloc(t_info *info)
+{
+	int		i;
+
+	i = 0;
+	info->mutex_fork = malloc(sizeof(pthread_mutex_t) * \
+					info->number_of_philosophers);
+	if (info->mutex_fork == NULL)
+		return (-2);
+	while (i < info->number_of_philosophers)
+		if (pthread_mutex_init(&info->mutex_fork[i++], NULL))
+			return (-3);
+	if (pthread_mutex_init(&info->mutex_print, NULL) || \
+		pthread_mutex_init(&info->mutex_count, NULL))
+		return (-3);
+	return (0);
 }
 
 static void	check_parse(t_info *info, int argc, char **argv)
@@ -105,17 +97,7 @@ static void	check_parse(t_info *info, int argc, char **argv)
 			info->err_flag = -1;
 	}
 	if (info->err_flag == 0)
-	{
-		info->mutex_fork = malloc(sizeof(pthread_mutex_t) * \
-						info->number_of_philosophers);
-		if (info->mutex_fork == NULL)
-			info->err_flag = -2;
-		if (pthread_mutex_init(&info->mutex_status, NULL) && \
-				pthread_mutex_init(&info->mutex_print, NULL) && \
-				pthread_mutex_init(&info->mutex_process, NULL))
-			info->err_flag = -3;
-	}
-	info->isdied = 0;
+		info->err_flag = init_malloc(info);
 }
 
 int	main(int argc, char **argv)

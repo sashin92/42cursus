@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 18:18:50 by sashin            #+#    #+#             */
-/*   Updated: 2021/11/29 18:14:57 by sashin           ###   ########.fr       */
+/*   Updated: 2021/12/02 18:43:18 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,6 @@ void	ft_putstr_fd(char *str, int fd)
 	return ;
 }
 
-long long	ft_get_time(void)
-{
-	struct timeval		t1;
-	long long			ret;
-
-	ret = gettimeofday(&t1, NULL);
-	if (ret == -1)
-		return (ret);
-	ret = (t1.tv_sec * 1000) + (t1.tv_usec / 1000);
-	return (ret);
-}
-
 void	*ft_memset(void *src, int c, size_t size)
 {
 	size_t		idx;
@@ -74,4 +62,33 @@ void	*ft_memset(void *src, int c, size_t size)
 		++idx;
 	}
 	return (src);
+}
+
+long long	ft_get_time(void)
+{
+	struct timeval		t1;
+	long long			ret;
+
+	ret = gettimeofday(&t1, NULL);
+	if (ret < 0)
+		return (ret);
+	ret = (t1.tv_sec * 1000) + (t1.tv_usec / 1000);
+	return (ret);
+}
+
+int	free_and_destroy(t_philo *philo, t_info *info)
+{
+	int		i;
+	int		ret;
+
+	i = 0;
+	ret = 0;
+	while (i < info->number_of_philosophers)
+		if (pthread_mutex_destroy(&info->mutex_fork[i++]))
+			return (-4);
+	if (pthread_mutex_destroy(&info->mutex_print))
+		return (-4);
+	free(info->mutex_fork);
+	free(philo);
+	return (0);
 }
