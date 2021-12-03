@@ -6,71 +6,72 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 09:26:29 by sashin            #+#    #+#             */
-/*   Updated: 2021/12/02 20:17:39 by sashin           ###   ########.fr       */
+/*   Updated: 2021/12/03 13:37:05 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static int	generate_philo(t_info *info, t_philo **philo)
+static int	generate_philos(t_info *info, t_philo **philos)
 {
 	t_philo	*new;
-	int		idx;
+	int		i;
 
 	new = (t_philo *)malloc(sizeof(t_philo) * info->number_of_philosophers);
 	if (new == NULL)
 		return (-2);
-	idx = 0;
-	while (idx < info->number_of_philosophers)
+	i = 0;
+	while (i < info->number_of_philosophers)
 	{
-		new[idx].num = idx + 1;
-		new[idx].fork_l = idx;
-		new[idx].fork_r = (idx + 1) % info->number_of_philosophers;
-		new[idx].eat_count = 0;
-		new[idx].status = THINKING;
-		new[idx].info = info;
-		idx++;
+		new[i].num = i + 1;
+		new[i].fork_l = i;
+		new[i].fork_r = (i + 1) % info->number_of_philosophers;
+		new[i].eat_count = 0;
+		new[i].status = THINKING;
+		new[i].info = info;
+		i++;
 	}
-	*philo = new;
+	*philos = new;
 	return (0);
 }
 
 static void	run(t_info *info)
 {
 	int			i;
-	t_philo		*philo;
 	pthread_t	thread;
+	t_philo		*philos;
 
-	info->err_flag = generate_philo(info, &philo);
+	info->err_flag = generate_philos(info, &philos);
 	if (info->err_flag != 0)
 		return ;
-	i = 0;
 	info->start_time = ft_get_time();
 	if (info->start_time < 0)
 	{
 		info->err_flag = -5;
 		return ;
 	}
+	i = 0;
 	while (i < info->number_of_philosophers)
 	{
-		philo[i].time = ft_get_time();
-		pthread_create(&thread, NULL, thread_function, &philo[i]);
+		philos[i].time = ft_get_time();
+		pthread_create(&thread, NULL, thread_function, &philos[i]);
 		pthread_detach(thread);
+		usleep(100);
 		++i;
 	}
-	monitor(philo);
-	info->err_flag = free_and_destroy(philo, info);
+	monitor(philos);
+	info->err_flag = free_and_destroy(philos, info);
 }
 
 static int	init_malloc(t_info *info)
 {
 	int		i;
 
-	i = 0;
 	info->mutex_fork = malloc(sizeof(pthread_mutex_t) * \
 					info->number_of_philosophers);
 	if (info->mutex_fork == NULL)
 		return (-2);
+	i = 0;
 	while (i < info->number_of_philosophers)
 		if (pthread_mutex_init(&info->mutex_fork[i++], NULL))
 			return (-3);

@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 18:17:43 by sashin            #+#    #+#             */
-/*   Updated: 2021/12/02 20:07:02 by sashin           ###   ########.fr       */
+/*   Updated: 2021/12/03 13:32:21 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,23 +67,17 @@ static void	action_eating(t_philo *philo)
 	int			time_to_eat;
 
 	time_to_eat = philo->info->time_to_eat;
-	if (philo->num % 2)
-		pthread_mutex_lock(&philo->info->mutex_fork[philo->fork_l]);
-	else if (!(philo->num % 2))
-		pthread_mutex_lock(&philo->info->mutex_fork[philo->fork_r]);
+	pthread_mutex_lock(&philo->info->mutex_fork[philo->fork_l]);
 	if (philo->info->isfinish != 1)
 		change_status_print(philo, TAKE_FORK, philo->num);
-	if (philo->num % 2)
-		pthread_mutex_lock(&philo->info->mutex_fork[philo->fork_r]);
-	else if (!(philo->num % 2))
-		pthread_mutex_lock(&philo->info->mutex_fork[philo->fork_l]);
+	pthread_mutex_lock(&philo->info->mutex_fork[philo->fork_r]);
 	if (philo->info->isfinish != 1)
 		change_status_print(philo, EATING, philo->num);
 	now = ft_get_time();
 	while (ft_get_time() - now < time_to_eat)
 		usleep(100);
-	pthread_mutex_unlock(&philo->info->mutex_fork[philo->fork_l]);
 	pthread_mutex_unlock(&philo->info->mutex_fork[philo->fork_r]);
+	pthread_mutex_unlock(&philo->info->mutex_fork[philo->fork_l]);
 }
 
 static void	plus_count(t_philo *philo, int flag)
