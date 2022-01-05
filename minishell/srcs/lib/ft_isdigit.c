@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/08 16:24:41 by sashin            #+#    #+#             */
-/*   Updated: 2021/12/20 09:39:10 by sashin           ###   ########.fr       */
+/*   Created: 2020/12/22 16:29:29 by sashin            #+#    #+#             */
+/*   Updated: 2021/07/07 11:51:15 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+/*
+** ft_isdigit() tests that char c is digit or not.
+*/
 
-# include "minishell_macros_structs.h"
-# include "minishell_utils.h"
-# include "minishell_parsing.h"
-# include "minishell_exec.h"
-
-void	logo(void);
-int		parse(char *input, t_info *info);
-void	exec_args(t_info *info);
-
-#endif
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}

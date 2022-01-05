@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/08 16:24:41 by sashin            #+#    #+#             */
-/*   Updated: 2021/12/20 09:39:10 by sashin           ###   ########.fr       */
+/*   Created: 2020/12/26 11:33:48 by sashin            #+#    #+#             */
+/*   Updated: 2021/07/07 11:55:38 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include <unistd.h>
 
-# include "minishell_macros_structs.h"
-# include "minishell_utils.h"
-# include "minishell_parsing.h"
-# include "minishell_exec.h"
+/*
+** ft_putstr_fd() outputs the string 's' to the given file descriptor.
+*/
 
-void	logo(void);
-int		parse(char *input, t_info *info);
-void	exec_args(t_info *info);
+void	ft_putstr_fd(char *s, int fd)
+{
+	int			len;
 
-#endif
+	len = 0;
+	while (s[len])
+		++len;
+	write(fd, s, len);
+}

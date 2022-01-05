@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/08 16:24:41 by sashin            #+#    #+#             */
-/*   Updated: 2021/12/20 09:39:10 by sashin           ###   ########.fr       */
+/*   Created: 2020/12/26 11:31:35 by sashin            #+#    #+#             */
+/*   Updated: 2021/07/07 11:55:31 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include <unistd.h>
 
-# include "minishell_macros_structs.h"
-# include "minishell_utils.h"
-# include "minishell_parsing.h"
-# include "minishell_exec.h"
+/*
+** ft_putchar_fd() outputs the character 'c' to the given file descriptor.
+*/
 
-void	logo(void);
-int		parse(char *input, t_info *info);
-void	exec_args(t_info *info);
-
-#endif
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}

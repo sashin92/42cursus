@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/08 16:24:41 by sashin            #+#    #+#             */
-/*   Updated: 2021/12/20 09:39:10 by sashin           ###   ########.fr       */
+/*   Created: 2020/12/22 16:46:59 by sashin            #+#    #+#             */
+/*   Updated: 2021/07/07 11:56:55 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+/*
+** ft_strlen() computes the length of the string s. return length of s.
+*/
 
-# include "minishell_macros_structs.h"
-# include "minishell_utils.h"
-# include "minishell_parsing.h"
-# include "minishell_exec.h"
+int	ft_strlen(const char *s)
+{
+	int		length;
 
-void	logo(void);
-int		parse(char *input, t_info *info);
-void	exec_args(t_info *info);
-
-#endif
+	length = 0;
+	while (s[length])
+		++length;
+	return (length);
+}

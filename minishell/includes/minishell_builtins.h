@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   minishell_builtins.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/08 16:24:41 by sashin            #+#    #+#             */
-/*   Updated: 2021/12/20 09:39:10 by sashin           ###   ########.fr       */
+/*   Created: 2021/12/17 09:43:39 by sashin            #+#    #+#             */
+/*   Updated: 2021/12/17 09:43:53 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef MINISHELL_BUILTINS_H
+# define MINISHELL_BUILTINS_H
 
 # include "minishell_macros_structs.h"
-# include "minishell_utils.h"
-# include "minishell_parsing.h"
-# include "minishell_exec.h"
 
-void	logo(void);
-int		parse(char *input, t_info *info);
-void	exec_args(t_info *info);
+int	builtin_cd(char **argv, t_info *info);
+int	builtin_echo(char **argv, t_info *info);
+int	builtin_env(char **argv, t_info *info);
+int	builtin_exit(char **argv, t_info *info);
+int	builtin_pwd(char **argv, t_info *info);
+int	builtin_unset(char **argv, t_info *info);
+int	builtin_export(char **argv, t_info *info);
 
 #endif

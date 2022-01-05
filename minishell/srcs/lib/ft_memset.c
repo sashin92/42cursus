@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/08 16:24:41 by sashin            #+#    #+#             */
-/*   Updated: 2021/12/20 09:39:10 by sashin           ###   ########.fr       */
+/*   Created: 2020/12/23 14:41:12 by sashin            #+#    #+#             */
+/*   Updated: 2021/12/20 10:57:58 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include <stddef.h>
 
-# include "minishell_macros_structs.h"
-# include "minishell_utils.h"
-# include "minishell_parsing.h"
-# include "minishell_exec.h"
+/*
+**  ft_memset() writes len bytes of value c(converted to an unsigned char)
+** to the string b.
+*/
 
-void	logo(void);
-int		parse(char *input, t_info *info);
-void	exec_args(t_info *info);
+void	*ft_memset(void *b, int c, size_t len)
+{
+	size_t		idx;
 
-#endif
+	idx = 0;
+	while (idx < len)
+	{
+		((unsigned char *)b)[idx] = c;
+		++idx;
+	}
+	return (b);
+}

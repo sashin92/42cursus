@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/08 16:24:41 by sashin            #+#    #+#             */
-/*   Updated: 2021/12/20 09:39:10 by sashin           ###   ########.fr       */
+/*   Created: 2021/12/14 14:49:34 by sashin            #+#    #+#             */
+/*   Updated: 2021/12/14 15:10:20 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include <stdlib.h>
 
-# include "minishell_macros_structs.h"
-# include "minishell_utils.h"
-# include "minishell_parsing.h"
-# include "minishell_exec.h"
+char	*ft_strnew(void)
+{
+	char	*new;
 
-void	logo(void);
-int		parse(char *input, t_info *info);
-void	exec_args(t_info *info);
-
-#endif
+	new = (char *)malloc(sizeof(char));
+	if (new == NULL)
+		return (NULL);
+	new[0] = '\0';
+	return (new);
+}
