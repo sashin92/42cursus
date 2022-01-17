@@ -11,14 +11,14 @@
 /* ************************************************************************** */
 
 #include <iostream>
-#include "phone_book.hpp"
+#include "PhoneBook.hpp"
 
 int	main(void)
 {
-	std::string		input;
 	PhoneBook		phone_book;
+	std::string		input;
 
-	while (1)
+	while (true)
 	{
 		if (std::cin.eof())
 		{
@@ -26,7 +26,9 @@ int	main(void)
 			return 0;
 		}
 		std::cout << "Please input correct keyword[ADD, SEARCH, EXIT]\n> ";
-		std::cin >> input;
+		std::getline(std::cin, input);
+		input.erase(0, input.find_first_not_of(" \t\n\v\f\r"));
+		input.erase(input.find_last_not_of(" \t\n\v\f\r") + 1);
 		if (input == "ADD")
 		{
 			std::cout << "ADD!\n";

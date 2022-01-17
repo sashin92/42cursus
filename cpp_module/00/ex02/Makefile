@@ -24,14 +24,13 @@ CYN			= "\x1B[0;36m"
 WHT			= "\x1B[0;37m"
 # =========================
 
-NAME		= phone_book
+NAME		= tests
 
 CXX			= clang++
 CXXFLAGS	= -Wall -Werror -Wextra -std=c++98
 
-SRCS		= PhoneBook.cpp \
-				Contact.cpp \
-				main.cpp
+SRCS		= tests.cpp \
+				Account.cpp
 OBJS		=  $(SRCS:.cpp=.o)
 
 all: $(NAME)

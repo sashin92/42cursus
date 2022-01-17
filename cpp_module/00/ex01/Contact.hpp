@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   contacts.hpp                                       :+:      :+:    :+:   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,7 +15,7 @@
 
 # include <iostream>
 
-class Contacts
+class Contact
 {
 private:
 	std::string	firstName;
@@ -24,8 +24,8 @@ private:
 	std::string	phoneNumber;
 	std::string	darkestSecret;
 public:
-	Contacts();
-	~Contacts();
+	Contact();
+	~Contact();
 	std::string	GetFirstName();
 	std::string	GetLastName();
 	std::string	GetNickName();
