@@ -11,17 +11,17 @@
 # **************************************************************************** #
 
 # ==========Color==========
-# usage: "\x1B['Bright';'Color'm"
-RST			= "\x1B[0m"
-BRI			= "\x1B[1m"
-DIM			= "\x1B[2m"
-RED			= "\x1B[0;31m"
-GRN			= "\x1B[1;32m"
-YEL			= "\x1B[0;33m"
-BLU			= "\x1B[0;34m"
-MAG			= "\x1B[0;35m"
-CYN			= "\x1B[0;36m"
-WHT			= "\x1B[0;37m"
+# usage: "\033['Bright';'Color'm"
+RST			= "\033[0m"
+BRI			= "\033[1m"
+DIM			= "\033[2m"
+RED			= "\033[0;31m"
+GRN			= "\033[1;32m"
+YEL			= "\033[0;33m"
+BLU			= "\033[0;34m"
+MAG			= "\033[0;35m"
+CYN			= "\033[0;36m"
+WHT			= "\033[0;37m"
 # =========================
 
 NAME		= tests
@@ -50,7 +50,9 @@ run: all
 	./$(NAME)
 
 test: all
-	./$(NAME)
+	./$(NAME) | sed "s/\[.*\]/\[19920104_091532\]/g" > tmp.log
+	diff -s 19920104_091532.log tmp.log
+	@rm tmp.log
 	@make fclean
 
 .PHONY: all clean fclean re run test

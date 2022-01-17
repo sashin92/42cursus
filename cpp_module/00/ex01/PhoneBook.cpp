@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <iostream>
+#include <sstream>
 #include <iomanip>
 #include <string>
 #include "PhoneBook.hpp"
@@ -99,10 +100,7 @@ void PhoneBook::Search()
 	std::cout << "Please input index\n > ";
 	std::getline(std::cin, input);
 	if (std::cin.eof())
-	{
-		std::cout << "\nbye\n";
-		exit(0);
-	}
+		return ;
 	input.erase(0, input.find_first_not_of(" \t\n\v\f\r"));
 	input.erase(input.find_last_not_of(" \t\n\v\f\r") + 1);
 	if (!stringIsDigit(input))
@@ -110,7 +108,7 @@ void PhoneBook::Search()
 		std::cout << "Only numbers can be entered.\n";
 		return ;
 	}
-	inputIndex = std::stoi(input);
+	std::istringstream(input) >> inputIndex;
 	if (inputIndex >= 0 && inputIndex < this->contactSize)
 	{
 		std::cout << "------result------\n"
