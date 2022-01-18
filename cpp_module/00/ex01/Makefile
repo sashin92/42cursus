@@ -47,11 +47,13 @@ fclean: clean
 
 re: fclean all
 
-run: all
+run: re
 	./$(NAME)
 
-test: all
+test: re
+	@echo $(GRN)"====================test===================="$(RST)
 	./$(NAME)
-	@make fclean
+	@echo $(GRN)"============================================"$(RST)
+	@make --no-print-directory fclean
 
 .PHONY: all clean fclean re run test

@@ -45,17 +45,17 @@ fclean: clean
 
 re: fclean all
 
-run: all
+run: re
 	./$(NAME)
 
-test: all
-	@echo $(GRN) "============test============" $(RST)
+test: re
+	@echo $(GRN)"====================test===================="$(RST)
 	./$(NAME) "shhhhh... I think the students are asleep..."
 	./$(NAME) Damnit " ! " "Sorry students, I thought this thing was off."
 	./$(NAME)
 	./$(NAME) "hello world!"
 	./$(NAME) this ' is ' "my" 1st "Sub."
-	@echo $(GRN) "============================" $(RST)
-	@make fclean
+	@echo $(GRN)"============================================"$(RST)
+	@make --no-print-directory fclean
 
 .PHONY: all clean fclean re run test

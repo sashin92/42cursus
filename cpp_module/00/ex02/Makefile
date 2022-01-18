@@ -46,12 +46,15 @@ fclean: clean
 
 re: fclean all
 
-run: all
+run: re
 	./$(NAME)
 
-test: all
+test: re
+	@echo $(GRN)"====================test===================="$(RST)
 	./$(NAME) | sed "s/\[.*\]/\[19920104_091532\]/g" > tmp.log
+	@echo $(GRN)"============================================"$(RST)
 	-diff -sc 19920104_091532.log tmp.log
-	@make fclean
+	@echo $(GRN)"============================================"$(RST)
+	@make --no-print-directory fclean
 
 .PHONY: all clean fclean re run test
