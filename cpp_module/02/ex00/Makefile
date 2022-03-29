@@ -54,12 +54,6 @@ test: re
 	@echo $(GRN)"====================test===================="$(RST)
 	./$(NAME)
 	@echo $(GRN)"============================================"$(RST)
-	./$(NAME) "WARNING"
-	@echo $(GRN)"============================================"$(RST)
-	./$(NAME) "I am not sure how tired I am today..."
-	@echo $(GRN)"============================================"$(RST)
-	./$(NAME) "DEBUG"
-	@echo $(GRN)"============================================"$(RST)
 	@make --no-print-directory fclean
 
 .PHONY: all clean fclean re run test
