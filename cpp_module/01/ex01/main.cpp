@@ -17,7 +17,7 @@ int main(void)
 {
 	Zombie *heapZombie;
 
-	heapZombie = Zombie::zombieHorde(ZOMBIE_SIZE, "citizen");
+	heapZombie = Zombie::zombieHorde(ZOMBIE_SIZE, "unknown"); // ZOMBIE_SIZE is defined in 'Zombie.hpp'
 	for(int i = 0; i < ZOMBIE_SIZE; i++)
 	{
 		std::cout << i + 1 << " ";

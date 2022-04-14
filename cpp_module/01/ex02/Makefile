@@ -26,7 +26,7 @@ WHT			= "\033[0;37m"
 
 NAME		= hi_this_is_brain
 
-CXX			= clang++
+CXX			= c++
 CXXFLAGS	= -Wall -Werror -Wextra -std=c++98
 
 SRCS		= main.cpp
