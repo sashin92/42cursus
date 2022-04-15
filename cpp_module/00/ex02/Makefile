@@ -49,6 +49,7 @@ re: fclean all
 run: re
 	./$(NAME)
 
+# usage: make -i test
 test: re
 	@echo $(GRN)"====================test===================="$(RST)
 	./$(NAME) | sed "s/\[.*\]/\[19920104_091532\]/g" > tmp.log
