@@ -16,6 +16,6 @@ Zombie* Zombie::zombieHorde( int N, std::string name )
 {
 	Zombie *newZom = new Zombie[N];
 	for (int i = 0; i < N; i++)
-		newZom[i].name = name;
+		newZom[i].m_name = name;
 	return (newZom);
 }

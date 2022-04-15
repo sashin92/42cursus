@@ -13,9 +13,8 @@
 #include "HumanB.hpp"
 
 HumanB::HumanB(std::string name)
-:weapon(NULL)
+: m_weapon(NULL), m_name(name)
 {
-	this->name = name;
 }
 
 HumanB::~HumanB()
@@ -24,10 +23,10 @@ HumanB::~HumanB()
 
 void HumanB::attack()
 {
-	std::cout << this->name << " attacks with his " << this->weapon->getType() << std::endl;
+	std::cout << this->m_name << " attacks with his " << this->m_weapon->getType() << std::endl;
 }
 
 void HumanB::setWeapon(Weapon &weapon)
 {
-	this->weapon = &weapon;
+	this->m_weapon = &weapon;
 }

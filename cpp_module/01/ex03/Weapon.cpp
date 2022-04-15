@@ -17,8 +17,8 @@ Weapon::Weapon()
 }
 
 Weapon::Weapon(std::string type)
+: m_type(type)
 {
-	this->type = type;
 }
 
 Weapon::~Weapon()
@@ -27,10 +27,10 @@ Weapon::~Weapon()
 
 std::string Weapon::getType()
 {
-	return (this->type);
+	return (this->m_type);
 }
 
 void Weapon::setType(std::string type)
 {
-	this->type = type;
+	this->m_type = type;
 }

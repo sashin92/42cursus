@@ -51,7 +51,8 @@ int main(int argc, char **argv)
 		std::string first = fileStr.substr(0, findPt);
 		std::string last = fileStr.substr(findPt + s1.length());
 		fileStr = first + s2 + last;
-		findPt = fileStr.find(s1);
+		findPt += s2.length();
+		findPt = fileStr.find(s1, findPt);
 	}
 	std::string replaceFilename = filename + ".replace";
 	fs.open(replaceFilename.c_str(), std::fstream::out);

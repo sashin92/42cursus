@@ -14,20 +14,23 @@
 # define FIXED_HPP
 
 # include <iostream>
+# include <cmath>
 
 class Fixed
 {
 private:
-	int _fixedPoint;
-	static const int _fractionalBit = 8;
+	int m_fixedPoint;
+	static const int m_fractionalBit = 8;
+
 public:
 	Fixed();
-	~Fixed();
 	Fixed(const Fixed &fixed);
+	Fixed &operator=(const Fixed &fixed);
+	~Fixed();
+
 	Fixed(const float num);
 	Fixed(const int num);
-	Fixed &operator=(const Fixed &fixed);
-	Fixed &operator<<( void );
+	// Fixed &operator<<( void );
 
 	float toFloat( void ) const;
 	int toInt( void ) const;
