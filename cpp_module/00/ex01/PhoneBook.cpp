@@ -38,6 +38,8 @@ void printTenLength(std::string str)
 
 bool stringIsDigit(std::string str)
 {
+	if (str.empty())
+		return false;
 	for(size_t i = 0; i < str.size(); i++)
 	{
 		if (!std::isdigit(str[i]))
