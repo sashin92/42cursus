@@ -11,23 +11,40 @@
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Fixed.hpp"
+#include "Point.hpp"
 
-int main( void )
+int main(void)
 {
-Fixed a;
-Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+	Point a(0.0, 0.0);
+	Point b(3.0, 0.0);
+	Point c(0.0, 4.0);
+	Point p1(-1.0, 3.0);
+	Point p2(1.0, 0.1);
 
+	std::cout << "a" << a << " b" << b << " c" << c << std::endl;
+	std::cout << "p1" << p1 << std::endl;
+	if (bsp(a, b, c, p1))
+		std::cout << "in!" << std::endl;
+	else
+		std::cout << "out!" << std::endl;
 
-std::cout << a << std::endl;
-std::cout << ++a << std::endl;
-std::cout << a << std::endl;
-std::cout << a++ << std::endl;
-std::cout << a << std::endl;
+	std::cout << "-------------------------" << std::endl;
 
-std::cout << b << std::endl;
+		std::cout << "a" << a << " b" << b << " c" << c << std::endl;
+	std::cout << "p2" << p2 << std::endl;
+	if (bsp(a, b, c, p2))
+		std::cout << "in!" << std::endl;
+	else
+		std::cout << "out!" << std::endl;
 
-std::cout << Fixed::max( a, b ) << std::endl;
+	std::cout << "-------------------------" << std::endl;
 
-return 0;
+		std::cout << "a" << a << " b" << b << " c" << c << std::endl;
+	std::cout << "a" << a << std::endl;
+	if (bsp(a, b, c, a))
+		std::cout << "in!" << std::endl;
+	else
+		std::cout << "out!" << std::endl;
+
+	return 0;
 }

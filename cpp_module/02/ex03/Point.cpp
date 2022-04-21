@@ -17,34 +17,41 @@ Point::Point()
 {
 }
 
-Point::Point(const float x, const float y)
+Point::Point(const float &x, const float &y)
 : m_x(x), m_y(y)
 {
 }
 
-
 Point::Point(const Point &point)
+: m_x(point.getX()), m_y(point.getY())
 {
-	this->m_x = point.getX();
-	this->m_y = point.getY();
 }
 
-Point &Point::operator=(const Point *point)
+Point &Point::operator=(const Point &point)
 {
-	this->m_x = point->m_x;
+	if (this != &point)
+	{
+		const_cast<Fixed &>(m_x) = point.getX();
+		const_cast<Fixed &>(m_y) = point.getY();
+	}
+	return *this;
 }
 
 Point::~Point()
 {
-	
 }
 
-Fixed Point::getX()
+const Fixed &Point::getX() const
 {
 	return this->m_x;
 }
 
-Fixed Point::getY()
+const Fixed &Point::getY() const
 {
 	return this->m_y;
+}
+
+std::ostream &operator<<(std::ostream &os, const Point &point)
+{
+	return os << "(" << point.getX().toFloat() << ", " << point.getY().toFloat() << ")";
 }

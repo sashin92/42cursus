@@ -29,7 +29,7 @@ public:
 	~Fixed();
 
 	Fixed(const int d);
-	Fixed(const float num);
+	Fixed(const float f);
 
 	float toFloat( void ) const;
 	int toInt( void ) const;

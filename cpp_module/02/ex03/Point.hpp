@@ -23,14 +23,19 @@ private:
 
 public:
 	Point();
-	Point(const float x, const float y);
+	Point(const float &x, const float &y);
 	Point(const Point &point);
-	Point &operator=(const Point *point);
+	Point &operator=(const Point &point);
 	~Point();
 
-	Fixed getX();
-	Fixed getY();
-	
+	const Fixed &getX() const;
+	const Fixed &getY() const;
+
 };
+
+Point operator-(const Point &p1, const Point &p2);
+bool bsp(Point const a, Point const b, Point const c, Point const point);
+
+std::ostream &operator<<(std::ostream &os, const Point &point);
 
 #endif

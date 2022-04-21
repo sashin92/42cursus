@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/01/06 11:25:19 by sashin            #+#    #+#              #
-#    Updated: 2022/01/06 11:25:19 by sashin           ###   ########.fr        #
+#    Created: 2022/04/21 10:04:50 by sashin            #+#    #+#              #
+#    Updated: 2022/04/21 10:04:50 by sashin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,9 @@ CXX			= c++
 CXXFLAGS	= -Wall -Werror -Wextra -std=c++98
 
 SRCS		= main.cpp \
-				Fixed.cpp
+				Fixed.cpp \
+				Point.cpp \
+				bsp.cpp
 OBJS		=  $(SRCS:.cpp=.o)
 
 all: $(NAME)

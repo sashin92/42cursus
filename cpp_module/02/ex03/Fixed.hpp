@@ -37,18 +37,6 @@ public:
 	int getRawBits( void ) const;
 	void setRawBits( int const raw );
 
-	bool operator>(const Fixed &fixed);
-	bool operator<(const Fixed &fixed);
-	bool operator>=(const Fixed &fixed);
-	bool operator<=(const Fixed &fixed);
-	bool operator==(const Fixed &fixed);
-	bool operator!=(const Fixed &fixed);
-
-	Fixed operator+(const Fixed &fixed);
-	Fixed operator-(const Fixed &fixed);
-	Fixed operator*(const Fixed &fixed);
-	Fixed operator/(const Fixed &fixed);
-
 	Fixed &operator++(void);
 	Fixed &operator--(void);
 	Fixed operator++(int);
@@ -57,6 +45,18 @@ public:
 	static const Fixed &max(const Fixed &a, const Fixed &b);
 
 };
+
+bool operator>(const Fixed &lhs, const Fixed &rhs);
+bool operator<(const Fixed &lhs, const Fixed &rhs);
+bool operator>=(const Fixed &lhs, const Fixed &rhs);
+bool operator<=(const Fixed &lhs, const Fixed &rhs);
+bool operator==(const Fixed &lhs, const Fixed &rhs);
+bool operator!=(const Fixed &lhs, const Fixed &rhs);
+
+Fixed operator+(const Fixed &lhs, const Fixed &rhs);
+Fixed operator-(const Fixed &lhs, const Fixed &rhs);
+Fixed operator*(const Fixed &lhs, const Fixed &rhs);
+Fixed operator/(const Fixed &lhs, const Fixed &rhs);
 
 std::ostream &operator<<(std::ostream &os, const Fixed &fixed);
 

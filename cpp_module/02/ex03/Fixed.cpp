@@ -68,57 +68,57 @@ void Fixed::setRawBits( int const raw )
 
 
 
-bool Fixed::operator>(const Fixed &fixed)
+bool operator>(const Fixed &lhs, const Fixed &rhs)
 {
-	return this->m_fixedPoint > fixed.getRawBits();
+	return lhs.getRawBits() > rhs.getRawBits();
 }
 
-bool Fixed::operator<(const Fixed &fixed)
+bool operator<(const Fixed &lhs, const Fixed &rhs)
 {
-	return this->m_fixedPoint < fixed.getRawBits();
+	return lhs.getRawBits() > rhs.getRawBits();
 }
 
-bool Fixed::operator>=(const Fixed &fixed)
+bool operator>=(const Fixed &lhs, const Fixed &rhs)
 {
-	return this->m_fixedPoint >= fixed.getRawBits();
+	return lhs.getRawBits() > rhs.getRawBits();
 }
 
-bool Fixed::operator<=(const Fixed &fixed)
+bool operator<=(const Fixed &lhs, const Fixed &rhs)
 {
-	return this->m_fixedPoint <= fixed.getRawBits();
+	return lhs.getRawBits() > rhs.getRawBits();
 }
 
-bool Fixed::operator==(const Fixed &fixed)
+bool operator==(const Fixed &lhs, const Fixed &rhs)
 {
-	return this->m_fixedPoint == fixed.getRawBits();
+	return lhs.getRawBits() > rhs.getRawBits();
 }
 
-bool Fixed::operator!=(const Fixed &fixed)
+bool operator!=(const Fixed &lhs, const Fixed &rhs)
 {
-	return this->m_fixedPoint != fixed.getRawBits();
+	return lhs.getRawBits() > rhs.getRawBits();
 }
 
-Fixed Fixed::operator+(const Fixed &fixed)
+Fixed operator+(const Fixed &lhs, const Fixed &rhs)
 {
-	Fixed ret(this->toFloat() + fixed.toFloat());
+	Fixed ret(lhs.toFloat() + rhs.toFloat());
 	return ret;
 }
 
-Fixed Fixed::operator-(const Fixed &fixed)
+Fixed operator-(const Fixed &lhs, const Fixed &rhs)
 {
-	Fixed ret(this->toFloat() - fixed.toFloat());
+	Fixed ret(lhs.toFloat() - rhs.toFloat());
 	return ret;
 }
 
-Fixed Fixed::operator*(const Fixed &fixed)
+Fixed operator*(const Fixed &lhs, const Fixed &rhs)
 {
-	Fixed ret(this->toFloat() * fixed.toFloat());
+	Fixed ret(lhs.toFloat() * rhs.toFloat());
 	return ret;
 }
 
-Fixed Fixed::operator/(const Fixed &fixed)
+Fixed operator/(const Fixed &lhs, const Fixed &rhs)
 {
-	Fixed ret(this->toFloat() / fixed.toFloat());
+	Fixed ret(lhs.toFloat() / rhs.toFloat());
 	return ret;
 }
 
