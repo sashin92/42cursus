@@ -19,7 +19,6 @@ Fixed::Fixed()
 }
 
 Fixed::Fixed(const Fixed &fixed)
-: m_fixedPoint(fixed.m_fixedPoint)
 {
 	std::cout << "Copy constructor called" << std::endl;
 	*this = fixed;

@@ -18,8 +18,8 @@ Fixed::Fixed()
 }
 
 Fixed::Fixed(const Fixed &fixed)
-: m_fixedPoint(fixed.getRawBits())
 {
+	*this = fixed;
 }
 
 Fixed::~Fixed()
@@ -40,7 +40,7 @@ Fixed &Fixed::operator=(const Fixed &fixed)
 {
 	if (this != &fixed)
 	{
-		this->m_fixedPoint = fixed.getRawBits();
+		this->m_fixedPoint = fixed.m_fixedPoint;
 	}
 	return *this;
 }
