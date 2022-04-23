@@ -19,9 +19,9 @@ Fixed::Fixed()
 }
 
 Fixed::Fixed(const Fixed &fixed)
-: m_fixedPoint(fixed.getRawBits())
 {
 	std::cout << "Copy constructor called" << std::endl;
+	*this = fixed;
 }
 
 Fixed &Fixed::operator=(const Fixed &fixed)

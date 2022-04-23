@@ -74,27 +74,27 @@ bool operator>(const Fixed &lhs, const Fixed &rhs)
 
 bool operator<(const Fixed &lhs, const Fixed &rhs)
 {
-	return lhs.getRawBits() > rhs.getRawBits();
+	return lhs.getRawBits() < rhs.getRawBits();
 }
 
 bool operator>=(const Fixed &lhs, const Fixed &rhs)
 {
-	return lhs.getRawBits() > rhs.getRawBits();
+	return lhs.getRawBits() >= rhs.getRawBits();
 }
 
 bool operator<=(const Fixed &lhs, const Fixed &rhs)
 {
-	return lhs.getRawBits() > rhs.getRawBits();
+	return lhs.getRawBits() <= rhs.getRawBits();
 }
 
 bool operator==(const Fixed &lhs, const Fixed &rhs)
 {
-	return lhs.getRawBits() > rhs.getRawBits();
+	return lhs.getRawBits() == rhs.getRawBits();
 }
 
 bool operator!=(const Fixed &lhs, const Fixed &rhs)
 {
-	return lhs.getRawBits() > rhs.getRawBits();
+	return lhs.getRawBits() != rhs.getRawBits();
 }
 
 Fixed operator+(const Fixed &lhs, const Fixed &rhs)
@@ -160,6 +160,21 @@ const Fixed &Fixed::min(const Fixed &a, const Fixed &b)
 		return a;
 	return b;
 }
+
+Fixed &Fixed::max(Fixed &a, Fixed &b)
+{
+	if (a.getRawBits() > b.getRawBits())
+		return a;
+	return b;
+}
+
+Fixed &Fixed::min(Fixed &a, Fixed &b)
+{
+	if (a.getRawBits() < b.getRawBits())
+		return a;
+	return b;
+}
+
 
 std::ostream &operator<<(std::ostream &os, const Fixed &fixed)
 {
