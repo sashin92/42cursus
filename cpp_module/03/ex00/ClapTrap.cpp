@@ -6,21 +6,11 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 10:31:41 by sashin            #+#    #+#             */
-/*   Updated: 2022/04/21 10:31:41 by sashin           ###   ########.fr       */
+/*   Updated: 2022/04/23 17:35:39 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
-
-void ClapTrap::print(void) const
-{
-	std::cout
-	<< "Name: " << this->getName() << std::endl
-	<< "HitPoint: " << this->getHitPoint() << std::endl
-	<< "EnergyPoint: " << this->getEnergyPoint() << std::endl
-	<< "AttackDamage: " << this->getAttackDamage() <<std::endl
-	<< std::endl;
-}
 
 void ClapTrap::attack(const std::string &target)
 {
@@ -56,8 +46,16 @@ void ClapTrap::beRepaired(unsigned int amount)
 		std::cout << "ClapTrap " << this->getName() << " already dead." << std::endl;
 		return ;
 	}
-	this->m_hitPoint += amount;
-	std::cout << "ClapTrap " << this->getName() << " repaired " << amount << " points!" << std::endl;
+	if (this->m_hitPoint + amount > C_DEFAULT_HP)
+	{
+		std::cout << "ClapTrap " << this->getName() << " repaired " << (C_DEFAULT_HP - this->m_hitPoint) << " points!" << std::endl;
+		this->m_hitPoint = C_DEFAULT_HP;
+	}
+	else
+	{
+		this->m_hitPoint += amount;
+		std::cout << "ClapTrap " << this->getName() << " repaired " << amount << " points!" << std::endl;
+	}
 }
 
 std::string ClapTrap::getName(void) const
@@ -103,24 +101,24 @@ void ClapTrap::setAttackDamage(unsigned int ad)
 ClapTrap::ClapTrap()
 : m_name(C_DEFAULT_NAME), m_hitPoint(C_DEFAULT_HP), m_energyPoint(C_DEFAULT_EP), m_attackDamage(C_DEFAULT_AD)
 {
-	std::cout << "name '" << this->getName() << "' is created(default)." << std::endl;
+	std::cout << "[" << this->getName() << "] ScavTrap is created(default)." << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name)
 : m_name(name), m_hitPoint(C_DEFAULT_HP), m_energyPoint(C_DEFAULT_EP), m_attackDamage(C_DEFAULT_AD)
 {
-	std::cout << "name '" << this->getName() << "' is created." << std::endl;
+	std::cout << "[" << this->getName() << "] ClapTrap is created." << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &clapTrap)
 {
-	std::cout << "name '" << this->getName() << "' is copied(shallow)." << std::endl;
+	std::cout << "[" << this->getName() <<  "] ClapTrap is copied(shallow)." << std::endl;
 	*this = clapTrap;
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &clapTrap)
 {
-	std::cout << "name '" << this->getName() << "' is copied(deep)." << std::endl;
+	std::cout << "[" << this->getName() << "] ClapTrap is copied(deep)." << std::endl;
 	if (this != &clapTrap)
 	{
 		this->m_name = clapTrap.getName();
@@ -133,5 +131,15 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &clapTrap)
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "name '" << this->getName() << "' is destroyed." << std::endl;
+	std::cout << "[" << this->getName() << "] ClapTrap is destroyed." << std::endl;
+}
+
+
+std::ostream& operator<<(std::ostream& os, const ClapTrap& c)
+{
+	return os
+	<< "Name: " << c.getName()
+	<< "\nHitPoint: " << c.getHitPoint()
+	<< "\nEnergyPoint: " << c.getEnergyPoint()
+	<< "\nAttackDamage: " << c.getAttackDamage();
 }

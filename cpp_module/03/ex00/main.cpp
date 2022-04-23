@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 10:30:30 by sashin            #+#    #+#             */
-/*   Updated: 2022/04/21 10:30:30 by sashin           ###   ########.fr       */
+/*   Updated: 2022/04/23 17:33:04 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,11 @@ int main(void)
 	c2.beRepaired(28);
 
 	std::cout << std::endl;
-	c1.print();
-	c2.print();
+	std::cout << c1 <<std::endl;
+
+	std::cout << std::endl;
+	std::cout << c2 <<std::endl;
+	std::cout << std::endl;
 
 	return 0;
 }

@@ -5,41 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/21 10:30:30 by sashin            #+#    #+#             */
-/*   Updated: 2022/04/23 17:33:08 by sashin           ###   ########.fr       */
+/*   Created: 2022/04/21 22:25:14 by sashin            #+#    #+#             */
+/*   Updated: 2022/04/21 22:25:14 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
+#include "Bureaucrat.hpp"
+#include "Form.hpp"
 
-int main(void)
+int main()
 {
-	std::string s1 = "Scav-BOT";
-	std::string s2 = "Clap-BOT";
+	std::cout << "--------test1--------" << std::endl;
 
-	ScavTrap st1(s1);
-	ClapTrap ct2(s2);
+	Bureaucrat human1("King", 1);
+	Bureaucrat human2("Farmer", 60);
 
-	std::cout << std::endl;
-	ct2.attack("s1");
+	Form f1("Unique form", 20, 20);
+	std::cout << f1 << std::endl;
+	human1.signForm(f1);
+	human2.signForm(f1);
 
-	std::cout << std::endl;
-	st1.guardGate();
-	st1.attack(s2);
-	ct2.takeDamage(st1.getAttackDamage());
-	
-	std::cout << std::endl;
-	st1.attack(s2);
-	ct2.takeDamage(st1.getAttackDamage());
-
-
-	std::cout << std::endl;
-	std::cout << st1 <<std::endl;
-
-	std::cout << std::endl;
-	std::cout << ct2 <<std::endl;
-	std::cout << std::endl;
+	std::cout << "--------test2--------" << std::endl;
+	Form f2("Normal form", 80, 60);
+	std::cout << f2 << std::endl;
+		human1.signForm(f2);
+		human2.signForm(f2);
 
 	return 0;
 }

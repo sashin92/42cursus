@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 10:30:46 by sashin            #+#    #+#             */
-/*   Updated: 2022/04/21 10:30:46 by sashin           ###   ########.fr       */
+/*   Updated: 2022/04/23 17:37:43 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # define C_DEFAULT_HP 10
 # define C_DEFAULT_EP 10
 # define C_DEFAULT_AD 0
-# define C_MAX_HP 20
 
 class ClapTrap
 {
@@ -30,9 +29,6 @@ private:
 	unsigned int m_attackDamage;
 
 public:
-
-	void print(void) const;
-
 	void attack(const std::string& target);
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
@@ -52,7 +48,8 @@ public:
 	ClapTrap(const ClapTrap &clapTrap);
 	ClapTrap &operator=(const ClapTrap &clapTrap);
 	virtual ~ClapTrap();
-
 };
+
+std::ostream& operator<<(std::ostream& os, const ClapTrap& c);
 
 #endif

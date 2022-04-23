@@ -6,37 +6,54 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 22:25:11 by sashin            #+#    #+#             */
-/*   Updated: 2022/04/23 14:30:51 by sashin           ###   ########.fr       */
+/*   Updated: 2022/04/21 22:25:11 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
+#include <exception>
 
 // class GradeTooHighException: public std::exception
 const char* Bureaucrat::GradeTooHighException::what(void) const throw()
 {
-	return "Grade is Too High";
+	return "Bureaucrat Grade is Too High";
 }
 
 // class GradeTooLowException: public std::exception
 const char* Bureaucrat::GradeTooLowException::what(void) const throw()
 {
-	return "Grade is Too Low";
+	return "Bureaucrat Grade is Too Low";
 }
 
 void Bureaucrat::incrementGrade()
 {
 	--(this->m_grade);
-	if (this->m_grade < 1)
+	if (this->m_grade < GRADE_MAX)
 		throw Bureaucrat::GradeTooHighException();
 }
 
 void Bureaucrat::decrementGrade()
 {
 	++(this->m_grade);
-	if (this->m_grade > 150)
+	if (this->m_grade > GRADE_MIN)
 		throw Bureaucrat::GradeTooLowException();
 }
+
+void Bureaucrat::signForm(const Form& f) const
+{
+	try
+	{
+		(*const_cast<Form*>(&f)).beSigned(*this);
+		std::cout << m_name << " signed " << f.getName() << std::endl;
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << m_name << " couldn't sign " << f.getName()
+		<< " because " << e.what() << std::endl;
+	}
+}
+
 
 const std::string& Bureaucrat::getName() const
 {
@@ -55,9 +72,9 @@ Bureaucrat::Bureaucrat()
 Bureaucrat::Bureaucrat(const std::string& name, const int& grade)
 : m_name(name), m_grade(grade)
 {
-	if (this->m_grade < GRADE_MAX)
+	if (this->m_grade < 1)
 		throw Bureaucrat::GradeTooLowException();
-	else if (this->m_grade > GRADE_MIN)
+	else if (this->m_grade > 150)
 		throw Bureaucrat::GradeTooHighException();
 }
 
