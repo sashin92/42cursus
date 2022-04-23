@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 14:39:25 by sashin            #+#    #+#             */
-/*   Updated: 2022/04/20 15:23:30 by sashin           ###   ########.fr       */
+/*   Updated: 2022/04/23 15:13:26 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ public:
 	Point &operator=(const Point &point);
 	~Point();
 
-	const Fixed &getX() const;
-	const Fixed &getY() const;
+	const Fixed getX() const;
+	const Fixed getY() const;
 
 };
 

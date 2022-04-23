@@ -19,6 +19,7 @@ Fixed::Fixed()
 }
 
 Fixed::Fixed(const Fixed &fixed)
+: m_fixedPoint(fixed.getRawBits())
 {
 	std::cout << "Copy constructor called" << std::endl;
 	*this = fixed;
@@ -32,8 +33,7 @@ Fixed::~Fixed()
 Fixed::Fixed(const int d)
 {
 	std::cout << "Int constructor called" << std::endl;
-	this->m_fixedPoint = d;
-	this->m_fixedPoint <<= this->m_fractionalBit;
+	this->m_fixedPoint = d * (1 << this->m_fractionalBit);
 }
 
 Fixed::Fixed(const float f)
@@ -59,7 +59,7 @@ float Fixed::toFloat( void ) const
 
 int Fixed::toInt( void ) const
 {
-	return (this->m_fixedPoint >> this->m_fractionalBit);
+	return (this->m_fixedPoint / (1 << this->m_fractionalBit));
 }
 
 int Fixed::getRawBits( void ) const

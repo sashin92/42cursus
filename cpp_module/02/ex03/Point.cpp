@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 14:39:23 by sashin            #+#    #+#             */
-/*   Updated: 2022/04/20 15:20:04 by sashin           ###   ########.fr       */
+/*   Updated: 2022/04/23 15:55:40 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ Point &Point::operator=(const Point &point)
 {
 	if (this != &point)
 	{
-		const_cast<Fixed &>(m_x) = point.getX();
-		const_cast<Fixed &>(m_y) = point.getY();
 	}
 	return *this;
 }
@@ -41,12 +39,12 @@ Point::~Point()
 {
 }
 
-const Fixed &Point::getX() const
+const Fixed Point::getX() const
 {
 	return this->m_x;
 }
 
-const Fixed &Point::getY() const
+const Fixed Point::getY() const
 {
 	return this->m_y;
 }

@@ -51,8 +51,8 @@ public:
 
 	Fixed &operator++(void);
 	Fixed &operator--(void);
-	Fixed operator++(int);
-	Fixed operator--(int);
+	const Fixed operator++(int);
+	const Fixed operator--(int);
 
 	static const Fixed &max(const Fixed &a, const Fixed &b);
 	static const Fixed &min(const Fixed &a, const Fixed &b);
