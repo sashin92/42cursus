@@ -155,6 +155,13 @@ const Fixed &Fixed::max(const Fixed &a, const Fixed &b)
 	return b;
 }
 
+const Fixed &Fixed::min(const Fixed &a, const Fixed &b)
+{
+	if (a.getRawBits() < b.getRawBits())
+		return a;
+	return b;
+}
+
 
 std::ostream &operator<<(std::ostream &os, const Fixed &fixed)
 {

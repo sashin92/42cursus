@@ -55,6 +55,7 @@ public:
 	Fixed operator--(int);
 
 	static const Fixed &max(const Fixed &a, const Fixed &b);
+	static const Fixed &min(const Fixed &a, const Fixed &b);
 
 };
 
