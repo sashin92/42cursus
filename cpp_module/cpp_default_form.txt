@@ -1,0 +1,52 @@
+/* Foo.hpp */
+
+#ifndef FOO_HPP
+# define FOO_HPP
+
+# include <string>
+
+class Foo
+{
+private:
+
+protected:
+
+public:
+	Foo();
+	Foo(const std::string& type);
+	Foo(const Foo &c);
+	Foo &operator=(const Foo &c);
+	~Foo();
+};
+
+#endif
+
+
+/* Foo.cpp */
+
+#include "Foo.hpp"
+
+Foo::Foo()
+{
+	std::cout << "Foo constructor called. (default)" <<std::endl;
+}
+
+Foo::Foo(const Foo &src)
+{
+	std::cout << "Foo copy constructor called." <<std::endl;
+	*this = c;
+}
+
+Foo &Foo::operator=(const Foo &src)
+{
+	std::cout << "Foo copy assignment operator called." <<std::endl;
+	if (this != &c){}
+	return *this;
+}
+
+Foo::~Foo()
+{
+	std::cout << "Foo destructor called." <<std::endl;
+}
+
+

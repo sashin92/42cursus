@@ -56,7 +56,7 @@ Brain::~Brain()
 
 std::ostream& operator<<(std::ostream& os, const Brain& brain)
 {
-	for (int i = 0; i < IDEA_SIZE; ++i)
+	for (int i = 0; i < IDEA_SIZE; i++)
 		std::cout << i + 1 << ": " << brain.getIdea(i) << std::endl;
 	return os;
 }
