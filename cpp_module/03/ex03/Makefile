@@ -24,7 +24,7 @@ CYN			= "\033[0;36m"
 WHT			= "\033[0;37m"
 # =========================
 
-NAME		= diamondTrap
+NAME		= a.out
 
 CXX			= clang++
 CXXFLAGS	= -Wall -Werror -Wextra -std=c++98

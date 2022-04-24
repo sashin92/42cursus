@@ -15,7 +15,6 @@
 
 # include "ClapTrap.hpp"
 
-# define S_DEFAULT_NAME "ST_Bot"
 # define S_DEFAULT_HP 100
 # define S_DEFAULT_EP 50
 # define S_DEFAULT_AD 20
@@ -24,7 +23,7 @@
 class ScavTrap: public ClapTrap
 {
 public:
-	void attack(const std::string &target);
+	virtual void attack(const std::string& target);
 
 	void guardGate(void) const;
 
@@ -33,7 +32,6 @@ public:
 	ScavTrap(const ScavTrap &scavTrap);
 	ScavTrap& operator=(const ScavTrap &scavTrap);
 	virtual ~ScavTrap();
-
 
 };
 

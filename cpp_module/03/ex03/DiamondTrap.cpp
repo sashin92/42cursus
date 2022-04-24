@@ -12,14 +12,9 @@
 
 #include "DiamondTrap.hpp"
 
-void DiamondTrap::attack(const std::string &target)
-{
-	ScavTrap::attack(target);
-}
-
 void DiamondTrap::whoAmI()
 {
-	std::cout << "my name is [" << this->m_name << "], claptrap's name is [" << ClapTrap::m_name << "]" << std::endl;
+	std::cout << "my name is " << this->m_name << ", claptrap's name is " << ClapTrap::m_name << "." << std::endl;
 }
 
 std::string DiamondTrap::getName(void) const
@@ -28,13 +23,13 @@ std::string DiamondTrap::getName(void) const
 }
 
 DiamondTrap::DiamondTrap()
-: ClapTrap(std::string(C_DEFAULT_NAME) + "_clap_name")
+: ClapTrap(std::string(DEFAULT_NAME) + "_clap_name")
 {
-	this->m_name = D_DEFAULT_NAME;
+	this->m_name = DEFAULT_NAME;
 	this->m_hitPoint = F_DEFAULT_HP;
 	this->m_energyPoint = S_DEFAULT_EP;
 	this->m_attackDamage = F_DEFAULT_AD;
-	std::cout << "[" << this->getName() << "] FragTrap is created(default)." << std::endl;
+	std::cout << this->m_name << " FragTrap is created(default)." << std::endl;
 }
 
 DiamondTrap::DiamondTrap(const std::string &name)
@@ -44,29 +39,29 @@ DiamondTrap::DiamondTrap(const std::string &name)
 	this->m_hitPoint = F_DEFAULT_HP;
 	this->m_energyPoint = S_DEFAULT_EP;
 	this->m_attackDamage = F_DEFAULT_AD;
-	std::cout << "[" << this->getName() << "] DiamondTrap is created." << std::endl;
+	std::cout << this->m_name << " DiamondTrap is created." << std::endl;
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap &diamondTrap)
 {
-	std::cout << "[" << this->getName() <<  "] FragTrap is copied(shallow)." << std::endl;
+	std::cout << this->m_name << " FragTrap is copied(copy assignment overload)." << std::endl;
 	*this = diamondTrap;
 }
 
 DiamondTrap &DiamondTrap::operator=(const DiamondTrap &diamondTrap)
 {
-	std::cout << "[" << this->getName() << "] DiamondTrap is copied(deep)." << std::endl;
+	std::cout << this->m_name << " DiamondTrap is copied(copy constructor)." << std::endl;
 	if (this != &diamondTrap)
 	{
-		this->m_name = diamondTrap.getName();
-		this->m_hitPoint = diamondTrap.getHitPoint();
-		this->m_energyPoint = diamondTrap.getEnergyPoint();
-		this->m_attackDamage = diamondTrap.getAttackDamage();
+		this->m_name = diamondTrap.m_name;
+		this->m_hitPoint = diamondTrap.m_hitPoint;
+		this->m_energyPoint = diamondTrap.m_energyPoint;
+		this->m_attackDamage = diamondTrap.m_attackDamage;
 	}
 	return *this;
 }
 
 DiamondTrap::~DiamondTrap()
 {
-	std::cout << "[" << this->getName() << "] DiamondTrap is destroyed." << std::endl;
+	std::cout << this->m_name << " DiamondTrap is destroyed." << std::endl;
 }

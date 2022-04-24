@@ -15,7 +15,7 @@
 
 # include <iostream>
 
-# define C_DEFAULT_NAME "CT_Bot"
+# define DEFAULT_NAME "Default_Bot"
 # define C_DEFAULT_HP 10
 # define C_DEFAULT_EP 10
 # define C_DEFAULT_AD 0

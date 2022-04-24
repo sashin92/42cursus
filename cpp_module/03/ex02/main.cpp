@@ -16,36 +16,36 @@
 
 int main(void)
 {
-	std::string s1 = "Scav-BOT";
-	std::string s2 = "Clap-BOT";
-	std::string s3 = "Frag-BOT";
+	std::string s1 = "[User1]";
+	std::string s2 = "[User2]";
 
 	ScavTrap st1(s1);
-	ClapTrap ct2(s2);
-	FragTrap ft3(s3);
+	FragTrap ft2(s2);
 
 	std::cout << std::endl;
-	ft3.highFivesGuys();
-	ct2.attack(s1);
+	ft2.highFivesGuys();
+	ft2.attack(s1);
+	st1.takeDamage(ft2.getAttackDamage());
 
 	std::cout << std::endl;
 	st1.guardGate();
+	st1.beRepaired(42);
 
 	std::cout << std::endl;
 	st1.attack(s2);
-	ct2.takeDamage(st1.getAttackDamage());
-	st1.attack(s3);
-	ft3.takeDamage(st1.getAttackDamage());
+	ft2.takeDamage(st1.getAttackDamage());
 
 	std::cout << std::endl;
-	ft3.attack(s1);
-	st1.takeDamage(ft3.getAttackDamage());
-	ft3.beRepaired(42);
 
 	std::cout << std::endl;
-	st1.print();
-	ct2.print();
-	ft3.print();
+	std::cout << "Name: " << st1.getName() << "\n"
+	<< st1 << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Name: " << ft2.getName() << "\n"
+	<< ft2 << std::endl;
+	std::cout << std::endl;
+
 
 	return 0;
 }

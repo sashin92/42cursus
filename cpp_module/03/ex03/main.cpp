@@ -10,16 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
-#include "FragTrap.hpp"
 #include "DiamondTrap.hpp"
 
 int main(void)
 {
-	std::string s = "Diam-BOT";
-
-	DiamondTrap dt(s);
+	DiamondTrap dt("[BOSS]");
 
 	std::cout << std::endl;
 	dt.whoAmI();
@@ -31,12 +26,11 @@ int main(void)
 	dt.guardGate();
 
 	std::cout << std::endl;
-	dt.takeDamage(24);
-	dt.beRepaired(42);
-	dt.attack("someone");
+	dt.attack("[someone]");
 
 	std::cout << std::endl;
-	dt.print();
+	std::cout << "Name: " << dt.getName() << "\n"
+	<< dt << "\n" << std::endl;
 
 	return 0;
 }

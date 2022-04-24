@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 10:30:46 by sashin            #+#    #+#             */
-/*   Updated: 2022/04/21 10:30:46 by sashin           ###   ########.fr       */
+/*   Updated: 2022/04/23 17:37:43 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <iostream>
 
-# define C_DEFAULT_NAME "CT_Bot"
+# define DEFAULT_NAME "Default_Bot"
 # define C_DEFAULT_HP 10
 # define C_DEFAULT_EP 10
 # define C_DEFAULT_AD 0
@@ -29,10 +29,7 @@ protected:
 	unsigned int m_attackDamage;
 
 public:
-
-	void print(void) const;
-
-	void attack(const std::string& target);
+	virtual void attack(const std::string& target);
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
 
@@ -47,11 +44,12 @@ public:
 	void setAttackDamage(unsigned int ad);
 
 	ClapTrap();
-	ClapTrap(const std::string &name);
+	ClapTrap(std::string name);
 	ClapTrap(const ClapTrap &clapTrap);
 	ClapTrap &operator=(const ClapTrap &clapTrap);
 	virtual ~ClapTrap();
-
 };
+
+std::ostream& operator<<(std::ostream& os, const ClapTrap& c);
 
 #endif

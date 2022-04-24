@@ -15,7 +15,6 @@
 
 # include "ClapTrap.hpp"
 
-# define F_DEFAULT_NAME "FT_Bot"
 # define F_DEFAULT_HP 100
 # define F_DEFAULT_EP 100
 # define F_DEFAULT_AD 30
@@ -23,8 +22,6 @@
 class FragTrap: virtual public ClapTrap
 {
 public:
-	void attack(const std::string &target);
-
 	void highFivesGuys(void);
 
 	FragTrap();
@@ -32,6 +29,8 @@ public:
 	FragTrap(const FragTrap &fragTrap);
 	FragTrap &operator=(const FragTrap &fragTrap);
 	virtual ~FragTrap();
+
 };
+
 
 #endif
