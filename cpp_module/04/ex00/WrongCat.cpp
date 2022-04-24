@@ -18,14 +18,12 @@ void WrongCat::makeSound() const
 }
 
 WrongCat::WrongCat()
-: WrongAnimal()
 {
 	std::cout << "WrongCat default constructor executed." << std::endl;
 	this->m_type = WC_DEFAULT_TYPE;
 }
 
 WrongCat::WrongCat(const WrongCat& wrongCat)
-: WrongAnimal()
 {
 	std::cout << "WrongCat copy constructor executed." << std::endl;
 	this->m_type = wrongCat.getType();

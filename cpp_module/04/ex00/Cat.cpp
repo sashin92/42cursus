@@ -18,17 +18,15 @@ void Cat::makeSound() const
 }
 
 Cat::Cat()
-: Animal()
 {
 	std::cout << "Cat default constructor executed." << std::endl;
 	this->m_type = C_DEFAULT_TYPE;
 }
 
 Cat::Cat(const Cat& cat)
-: Animal()
 {
 	std::cout << "Cat copy constructor executed." << std::endl;
-	this->m_type = cat.getType();
+	*this = cat;
 }
 
 Cat &Cat::operator=(const Cat& cat)

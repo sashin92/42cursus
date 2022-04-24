@@ -23,7 +23,6 @@ Brain* Dog::getBrain() const
 }
 
 Dog::Dog()
-: Animal()
 {
 	std::cout << "Dog default constructor executed." << std::endl;
 	this->m_type = D_DEFAULT_TYPE;
@@ -31,11 +30,9 @@ Dog::Dog()
 }
 
 Dog::Dog(const Dog& dog)
-: Animal()
 {
 	std::cout << "Dog copy constructor executed." << std::endl;
-	this->m_brain = new Brain(*dog.getBrain());
-	this->m_type = dog.getType();
+	*this = dog;
 }
 
 Dog &Dog::operator=(const Dog& dog)

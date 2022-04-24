@@ -83,12 +83,22 @@ void testBrainCheck()
 
 int main()
 {
+	std::cout << "\n===========subject_test===========" << std::endl;
+
+	const Animal* j = new Dog();
+	const Animal* i = new Cat();
+
+	delete j;
+	delete i;
+
 	std::cout << "\n===========test1===========" << std::endl;
 	testDeepCopy();
 	std::cout << "\n===========test2===========" << std::endl;
 	testArrayCheck();
 	std::cout << "\n===========test3===========" << std::endl;
 	testBrainCheck();
+	std::cout << "\n===========test4===========" << std::endl;
+	Animal test4;
 
 	return 0;
 }

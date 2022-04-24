@@ -25,12 +25,20 @@ int main()
 	i->makeSound(); //will output the cat sound!
 	j->makeSound();
 
-	std::cout << "-------------" << std::endl;
+	std::cout << "====================" << std::endl;
 	const WrongAnimal* wMeta = new WrongAnimal();
 	const WrongAnimal* wCat = new WrongCat();
-	std::cout << wCat->getType() << " " << std::endl;
+	std::cout << "-------------" << std::endl;
 	wCat->makeSound();
 	wMeta->makeSound();
+	std::cout << "-------------" << std::endl;
+
+	delete i;
+	delete j;
+	delete meta;
+	std::cout << "-------------" << std::endl;
+	delete wCat;
+	delete wMeta;
 
 	return 0;
 }

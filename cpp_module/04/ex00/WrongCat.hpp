@@ -26,7 +26,7 @@ public:
 	WrongCat();
 	WrongCat(const WrongCat& wrongCat);
 	WrongCat &operator=(const WrongCat& wrongCat);
-	virtual ~WrongCat();
+	~WrongCat();
 };
 
 #endif

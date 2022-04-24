@@ -32,8 +32,7 @@ Cat::Cat()
 Cat::Cat(const Cat& cat)
 {
 	std::cout << "Cat copy constructor executed." << std::endl;
-	this->m_brain = new Brain(*cat.getBrain());
-	this->m_type = cat.getType();
+	*this = cat;
 }
 
 Cat &Cat::operator=(const Cat& cat)

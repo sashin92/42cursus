@@ -34,8 +34,7 @@ Brain::Brain()
 Brain::Brain(const Brain& brain)
 {
 	std::cout << "Brain copy constructor executed." << std::endl;
-	for (int i = 0; i < IDEA_SIZE; i++)
-		this->m_idea[i] = brain.getIdea(i);
+	*this = brain;
 }
 
 Brain &Brain::operator=(const Brain& brain)

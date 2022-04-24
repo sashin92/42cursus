@@ -57,15 +57,9 @@ void testArrayCheck()
 	for (int i = 0; i < 6; i++)
 	{
 		if (i % 2)
-		{
 			testAnimal[i] = new Dog();
-			testAnimal[i]->makeSound();
-		}
 		else
-		{
 			testAnimal[i] = new Cat();
-			testAnimal[i]->makeSound();
-		}
 	}
 	
 	for (int i = 0; i < 6; i++)
@@ -89,12 +83,21 @@ void testBrainCheck()
 
 int main()
 {
+	std::cout << "\n===========subject_test===========" << std::endl;
+	const Animal* j = new Dog();
+	const Animal* i = new Cat();
+
+	delete j;
+	delete i;
+
 	std::cout << "\n===========test1===========" << std::endl;
 	testDeepCopy();
 	std::cout << "\n===========test2===========" << std::endl;
 	testArrayCheck();
 	std::cout << "\n===========test3===========" << std::endl;
 	testBrainCheck();
+	std::cout << "\n===========test4===========" << std::endl;
+	// Animal test4;
 
 	return 0;
 }

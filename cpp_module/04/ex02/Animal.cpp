@@ -31,7 +31,7 @@ Animal::Animal()
 Animal::Animal(const Animal& animal)
 {
 	std::cout << "Animal copy constructor executed." << std::endl;
-	this->m_type = animal.getType();
+	*this = animal;
 }
 
 Animal &Animal::operator=(const Animal& animal)
