@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 18:13:41 by sashin            #+#    #+#             */
-/*   Updated: 2022/04/24 18:13:41 by sashin           ###   ########.fr       */
+/*   Updated: 2022/04/25 11:44:19 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ AMateria* MateriaSource::createMateria(const std::string& type)
 
 MateriaSource::MateriaSource(void)
 {
+	for (int i = 0; i < MATERIASOURCE_SIZE; ++i)
+	{
+		m_materiaSource[i] = NULL;
+	}
 	std::cout << "MateriaSource constructor called. (default)" <<std::endl;
 }
 

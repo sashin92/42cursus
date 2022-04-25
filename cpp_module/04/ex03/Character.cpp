@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 16:41:21 by sashin            #+#    #+#             */
-/*   Updated: 2022/04/24 16:41:21 by sashin           ###   ########.fr       */
+/*   Updated: 2022/04/25 12:05:21 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void Character::unequip(int idx)
 		std::cout << m_name << " unequiped a materia: " << m_materiaInventory[idx]->getType() << std::endl;
 		m_materiaInventory[idx] = NULL;
 	}
-	std::cout << m_name << " FAILED to unequip a materia." << std::endl;
+	else
+		std::cout << m_name << " FAILED to unequip a materia." << std::endl;
 
 }
 
@@ -61,19 +62,28 @@ void Character::use(int idx, ICharacter& target)
 		m_materiaInventory[idx]->use(target);
 		std::cout << m_name << " used a materia: " << *m_materiaInventory[idx] << std::endl;
 	}
-	std::cout << m_name << " FAILED to use a materia." << std::endl;
+	else
+		std::cout << m_name << " FAILED to use a materia." << std::endl;
 }
 
 Character::Character()
 {
 	std::cout << "Character constructor called. (default)" <<std::endl;
 	m_name = DEFAULT_NAME;
+	for (int i = 0; i < INVENTORY_SIZE; ++i)
+	{
+		m_materiaInventory[i] = NULL;
+	}
 }
 
 Character::Character(const std::string& name)
 {
 	std::cout << "Character constructor called. (with name)" <<std::endl;
 	m_name = name;
+	for (int i = 0; i < INVENTORY_SIZE; ++i)
+	{
+		m_materiaInventory[i] = NULL;
+	}
 }
 
 Character::Character(const Character &src)
