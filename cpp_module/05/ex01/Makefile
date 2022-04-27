@@ -6,7 +6,7 @@
 #    By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/21 10:04:50 by sashin            #+#    #+#              #
-#    Updated: 2022/04/21 10:04:50 by sashin           ###   ########.fr        #
+#    Updated: 2022/04/27 20:38:08 by sashin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ WHT			= "\033[0;37m"
 # debug in linux(memcheck): valgrind --leak-check=full --log-file=memcheck.txt -v --error-limit=no ./$(NAME)
 NAME		= a.out
 
-CXX			= clang++
+CXX			= c++
 CXXFLAGS	= -Wall -Werror -Wextra -std=c++98
 
 SRCS		= main.cpp \

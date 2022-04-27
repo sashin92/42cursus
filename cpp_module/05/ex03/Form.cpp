@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 23:41:42 by sashin            #+#    #+#             */
-/*   Updated: 2022/04/27 18:33:09 by sashin           ###   ########.fr       */
+/*   Updated: 2022/04/27 20:35:43 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ Form::~Form()
 std::ostream& operator<<(std::ostream& os, const Form& f)
 {
 	return os
-	<< "Form Name: [" << f.getName()
+	<< "Target: [" << f.getName()
 	<< "], isSigned?: [" << f.getIsSigned()
 	<< "], Execute Grade: [" << f.getExecuteGrade()
 	<< "], Sign Grade: ["<< f.getSignGrade() << "]";

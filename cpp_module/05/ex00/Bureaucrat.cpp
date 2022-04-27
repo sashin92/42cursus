@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 22:25:11 by sashin            #+#    #+#             */
-/*   Updated: 2022/04/27 14:37:44 by sashin           ###   ########.fr       */
+/*   Updated: 2022/04/27 20:38:52 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ Bureaucrat::Bureaucrat(const Bureaucrat& src)
 : m_name(src.m_name), m_grade(src.m_grade)
 {
 	std::cout << "[Bureaucrat] copy constructor called." << std::endl;
-	*this = src;
 }
 
 Bureaucrat::~Bureaucrat()

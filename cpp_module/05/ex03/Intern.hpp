@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 19:21:57 by sashin            #+#    #+#             */
-/*   Updated: 2022/04/27 20:26:25 by sashin           ###   ########.fr       */
+/*   Updated: 2022/04/27 20:32:42 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ private:
 	Intern(const Intern& src); // unused
 
 public:
-	class FormTypeException: public std::exception
+	class FormNameException: public std::exception
 	{
 	public:
 		const char* what(void) const throw();

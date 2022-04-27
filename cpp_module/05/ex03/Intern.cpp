@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 19:21:44 by sashin            #+#    #+#             */
-/*   Updated: 2022/04/27 20:26:50 by sashin           ###   ########.fr       */
+/*   Updated: 2022/04/27 20:32:35 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <exception>
 
 
-const char* Intern::FormTypeException::what() const throw()
+const char* Intern::FormNameException::what() const throw()
 {
 	return "Invalid Form Name";
 }
@@ -40,7 +40,7 @@ Form* Intern::makeForm(const std::string& formName, const std::string& target)
 				}
 			}
 		}
-		throw FormTypeException();
+		throw FormNameException();
 	}
 	catch (std::exception& e)
 	{
