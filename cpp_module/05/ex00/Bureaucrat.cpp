@@ -6,19 +6,17 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 22:25:11 by sashin            #+#    #+#             */
-/*   Updated: 2022/04/23 14:30:51 by sashin           ###   ########.fr       */
+/*   Updated: 2022/04/27 14:37:44 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-// class GradeTooHighException: public std::exception
 const char* Bureaucrat::GradeTooHighException::what(void) const throw()
 {
 	return "Grade is Too High";
 }
 
-// class GradeTooLowException: public std::exception
 const char* Bureaucrat::GradeTooLowException::what(void) const throw()
 {
 	return "Grade is Too Low";
@@ -26,16 +24,16 @@ const char* Bureaucrat::GradeTooLowException::what(void) const throw()
 
 void Bureaucrat::incrementGrade()
 {
-	--(this->m_grade);
-	if (this->m_grade < 1)
+	if (this->m_grade <= 1)
 		throw Bureaucrat::GradeTooHighException();
+	--(this->m_grade);
 }
 
 void Bureaucrat::decrementGrade()
 {
-	++(this->m_grade);
-	if (this->m_grade > 150)
+	if (this->m_grade >= 150)
 		throw Bureaucrat::GradeTooLowException();
+	++(this->m_grade);
 }
 
 const std::string& Bureaucrat::getName() const
@@ -48,13 +46,17 @@ const int& Bureaucrat::getGrade() const
 	return this->m_grade;
 }
 
-Bureaucrat::Bureaucrat()
-{
-}
+
+// Orthodox Canonical Form
+
+// Bureaucrat::Bureaucrat() { std::cout << "[] constructor called. (default)" << std::endl; } // unused
+// Bureaucrat &Bureaucrat::operator=(const Bureaucrat& src) { std::cout << "[] copy assignment operator called. (default)" << std::endl; } // unused
+
 
 Bureaucrat::Bureaucrat(const std::string& name, const int& grade)
 : m_name(name), m_grade(grade)
 {
+	std::cout << "[Bureaucrat] constructor called." << std::endl;
 	if (this->m_grade < GRADE_MAX)
 		throw Bureaucrat::GradeTooLowException();
 	else if (this->m_grade > GRADE_MIN)
@@ -62,24 +64,19 @@ Bureaucrat::Bureaucrat(const std::string& name, const int& grade)
 }
 
 
-Bureaucrat::Bureaucrat(const Bureaucrat& b)
-: m_name(b.getName()), m_grade(b.getGrade())
+Bureaucrat::Bureaucrat(const Bureaucrat& src)
+: m_name(src.m_name), m_grade(src.m_grade)
 {
-}
-
-Bureaucrat &Bureaucrat::operator=(const Bureaucrat& b)
-{
-	if (this != &b)
-	{
-		*const_cast<std::string*>(&this->m_name) = b.getName();
-	}
-	return *this;
+	std::cout << "[Bureaucrat] copy constructor called." << std::endl;
+	*this = src;
 }
 
 Bureaucrat::~Bureaucrat()
 {
+	std::cout << "[Bureaucrat] destructor called." << std::endl;
 }
 
+// ostream overload
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& b)
 {
 	return (os << b.getName() << ",  Bureaucrat grade " << b.getGrade() << ".");

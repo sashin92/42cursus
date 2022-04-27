@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 23:41:42 by sashin            #+#    #+#             */
-/*   Updated: 2022/04/21 23:41:42 by sashin           ###   ########.fr       */
+/*   Updated: 2022/04/27 15:58:32 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,50 +50,51 @@ void Form::beSigned(const Bureaucrat& b)
 	}
 	else
 	{
-		throw Form::GradeTooHighException();
+		throw Bureaucrat::GradeTooLowException();
 	}
 }
 
-Form::Form()
-: m_signGrade(0), m_executeGrade(0) {}
+// Orthodox Canonical Form
+
+// Form::Form(): m_signGrade(0), m_executeGrade(0) {} // unused
+// Form &Form::operator=(const Form& f) {} // unused
 
 Form::Form(const std::string& name, const int& signGrade, const int& executeGrade)
-: m_name(name), m_signGrade(signGrade), m_executeGrade(executeGrade)
+: m_name(name),
+	m_signGrade(signGrade),
+	m_executeGrade(executeGrade)
 {
-	if (m_signGrade < GRADE_MAX || m_executeGrade < GRADE_MAX)
+	std::cout << "[Form] constructor called." << std::endl;
+	if (m_signGrade < Bureaucrat::GRADE_MAX || m_executeGrade < Bureaucrat::GRADE_MAX)
 		throw Form::GradeTooHighException();
-	else if (m_signGrade > GRADE_MIN || m_executeGrade > GRADE_MIN)
+	else if (m_signGrade > Bureaucrat::GRADE_MIN || m_executeGrade > Bureaucrat::GRADE_MIN)
 		throw Form::GradeTooLowException();
 }
 
 Form::Form(const Form& f)
-: m_name(f.getName()), m_isSigned(f.getIsSigned()), m_signGrade(f.getSignGrade()), m_executeGrade(f.getExecuteGrade())
+: m_name(f.m_name),
+	m_isSigned(f.m_isSigned),
+	m_signGrade(f.m_signGrade),
+	m_executeGrade(f.m_executeGrade)
 {
-	if (m_signGrade < GRADE_MAX || m_executeGrade < GRADE_MAX)
+	std::cout << "[Form] copy constructor called." << std::endl;
+	if (m_signGrade < Bureaucrat::GRADE_MAX || m_executeGrade < Bureaucrat::GRADE_MAX)
 		throw Form::GradeTooHighException();
-	else if (m_signGrade > GRADE_MIN || m_executeGrade > GRADE_MIN)
+	else if (m_signGrade > Bureaucrat::GRADE_MIN || m_executeGrade > Bureaucrat::GRADE_MIN)
 		throw Form::GradeTooLowException();
 }
 
-Form &Form::operator=(const Form& f)
+Form::~Form()
 {
-	if (this != &f)
-	{
-		*(const_cast<std::string* >(&m_name)) = f.getName();
-		*(const_cast<int* >(&m_signGrade)) = f.getSignGrade();
-		*(const_cast<int* >(&m_executeGrade)) = f.getExecuteGrade();
-		m_isSigned = f.getIsSigned();
-	}
-	return *this;
+	std::cout << "[Form] destructor called." << std::endl;
 }
 
-Form::~Form(){}
-
-
+// ostream overload
 std::ostream& operator<<(std::ostream& os, const Form& f)
 {
 	return os
-	<< "form name: " << f.getName()
-	<< "  execute grade: " << f.getExecuteGrade()
-	<< "   sign grade: "<< f.getSignGrade();
+	<< "Form Name: [" << f.getName()
+	<< "], isSigned?: [" << f.getIsSigned()
+	<< "], Execute Grade: [" << f.getExecuteGrade()
+	<< "], Sign Grade: ["<< f.getSignGrade() << "]";
 }

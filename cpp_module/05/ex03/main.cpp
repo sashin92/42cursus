@@ -6,42 +6,36 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 22:25:14 by sashin            #+#    #+#             */
-/*   Updated: 2022/04/27 20:29:23 by sashin           ###   ########.fr       */
+/*   Updated: 2022/04/27 20:27:51 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
+#include "Intern.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main()
 {
-	Bureaucrat human1("Programmer", 60);
-	Bureaucrat human2("King", 1);
+	Intern someRandomIntern;
+	std::cout << "-----test1-------" << std::endl;
+	Form* rrf;
+	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+	std::cout << *rrf << std::endl;
 
-	std::cout << "---------------------" << std::endl;
-	std::cout << human1 << std::endl;
-	std::cout << human2 << std::endl;
-	std::cout << std::endl;
+	std::cout << "-----test2-------" << std::endl;
+	Form* tmp;
+	tmp = someRandomIntern.makeForm("Receipt", "my_market");
+	if (tmp)
+	{
+		std::cout << *tmp << std::endl;
+		delete tmp;
+	}
 
-	std::cout << "--------test1--------" << std::endl;
-	Form f1("Unique form", 20, 20);
-	std::cout << f1 << std::endl;
-	human1.signForm(f1);
-	std::cout << f1 << std::endl;
-	human2.signForm(f1);
-	std::cout << f1 << std::endl;
-	std::cout << std::endl;
-
-	std::cout << "--------test2--------" << std::endl;
-	Form f2("Normal form", 80, 60);
-	std::cout << f2 << std::endl;
-	human1.signForm(f2);
-	std::cout << f2 << std::endl;
-	human2.signForm(f2);
-	std::cout << f2 << std::endl;
-	std::cout << std::endl;
-
-	std::cout << "---------------------" << std::endl;
+	std::cout << "-----------------" << std::endl;
+	delete rrf;
 
 	return 0;
 }
