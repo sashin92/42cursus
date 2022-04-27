@@ -6,7 +6,7 @@
 #    By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/21 10:04:50 by sashin            #+#    #+#              #
-#    Updated: 2022/04/21 10:04:50 by sashin           ###   ########.fr        #
+#    Updated: 2022/04/25 16:44:45 by sashin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ WHT			= "\033[0;37m"
 NAME		= a.out
 
 CXX			= clang++
-CXXFLAGS	= -Wall -Werror -Wextra -std=c++98
+CXXFLAGS	= -Wall -Werror -Wextra -Wshadow -Wno-shadow -std=c++98
 
 SRCS		= main.cpp \
 				ClapTrap.cpp \

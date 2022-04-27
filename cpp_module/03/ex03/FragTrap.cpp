@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 15:09:54 by sashin            #+#    #+#             */
-/*   Updated: 2022/04/21 15:09:54 by sashin           ###   ########.fr       */
+/*   Updated: 2022/04/25 16:39:57 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void FragTrap::highFivesGuys(void)
 {
-	std::cout << this->getName() << " is requesting 'POSITIVE HIGH FIVES'." << std::endl;
+	std::cout << this->m_name << " is requesting 'POSITIVE HIGH FIVES'." << std::endl;
 }
 
 FragTrap::FragTrap()
