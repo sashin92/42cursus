@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 22:07:15 by sashin            #+#    #+#             */
-/*   Updated: 2022/04/28 18:46:37 by sashin           ###   ########.fr       */
+/*   Updated: 2022/04/28 20:41:52 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void Converter::printFloat()
 
 void Converter::printDouble()
 {
-	double dValue = static_cast<double>(m_dValue);
+	double dValue = m_dValue;
 	std::cout << "double: ";
 	if (isinf(dValue))
 		std::cout << std::showpos << dValue << std::endl;
