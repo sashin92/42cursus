@@ -5,17 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/27 22:07:27 by sashin            #+#    #+#             */
-/*   Updated: 2022/04/27 22:13:48 by sashin           ###   ########.fr       */
+/*   Created: 2022/04/28 19:38:10 by sashin            #+#    #+#             */
+/*   Updated: 2022/04/28 20:27:38 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Converter.hpp"
+#include "Base.hpp"
 
-int main(int argc, char** argv)
+int main()
 {
-	if (argc != 2)
-		return 1;
+	Base* tmp = generate();
+	std::cout << "---pointer---" << std::endl;
+	identify(tmp);
+	std::cout << "--reference--" << std::endl;
+	identify(*tmp);
+	delete tmp;
 
-	Converter converter;
+	return 0;
 }
