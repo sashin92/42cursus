@@ -1,38 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Base.hpp                                           :+:      :+:    :+:   */
+/*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/28 19:38:31 by sashin            #+#    #+#             */
-/*   Updated: 2022/04/28 20:59:11 by sashin           ###   ########.fr       */
+/*   Created: 2022/04/29 18:46:40 by sashin            #+#    #+#             */
+/*   Updated: 2022/04/29 19:10:08 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BASE_HPP
-# define BASE_HPP
+#ifndef SPAN_HPP
+# define SPAN_HPP
 
 # include <iostream>
 
-class Base
+# include <algorithm>
+# include <iterator>
+# include <vector>
+
+class Span
 {
 private:
-	Base(const Base &c);
+	std::vector<int>m_integer;
+	unsigned int 
 
+	Span(); // unused
+	Span &operator=(const Span &c); // unused
+	Span(const Span &c); // unused
 public:
 
-	Base();
-	Base &operator=(const Base &c);
-	virtual ~Base();
+	void addNumber(int num);
+
+	Span& shortestSpan();
+	Span& longestSpan();
+
+	Span(unsigned int n);
+	~Span();
 };
 
-class A: public Base{};
-class B: public Base{};
-class C: public Base{};
 
-Base* generate(void);
-void identify(Base* p);
-void identify(Base& p);
 
 #endif

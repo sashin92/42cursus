@@ -1,38 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Base.hpp                                           :+:      :+:    :+:   */
+/*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/28 19:38:31 by sashin            #+#    #+#             */
-/*   Updated: 2022/04/28 20:59:11 by sashin           ###   ########.fr       */
+/*   Created: 2022/04/29 18:46:22 by sashin            #+#    #+#             */
+/*   Updated: 2022/04/29 19:08:41 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BASE_HPP
-# define BASE_HPP
+#include "Span.hpp"
 
-# include <iostream>
-
-class Base
+void Span::addNumber(int num)
 {
-private:
-	Base(const Base &c);
+	m_integer.push_back(num);
+}
 
-public:
 
-	Base();
-	Base &operator=(const Base &c);
-	virtual ~Base();
-};
+Span::Span(unsigned int n)
+{
+	
+}
 
-class A: public Base{};
-class B: public Base{};
-class C: public Base{};
 
-Base* generate(void);
-void identify(Base* p);
-void identify(Base& p);
-
-#endif
+Span& Span::shortestSpan();
+Span& Span::longestSpan();

@@ -14,8 +14,8 @@ protected:
 public:
 	Foo();
 	Foo(const std::string& type);
-	Foo(const Foo &c);
-	Foo &operator=(const Foo &c);
+	Foo(const Foo &src);
+	Foo &operator=(const Foo &src);
 	~Foo();
 };
 
