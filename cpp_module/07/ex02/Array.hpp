@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 10:56:40 by sashin            #+#    #+#             */
-/*   Updated: 2022/04/29 13:00:10 by sashin           ###   ########.fr       */
+/*   Updated: 2022/04/29 14:26:08 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ public:
 				m_element = 0;
 			}
 			m_element = new T(src.m_size);
-			for (int i = 0; i < src.m_size; i++)
+			for (unsigned int i = 0; i < src.m_size; i++)
 				m_element[i] = src.m_element[i];
 		}
 		return *this;
@@ -79,7 +79,7 @@ public:
 	: m_element(0), m_size(src.m_size)
 	{
 		m_element = new T[src.m_size];
-		for (int i = 0; i < src.m_size; i++)
+		for (unsigned int i = 0; i < src.m_size; i++)
 			m_element[i] = src.m_element[i];
 	}
 

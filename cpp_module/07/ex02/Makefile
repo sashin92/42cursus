@@ -6,7 +6,7 @@
 #    By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/21 10:04:50 by sashin            #+#    #+#              #
-#    Updated: 2022/04/29 11:37:55 by sashin           ###   ########.fr        #
+#    Updated: 2022/04/29 14:18:12 by sashin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ WHT			= "\033[0;37m"
 NAME		= a.out
 
 CXX			= c++
-# CXXFLAGS	= -Wall -Werror -Wextra -std=c++98
+CXXFLAGS	= -Wall -Werror -Wextra -std=c++98
 
 SRCS		= main.cpp
 

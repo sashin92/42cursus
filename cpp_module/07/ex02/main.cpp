@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 13:02:33 by sashin            #+#    #+#             */
-/*   Updated: 2022/04/29 13:03:15 by sashin           ###   ########.fr       */
+/*   Updated: 2022/04/29 14:25:55 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void myTest()
 	arr[2] = "i'm sashin";
 
 	std::cout << arr.size() <<std::endl;
-	for (int i = 0; i < arr.size(); i++)
+	for (unsigned int i = 0; i < arr.size(); i++)
 		std::cout << arr[i] << std::endl;
 }
 
