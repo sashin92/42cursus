@@ -6,7 +6,7 @@
 /*   By: sashin <sashin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 15:19:33 by sashin            #+#    #+#             */
-/*   Updated: 2022/04/30 15:19:33 by sashin           ###   ########.fr       */
+/*   Updated: 2022/04/30 18:56:00 by sashin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ public:
 
 	iterator rbegin()
 	{
-		return this->c.rbegin;
+		return this->c.rbegin();
 	}
 
 	iterator rend()
 	{
-		return this->c.rend;
+		return this->c.rend();
 	}
 };
 
