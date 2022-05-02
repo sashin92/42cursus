@@ -1,0 +1,43 @@
+FROM alpine:3.15
+
+WORKDIR /home/
+
+RUN apk update
+RUN apk upgrade
+RUN apk add vim nginx wget php7-fpm openssl\
+ mariadb-server php-mysql php-xml
+
+# 1. ----------------------------------------
+
+RUN apk update
+RUN apk upgrade
+RUN apk nginx openssl
+
+# 2. ----------------------------------------
+
+RUN apk update
+RUN apk upgrade
+RUN apk wget php7-fpm
+
+RUN wget https://ko.wordpress.org/latest-ko_KR.tar.gz
+RUN tar -xvf latest-ko_KR.tar.gz
+RUN mv wordpress /var/www/html/wordpress
+RUN rm -rf latest-ko_KR.tar.gz
+COPY ./src/wp-config.php /var/www/html/wordpress/
+
+# 3. ----------------------------------------
+
+RUN apk update
+RUN apk upgrade
+RUN mariadb-server
+
+
+# 4. wp의 db를 위한 볼륨? ----------------------------------------
+# 5. wp의 웹사이트의 파일을 위한 볼륨? ----------------------------------------
+
+
+# 6. docker network ls << 먼저 해보고 이해하도록
+
+
+
+ENTRYPOINT [ "bash", "init.sh" ]
