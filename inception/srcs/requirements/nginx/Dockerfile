@@ -15,11 +15,11 @@ COPY ./tools/init.sh /
 
 EXPOSE 443
 
-# Runs "/usr/bin/dumb-init -- /my/script --with --args"
+# # Runs "/usr/bin/dumb-init -- /my/script --with --args"
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 
-# or if you use --rewrite or other cli flags
-# ENTRYPOINT ["dumb-init", "--rewrite", "2:3", "--"]
+# # or if you use --rewrite or other cli flags
+# # ENTRYPOINT ["dumb-init", "--rewrite", "2:3", "--"]
 
 CMD ["sh", "", "init.sh"]
 
