@@ -1,10 +1,68 @@
-version: '3.0'
+# version: '3.0'
 
+# services:
+
+
+#   mariadb:
+#     build: ./requirements/mariadb/
+#     image: my_mariadb
+#     container_name: my_mariadb
+#     volumes:
+#       - my_mariadb_data:/var/lib/mysql
+#     restart: always
+#     environment:
+#       MYSQL_HOST: imhost
+#       MYSQL_DATABASE: wordpress
+#       MYSQL_USER: wordpress
+#       MYSQL_PASSWORD: wordpress
+
+#   wordpress:
+#     build: ./requirements/wordpress/
+#     image: my_wordpress
+#     container_name: my_wordpress
+
+#   nginx:
+#     build: ./requirements/nginx/
+#     image: my_nginx
+#     container_name: my_nginx
+#     networks:
+#       - network-nginx
+#     ports:
+#       - '443:443'
+#     volumes:
+#       - volume-wordpress:/var/www/wordpress
+
+
+# --------------------------------------------------
+
+version: "3"
+    
 services:
-  nginx:
-    build: ./requirements/nginx/
-    image: nginx
-    container_name: nginx
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: somewordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    volumes:
+      - wordpress_data:/var/www/html
     ports:
-      - '443:443'
-
+      - "8000:80"
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+volumes:
+  db_data: {}
+  wordpress_data: {}
