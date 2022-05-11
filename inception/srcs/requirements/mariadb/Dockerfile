@@ -1,10 +1,11 @@
 FROM alpine:3.14
 
-WORKDIR /home/
+WORKDIR /tmp
 
 RUN apk update
-RUN apk upgrade
-RUN mariadb-server
+RUN apk add mariadb mariadb-client
+
+
 
 
 # ENTRYPOINT [ "bash", "init.sh" ]
