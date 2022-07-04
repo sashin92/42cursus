@@ -12,4 +12,4 @@ COPY ./tools/init.sh /tmp
 
 EXPOSE 443
 
-ENTRYPOINT ["sh", "init.sh"]
+# ENTRYPOINT ["sh", "init.sh"]
