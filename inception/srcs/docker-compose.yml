@@ -2,37 +2,59 @@ version: '3.0'
 
 services:
 
-
   mariadb:
-    build: ./requirements/mariadb/
-    image: my_mariadb
     container_name: my_mariadb
+    build: ./requirements/mariadb
+    image: my_mariadb
+    restart: always
+    env_file: .env
     volumes:
       - my_mariadb_data:/var/lib/mysql
-    restart: always
-    environment:
-      MYSQL_HOST: imhost
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
+    networks:
+      - my_network
 
   wordpress:
+    container_name: my_wordpress
     build: ./requirements/wordpress/
     image: my_wordpress
-    container_name: my_wordpress
     volumes:
-      - ~/desktop/inceptionvar/www/html:/var/www/html
+      - my_wordpress_data:/var/www/html/wordpress
+    networks:
+      - my_network
+    depends_on:
+      - my_mariadb
 
   nginx:
+    container_name: my_nginx
     build: ./requirements/nginx/
     image: my_nginx
-    container_name: my_nginx
-    networks:
-      - network-nginx
     ports:
       - '443:443'
     volumes:
-      - ~/desktop/inception/var/www/html:/var/www/html
+      - my_wordpress_data:/var/www/html/wordpress
+    networks:
+      - my_network
+    depends_on:
+      - my_wordpress
+
+volumes:
+  my_mariadb_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/${USER}/inception/my_mariadb_data
+  my_wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/${USER}/inception/my_wordpress_data
+
+
+networks:
+  my_network:
+    driver: bridge
 
 
 # --------------------------------------------------

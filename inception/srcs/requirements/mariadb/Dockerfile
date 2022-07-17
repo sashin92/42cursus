@@ -1,11 +1,15 @@
-FROM alpine:3.14
+FROM debian:buster
 
 WORKDIR /tmp
 
-RUN apk update
-RUN apk add mariadb mariadb-client
+RUN apt update
+RUN apt upgrade -y
+RUN apt install mariadb-server -y
 
+COPY ./tools/init.sh /tmp
+COPY ./tools/set_mysql.sql /tmp
+COPY ./conf/50-server.cnf /tmp
 
+EXPOSE 3306
 
-
-# ENTRYPOINT [ "bash", "init.sh" ]
+ENTRYPOINT ["sh", "init.sh"]

@@ -1,15 +1,14 @@
-FROM alpine:3.14
+FROM debian:buster
 
 WORKDIR /tmp
 
-
-RUN apk update
-RUN apk upgrade
-RUN apk add nginx openssl
+RUN apt update
+RUN apt upgrade -y
+RUN apt install nginx openssl -y
 
 COPY ./conf/default.conf /tmp
 COPY ./tools/init.sh /tmp
 
 EXPOSE 443
 
-# ENTRYPOINT ["sh", "init.sh"]
+ENTRYPOINT ["sh", "init.sh"]
