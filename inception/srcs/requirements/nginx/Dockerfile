@@ -9,6 +9,8 @@ RUN apt install nginx openssl -y
 COPY ./conf/default.conf /tmp
 COPY ./tools/init.sh /tmp
 
+RUN 
+
 EXPOSE 443
 
 ENTRYPOINT ["sh", "init.sh"]

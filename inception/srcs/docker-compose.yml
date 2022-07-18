@@ -7,7 +7,7 @@ services:
     build: ./requirements/mariadb
     image: my_mariadb
     # restart: always
-    env_file: .env
+    env_file: ./.env
     volumes:
       - mariadb_data:/var/lib/mysql
     networks:
@@ -17,6 +17,7 @@ services:
     container_name: my_wordpress
     build: ./requirements/wordpress/
     image: my_wordpress
+    env_file: ./.env
     volumes:
       - wordpress_data:/var/www/html/wordpress
     networks:
@@ -39,14 +40,14 @@ services:
 
 volumes:
   mariadb_data:
-    name: my_mariadb_data
+    name: kkkkkkkkkkk
     driver: local
     driver_opts:
       type: none
       o: bind
       device: /home/${USER}/inception/my_mariadb_data
   wordpress_data:
-    name: my_wordpress_data
+    name: ttttttttttt
     driver: local
     driver_opts:
       type: none
@@ -56,7 +57,6 @@ volumes:
 
 networks:
   network:
-    name: my_network
     driver: bridge
 
 
