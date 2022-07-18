@@ -5,8 +5,8 @@ NAME	= inception
 all: up
 
 up:
-	sudo mkdir -p ${HOME}/my_data/my_mariadb_data
-	sudo mkdir -p ${HOME}/my_data/my_wordpress_data
+	sudo mkdir -p ${HOME}/data/my_mariadb_data
+	sudo mkdir -p ${HOME}/data/my_wordpress_data
 	sudo docker-compose -f ./srcs/docker-compose.yml up
 down:
 	sudo docker-compose -f ./srcs/docker-compose.yml down --rmi all -v
@@ -14,7 +14,7 @@ down:
 clean: down
 
 fclean: clean
-	sudo rm -rf ${HOME}/my_data
+	sudo rm -rf ${HOME}/data
 	sudo docker volume prune -f
 	sudo docker network prune -f
 
