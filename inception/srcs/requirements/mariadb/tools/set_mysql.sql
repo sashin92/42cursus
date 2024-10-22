@@ -1,9 +1,0 @@
-CREATE DATABASE IF NOT EXISTS wordpress;
-
-CREATE USER 'sashin'@'%' IDENTIFIED BY '921206';
-
-GRANT ALL PRIVILEGES ON wordpress.* TO 'sashin'@'%';
-
-FLUSH PRIVILEGES;
-
-ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
